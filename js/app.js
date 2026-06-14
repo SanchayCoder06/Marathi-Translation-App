@@ -1,0 +1,396 @@
+// ============================================================
+// बोला मराठी — Main App Controller
+// Orchestrates all modules: Curriculum, Audio, AI, UI, Progress
+// ============================================================
+
+const App = (() => {
+  // Current state
+  let _currentScreen = 'onboarding';
+  let _currentModuleId = null;
+  let _currentLessonId = null;
+  let _currentPhraseIndex = 0;
+  let _lessonScores = [];       // Scores for each phrase in current lesson
+  let _isProcessing = false;    // Prevent double-taps
+
+  // ============================================================
+  // INITIALIZATION
+  // ============================================================
+
+  async function init() {
+    UI.init();
+
+    // Preload TTS voices
+    await AudioEngine.preloadVoices();
+
+    // Load curriculum data
+    try {
+      const response = await fetch('data/lessons.json');
+      if (!response.ok) throw new Error('Failed to load curriculum');
+      const data = await response.json();
+      Curriculum.init(data);
+    } catch (err) {
+      console.error('Failed to load curriculum:', err);
+      UI.showToast('Error loading lesson data. Please refresh.');
+      return;
+    }
+
+    // Show welcoming page first
+    _showWelcome();
+
+    // Start session timer
+    Progress.startSession();
+
+    // Save session on page leave
+    window.addEventListener('beforeunload', () => {
+      Progress.endSession();
+    });
+
+    // Register service worker
+    _registerSW();
+  }
+
+  // ============================================================
+  // SCREEN NAVIGATION
+  // ============================================================
+
+  function _showWelcome() {
+    _currentScreen = 'welcome';
+    AudioEngine.stopSpeaking();
+    UI.renderWelcome(() => {
+      const apiKey = Progress.getApiKey();
+      if (apiKey) {
+        _showDashboard();
+      } else {
+        _showOnboarding();
+      }
+    });
+  }
+
+  function _showTranslator() {
+    _currentScreen = 'translator';
+    AudioEngine.stopSpeaking();
+    UI.renderTranslator(
+      async (text, direction) => {
+        const apiKey = Progress.getApiKey();
+        if (!apiKey) {
+          UI.showToast('Please set your Gemini API key in Settings first.');
+          return null;
+        }
+        try {
+          return await AIFeedback.translate(text, direction, apiKey);
+        } catch (err) {
+          UI.showToast(err.message || 'Translation failed.');
+          return null;
+        }
+      },
+      (text) => {
+        AudioEngine.speak(text, 'normal');
+      },
+      (text) => {
+        navigator.clipboard.writeText(text)
+          .then(() => UI.showToast('Translation copied to clipboard!'))
+          .catch(() => UI.showToast('Failed to copy.'));
+      }
+    );
+  }
+
+  function _showVideos(activeModuleId = 'm1') {
+    _currentScreen = 'videos';
+    AudioEngine.stopSpeaking();
+    UI.renderVideos(
+      activeModuleId,
+      (moduleId) => _showVideos(moduleId)
+    );
+  }
+
+  function _showOnboarding() {
+    _currentScreen = 'onboarding';
+    UI.renderOnboarding(() => {
+      _showDashboard();
+    });
+  }
+
+  function _showDashboard() {
+    _currentScreen = 'dashboard';
+    AudioEngine.stopSpeaking();
+    const modules = Curriculum.getModules();
+    UI.renderDashboard(
+      modules,
+      (moduleId) => _showModuleDetail(moduleId),
+      () => _showSettings()
+    );
+  }
+
+  function _showModuleDetail(moduleId) {
+    _currentScreen = 'module';
+    _currentModuleId = moduleId;
+    AudioEngine.stopSpeaking();
+
+    const module = Curriculum.getModule(moduleId);
+    if (!module) {
+      UI.showToast('Module not found');
+      _showDashboard();
+      return;
+    }
+
+    Progress.startModule(moduleId);
+
+    UI.renderModuleDetail(
+      module,
+      (lessonId) => _startLesson(lessonId),
+      () => _showDashboard()
+    );
+  }
+
+  function _showSettings() {
+    _currentScreen = 'settings';
+    AudioEngine.stopSpeaking();
+
+    UI.renderSettings(
+      () => _showDashboard(),
+      () => {
+        Progress.resetAll();
+        UI.showToast('Progress reset');
+        _showOnboarding();
+      }
+    );
+  }
+
+  // ============================================================
+  // LESSON PLAYER LOGIC
+  // ============================================================
+
+  function _startLesson(lessonId) {
+    _currentScreen = 'lesson';
+    _currentLessonId = lessonId;
+    _currentPhraseIndex = 0;
+    _lessonScores = [];
+    _isProcessing = false;
+
+    const lesson = Curriculum.getLesson(lessonId);
+    if (!lesson) {
+      UI.showToast('Lesson not found');
+      _showModuleDetail(_currentModuleId);
+      return;
+    }
+
+    _renderCurrentPhrase(lesson);
+  }
+
+  function _renderCurrentPhrase(lesson) {
+    if (!lesson) {
+      lesson = Curriculum.getLesson(_currentLessonId);
+    }
+
+    UI.renderLessonPlayer(lesson, _currentPhraseIndex, () => {
+      // Back button
+      _showModuleDetail(lesson.moduleId);
+    });
+
+    // Bind audio controls
+    _bindAudioControls(lesson);
+
+    // Bind record button
+    _bindRecordButton(lesson);
+
+    // Bind navigation
+    _bindLessonNav(lesson);
+
+    // Auto-play if enabled
+    const settings = Progress.getSettings();
+    if (settings.autoPlayAudio) {
+      setTimeout(() => {
+        _playPhrase(lesson.phrases[_currentPhraseIndex].marathi, settings.playbackSpeed);
+      }, 500);
+    }
+  }
+
+  function _bindAudioControls(lesson) {
+    const phrase = lesson.phrases[_currentPhraseIndex];
+
+    document.getElementById('btnPlay')?.addEventListener('click', () => {
+      _playPhrase(phrase.marathi, 'normal');
+    });
+
+    document.getElementById('btnPlaySlow')?.addEventListener('click', () => {
+      _playPhrase(phrase.marathi, 'slow');
+    });
+
+    document.getElementById('btnPlayFast')?.addEventListener('click', () => {
+      _playPhrase(phrase.marathi, 'fast');
+    });
+  }
+
+  async function _playPhrase(text, speed) {
+    try {
+      // Disable buttons during playback
+      const btns = document.querySelectorAll('.audio-controls .btn');
+      btns.forEach(b => b.disabled = true);
+
+      await AudioEngine.speak(text, speed);
+
+      btns.forEach(b => b.disabled = false);
+    } catch (err) {
+      console.error('TTS error:', err);
+      UI.showToast('Could not play audio. Please check your device audio.');
+      const btns = document.querySelectorAll('.audio-controls .btn');
+      btns.forEach(b => b.disabled = false);
+    }
+  }
+
+  function _bindRecordButton(lesson) {
+    const btnRecord = document.getElementById('btnRecord');
+    if (!btnRecord) return;
+
+    btnRecord.addEventListener('click', async () => {
+      if (_isProcessing) return;
+
+      if (AudioEngine.isRecording()) {
+        // Stop recording
+        AudioEngine.stopRecording();
+        return;
+      }
+
+      // Start recording
+      UI.setRecordingState(true);
+      AudioEngine.stopSpeaking();
+
+      try {
+        const result = await AudioEngine.startRecording((seconds) => {
+          UI.updateRecordingTimer(seconds);
+        });
+
+        UI.setRecordingState(false);
+        _isProcessing = true;
+
+        // Show loading
+        UI.showFeedbackLoading();
+
+        // Get AI feedback
+        const phrase = lesson.phrases[_currentPhraseIndex];
+        const feedback = await AIFeedback.assess({
+          expectedMarathi: phrase.marathi,
+          expectedTransliteration: phrase.transliteration,
+          expectedEnglish: phrase.english,
+          userTranscription: result.transcription,
+          audioBlob: result.audioBlob,
+          apiKey: Progress.getApiKey(),
+        });
+
+        // Save score
+        Progress.savePhraseScore(phrase.id, feedback.score);
+        _lessonScores[_currentPhraseIndex] = feedback.score;
+
+        // Show feedback
+        UI.showFeedback(feedback);
+        _isProcessing = false;
+
+      } catch (err) {
+        console.error('Recording error:', err);
+        UI.setRecordingState(false);
+        _isProcessing = false;
+        UI.showToast(err.message || 'Recording failed. Please allow microphone access.');
+      }
+    });
+  }
+
+  function _bindLessonNav(lesson) {
+    const total = lesson.phrases.length;
+
+    // Previous button
+    const btnPrev = document.getElementById('btnPrevPhrase');
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        if (_currentPhraseIndex > 0) {
+          _currentPhraseIndex--;
+          _renderCurrentPhrase(lesson);
+        }
+      });
+    }
+
+    // Next button
+    const btnNext = document.getElementById('btnNextPhrase');
+    if (btnNext) {
+      btnNext.addEventListener('click', () => {
+        if (_currentPhraseIndex < total - 1) {
+          _currentPhraseIndex++;
+          _renderCurrentPhrase(lesson);
+        } else {
+          // Lesson complete!
+          _finishLesson(lesson);
+        }
+      });
+    }
+  }
+
+  function _finishLesson(lesson) {
+    const validScores = _lessonScores.filter(s => s !== undefined && s !== null);
+    const avgScore = validScores.length > 0
+      ? Math.round(validScores.reduce((a, b) => a + b, 0) / validScores.length)
+      : 0;
+    const bestScore = validScores.length > 0
+      ? Math.max(...validScores)
+      : 0;
+
+    // Save lesson completion
+    Progress.completeLesson(lesson.id, avgScore);
+
+    // Calculate XP earned this lesson
+    const xpEarned = 25 + validScores.reduce((sum, s) => {
+      if (s >= 90) return sum + 15;
+      if (s >= 70) return sum + 10;
+      if (s >= 50) return sum + 5;
+      return sum + 2;
+    }, 0);
+
+    const stats = {
+      avgScore,
+      bestPhrase: bestScore,
+      phrasesLearned: lesson.phrases.length,
+      xpEarned,
+    };
+
+    // Check for next lesson
+    const next = Curriculum.getNextLesson(lesson.id);
+
+    UI.showLessonComplete(
+      lesson.title,
+      stats,
+      next ? () => _startLesson(next.lessonId) : null,
+      () => _startLesson(lesson.id),
+      () => _showDashboard()
+    );
+  }
+
+  // ============================================================
+  // SERVICE WORKER
+  // ============================================================
+
+  async function _registerSW() {
+    if ('serviceWorker' in navigator) {
+      try {
+        await navigator.serviceWorker.register('sw.js');
+      } catch (err) {
+        console.warn('SW registration failed:', err);
+      }
+    }
+  }
+
+  // ============================================================
+  // PUBLIC
+  // ============================================================
+
+  return { 
+    init,
+    showWelcome: _showWelcome,
+    showDashboard: _showDashboard,
+    showTranslator: _showTranslator,
+    showVideos: _showVideos,
+    showSettings: _showSettings
+  };
+})();
+
+// --- Boot ---
+document.addEventListener('DOMContentLoaded', () => {
+  App.init();
+});
