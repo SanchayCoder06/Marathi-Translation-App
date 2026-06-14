@@ -59,7 +59,7 @@ const App = (() => {
     UI.renderWelcome(() => {
       const apiKey = Progress.getApiKey();
       if (apiKey) {
-        _showDashboard();
+        _showLessons();
       } else {
         _showOnboarding();
       }
@@ -106,17 +106,45 @@ const App = (() => {
   function _showOnboarding() {
     _currentScreen = 'onboarding';
     UI.renderOnboarding(() => {
-      _showDashboard();
+      _showLessons();
     });
+  }
+
+  function _showLessons() {
+    _currentScreen = 'lessons';
+    AudioEngine.stopSpeaking();
+    const modules = Curriculum.getModules();
+    UI.renderLessons(
+      modules,
+      (moduleId) => _showModuleDetail(moduleId),
+      () => _showSettings()
+    );
   }
 
   function _showDashboard() {
     _currentScreen = 'dashboard';
     AudioEngine.stopSpeaking();
-    const modules = Curriculum.getModules();
+    
+    const stats = Progress.getStats();
+    const streak = Progress.getStreak();
+    const todayMins = Progress.getTodayMinutes();
+    const weeklyData = Progress.getWeeklyMinutes();
+    const dailyTarget = 15;
+    
+    // Overall course completion
+    const totalLessons = Curriculum.getTotalLessons() || 100;
+    const completedLessons = stats.completedLessons;
+    const courseCompletionPercentage = totalLessons > 0 
+      ? Math.min(100, Math.round((completedLessons / totalLessons) * 100))
+      : 0;
+
     UI.renderDashboard(
-      modules,
-      (moduleId) => _showModuleDetail(moduleId),
+      stats,
+      streak,
+      todayMins,
+      dailyTarget,
+      weeklyData,
+      courseCompletionPercentage,
       () => _showSettings()
     );
   }
@@ -125,29 +153,29 @@ const App = (() => {
     _currentScreen = 'module';
     _currentModuleId = moduleId;
     AudioEngine.stopSpeaking();
-
+ 
     const module = Curriculum.getModule(moduleId);
     if (!module) {
       UI.showToast('Module not found');
-      _showDashboard();
+      _showLessons();
       return;
     }
-
+ 
     Progress.startModule(moduleId);
-
+ 
     UI.renderModuleDetail(
       module,
       (lessonId) => _startLesson(lessonId),
-      () => _showDashboard()
+      () => _showLessons()
     );
   }
 
   function _showSettings() {
     _currentScreen = 'settings';
     AudioEngine.stopSpeaking();
-
+ 
     UI.renderSettings(
-      () => _showDashboard(),
+      () => _showLessons(),
       () => {
         Progress.resetAll();
         UI.showToast('Progress reset');
@@ -358,7 +386,7 @@ const App = (() => {
       stats,
       next ? () => _startLesson(next.lessonId) : null,
       () => _startLesson(lesson.id),
-      () => _showDashboard()
+      () => _showLessons()
     );
   }
 
@@ -383,6 +411,7 @@ const App = (() => {
   return { 
     init,
     showWelcome: _showWelcome,
+    showLessons: _showLessons,
     showDashboard: _showDashboard,
     showTranslator: _showTranslator,
     showVideos: _showVideos,

@@ -36,6 +36,7 @@ const Progress = (() => {
       lastPracticeDate: null,
       totalTimeMinutes: 0,
       sessionStart: null,
+      dailyMinutes: {},   // { "YYYY-MM-DD": minutes }
     };
   }
 
@@ -220,7 +221,12 @@ const Progress = (() => {
     const data = _load();
     if (data.sessionStart) {
       const elapsed = Math.round((Date.now() - data.sessionStart) / 60000);
-      data.totalTimeMinutes = (data.totalTimeMinutes || 0) + elapsed;
+      if (elapsed > 0) {
+        data.totalTimeMinutes = (data.totalTimeMinutes || 0) + elapsed;
+        if (!data.dailyMinutes) data.dailyMinutes = {};
+        const today = new Date().toISOString().split('T')[0];
+        data.dailyMinutes[today] = (data.dailyMinutes[today] || 0) + elapsed;
+      }
       data.sessionStart = null;
       _save(data);
     }
@@ -288,6 +294,33 @@ const Progress = (() => {
     localStorage.removeItem(SETTINGS_KEY);
   }
 
+  function getTodayMinutes() {
+    const data = _load();
+    const today = new Date().toISOString().split('T')[0];
+    if (!data.dailyMinutes) return 0;
+    return data.dailyMinutes[today] || 0;
+  }
+
+  function getWeeklyMinutes() {
+    const data = _load();
+    const result = [];
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const dateString = d.toISOString().split('T')[0];
+      const dayName = days[d.getDay()];
+      const mins = data.dailyMinutes ? (data.dailyMinutes[dateString] || 0) : 0;
+      result.push({
+        day: dayName,
+        minutes: mins,
+        date: dateString
+      });
+    }
+    return result;
+  }
+
   return {
     getPhraseScore,
     savePhraseScore,
@@ -308,5 +341,7 @@ const Progress = (() => {
     getApiKey,
     setApiKey,
     resetAll,
+    getTodayMinutes,
+    getWeeklyMinutes,
   };
 })();

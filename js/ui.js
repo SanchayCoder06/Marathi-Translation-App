@@ -106,32 +106,18 @@ const UI = (() => {
   // DASHBOARD SCREEN
   // ============================================================
 
-  function renderDashboard(modules, onModuleClick, onSettingsClick) {
-    const stats = Progress.getStats();
-    const streak = Progress.getStreak();
+  // ============================================================
+  // LESSONS SCREEN (Modules Grid)
+  // ============================================================
 
+  function renderLessons(modules, onModuleClick, onSettingsClick) {
     app().innerHTML = `
-      <div class="screen active" id="screen-dashboard">
+      <div class="screen active" id="screen-lessons">
         <div class="dashboard-header">
           <div>
             <div class="dashboard-header__greeting">बोला मराठी</div>
           </div>
           <div class="dashboard-header__settings" id="btnSettings" title="Settings">⚙️</div>
-        </div>
-
-        <div class="stats-banner">
-          <div class="stat-item">
-            <div class="stat-item__value gradient">${streak}</div>
-            <div class="stat-item__label">🔥 Streak</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-item__value gradient">${stats.xp}</div>
-            <div class="stat-item__label">⭐ XP</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-item__value gradient">${stats.completedLessons}</div>
-            <div class="stat-item__label">✅ Lessons</div>
-          </div>
         </div>
 
         <div class="modules-section">
@@ -141,7 +127,7 @@ const UI = (() => {
           </div>
         </div>
 
-        ${_renderNavBar('dashboard')}
+        ${_renderNavBar('lessons')}
       </div>
     `;
 
@@ -157,6 +143,123 @@ const UI = (() => {
       });
     });
 
+    _bindNavBarEvents();
+  }
+
+  // ============================================================
+  // DASHBOARD SCREEN (Progress & Charts)
+  // ============================================================
+
+  function renderDashboard(stats, streak, todayMins, dailyTarget, weeklyData, courseCompletionPercentage, onSettingsClick) {
+    // Daily target calculations
+    const todayPercentage = Math.min(100, Math.round((todayMins / dailyTarget) * 100));
+    const circumference = 2 * Math.PI * 34; // Larger ring: radius 34, viewBox 80x80
+    const offsetDaily = circumference - (todayPercentage / 100) * circumference;
+
+    // Course completion ring calculations
+    const offsetCourse = circumference - (courseCompletionPercentage / 100) * circumference;
+
+    // Weekly chart calculations
+    const maxMins = Math.max(15, ...weeklyData.map(d => d.minutes));
+
+    app().innerHTML = `
+      <div class="screen active" id="screen-dashboard">
+        <div class="dashboard-header">
+          <div>
+            <div class="dashboard-header__greeting">My Dashboard</div>
+          </div>
+          <div class="dashboard-header__settings" id="btnSettings" title="Settings">⚙️</div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section glass-card" style="margin-bottom: var(--space-lg)">
+          <!-- Rings Row -->
+          <div class="progress-rings-container">
+            <!-- Daily Goal Ring -->
+            <div class="daily-goal-box">
+              <div class="goal-ring-container">
+                <svg viewBox="0 0 80 80" class="goal-svg">
+                  <circle class="ring-bg" cx="40" cy="40" r="34"/>
+                  <circle class="ring-progress ${todayMins >= dailyTarget ? 'completed' : ''}" cx="40" cy="40" r="34"
+                    stroke-dasharray="${circumference}"
+                    stroke-dashoffset="${offsetDaily}"/>
+                </svg>
+                <div class="goal-text">
+                  <span class="goal-current">${todayMins}</span>
+                  <span class="goal-target">/${dailyTarget}m</span>
+                </div>
+              </div>
+              <div class="goal-label">Daily Goal</div>
+              <div class="goal-sublabel">${todayMins >= dailyTarget ? 'Goal Met! 🎉' : `${dailyTarget - todayMins}m left`}</div>
+            </div>
+
+            <!-- Course Done Ring -->
+            <div class="daily-goal-box">
+              <div class="goal-ring-container">
+                <svg viewBox="0 0 80 80" class="goal-svg">
+                  <circle class="ring-bg" cx="40" cy="40" r="34"/>
+                  <circle class="ring-progress" cx="40" cy="40" r="34"
+                    stroke-dasharray="${circumference}"
+                    stroke-dashoffset="${offsetCourse}"/>
+                </svg>
+                <div class="goal-text">
+                  <span class="goal-current">${courseCompletionPercentage}%</span>
+                  <span class="goal-target">${stats.completedLessons}/100</span>
+                </div>
+              </div>
+              <div class="goal-label">Course Done</div>
+              <div class="goal-sublabel">${stats.completedLessons} lessons done</div>
+            </div>
+          </div>
+
+          <!-- Stats grid -->
+          <div class="dashboard-stats-grid">
+            <div class="d-stat-card">
+              <span class="d-stat-val text-gradient">${streak}</span>
+              <span class="d-stat-lbl">🔥 Streak</span>
+            </div>
+            <div class="d-stat-card">
+              <span class="d-stat-val text-gradient">${stats.xp}</span>
+              <span class="d-stat-lbl">⭐ XP</span>
+            </div>
+            <div class="d-stat-card">
+              <span class="d-stat-val text-gradient">${stats.completedLessons}</span>
+              <span class="d-stat-lbl">📚 Lessons</span>
+            </div>
+            <div class="d-stat-card">
+              <span class="d-stat-val text-gradient">${stats.totalTimeMinutes}m</span>
+              <span class="d-stat-lbl">⏳ Total Time</span>
+            </div>
+          </div>
+
+          <!-- Weekly Chart -->
+          <div class="weekly-chart-box" style="margin-top: var(--space-md)">
+            <div class="chart-title">Weekly Activity (min)</div>
+            <div class="bar-chart">
+              ${weeklyData.map(day => {
+                const height = Math.max(6, Math.round((day.minutes / maxMins) * 100));
+                const isMet = day.minutes >= dailyTarget;
+                return `
+                  <div class="chart-col">
+                    <div class="chart-bar-container">
+                      <div class="chart-bar ${isMet ? 'target-met' : ''}" style="height: ${height}%" title="${day.minutes} mins on ${day.date}">
+                        ${day.minutes > 0 ? `<span class="bar-tooltip">${day.minutes}m</span>` : ''}
+                      </div>
+                    </div>
+                    <div class="chart-day-label">${day.day}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+
+        ${_renderNavBar('dashboard')}
+      </div>
+    `;
+
+    // Bind events
+    document.getElementById('btnSettings').addEventListener('click', onSettingsClick);
     _bindNavBarEvents();
   }
 
@@ -919,10 +1022,6 @@ const UI = (() => {
           <span class="nav-icon">🎥</span>
           <span class="nav-text">Videos</span>
         </button>
-        <button class="nav-item ${activeTab === 'settings' ? 'active' : ''}" id="navSettings">
-          <span class="nav-icon">⚙️</span>
-          <span class="nav-text">Settings</span>
-        </button>
       </div>
     `;
   }
@@ -931,12 +1030,12 @@ const UI = (() => {
     document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
     document.getElementById('navTranslator')?.addEventListener('click', () => App.showTranslator());
     document.getElementById('navVideos')?.addEventListener('click', () => App.showVideos());
-    document.getElementById('navSettings')?.addEventListener('click', () => App.showSettings());
   }
 
   return {
     init,
     renderOnboarding,
+    renderLessons,
     renderDashboard,
     renderModuleDetail,
     renderLessonPlayer,
