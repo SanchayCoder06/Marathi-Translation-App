@@ -1010,7 +1010,7 @@ const UI = (() => {
   function _renderNavBar(activeTab) {
     return `
       <div class="bottom-nav">
-        <button class="nav-item ${activeTab === 'dashboard' ? 'active' : ''}" id="navDashboard">
+        <button class="nav-item ${activeTab === 'lessons' ? 'active' : ''}" id="navLessons">
           <span class="nav-icon">📖</span>
           <span class="nav-text">Lessons</span>
         </button>
@@ -1022,14 +1022,19 @@ const UI = (() => {
           <span class="nav-icon">🎥</span>
           <span class="nav-text">Videos</span>
         </button>
+        <button class="nav-item ${activeTab === 'dashboard' ? 'active' : ''}" id="navDashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Dashboard</span>
+        </button>
       </div>
     `;
   }
 
   function _bindNavBarEvents() {
-    document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
+    document.getElementById('navLessons')?.addEventListener('click', () => App.showLessons());
     document.getElementById('navTranslator')?.addEventListener('click', () => App.showTranslator());
     document.getElementById('navVideos')?.addEventListener('click', () => App.showVideos());
+    document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
   }
 
   return {

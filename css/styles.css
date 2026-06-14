@@ -1795,11 +1795,13 @@ body::after {
   text-align: left;
 }
 
-.progress-container {
+.progress-rings-container {
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   width: 100%;
+  margin-bottom: var(--space-md);
 }
 
 .daily-goal-box {

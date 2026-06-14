@@ -117,7 +117,7 @@ const App = (() => {
     UI.renderLessons(
       modules,
       (moduleId) => _showModuleDetail(moduleId),
-      () => _showSettings()
+      () => _showSettings('lessons')
     );
   }
 
@@ -145,7 +145,7 @@ const App = (() => {
       dailyTarget,
       weeklyData,
       courseCompletionPercentage,
-      () => _showSettings()
+      () => _showSettings('dashboard')
     );
   }
 
@@ -170,12 +170,18 @@ const App = (() => {
     );
   }
 
-  function _showSettings() {
+  function _showSettings(fromScreen = 'lessons') {
     _currentScreen = 'settings';
     AudioEngine.stopSpeaking();
  
     UI.renderSettings(
-      () => _showLessons(),
+      () => {
+        if (fromScreen === 'dashboard') {
+          _showDashboard();
+        } else {
+          _showLessons();
+        }
+      },
       () => {
         Progress.resetAll();
         UI.showToast('Progress reset');
