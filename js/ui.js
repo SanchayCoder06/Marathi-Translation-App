@@ -11,8 +11,8 @@ const UI = (() => {
     <svg style="position:absolute;width:0;height:0">
       <defs>
         <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#667eea"/>
-          <stop offset="100%" stop-color="#764ba2"/>
+          <stop offset="0%" stop-color="#0072ff"/>
+          <stop offset="100%" stop-color="#00d2ff"/>
         </linearGradient>
         <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#43e97b"/>
@@ -20,6 +20,40 @@ const UI = (() => {
         </linearGradient>
       </defs>
     </svg>`;
+
+  // --- Local Seed Dictionary Database (30 Words) ---
+  const LOCAL_DICTIONARY = [
+    { word: 'नमस्कार', transliteration: 'Namaskar', partOfSpeech: 'Greeting', englishMeaning: 'Hello / Greetings', hindiMeaning: 'नमस्ते / नमस्कार', exampleMarathi: 'नमस्कार, तुमचे नाव काय आहे?', exampleEnglish: 'Hello, what is your name?', exampleHindi: 'नमस्ते, आपका नाम क्या है?' },
+    { word: 'धन्यवाद', transliteration: 'Dhanyavaad', partOfSpeech: 'Noun', englishMeaning: 'Thank you', hindiMeaning: 'धन्यवाद / शुक्रिया', exampleMarathi: 'मदतीसाठी खूप खूप धन्यवाद.', exampleEnglish: 'Thank you very much for the help.', exampleHindi: 'मदद के लिए बहुत--बहुत धन्यवाद।' },
+    { word: 'कृपया', transliteration: 'Krupaya', partOfSpeech: 'Adverb', englishMeaning: 'Please', hindiMeaning: 'कृपया', exampleMarathi: 'कृपया मला पाणी द्या.', exampleEnglish: 'Please give me water.', exampleHindi: 'कृपया मुझे पानी दें।' },
+    { word: 'कसे आहात', transliteration: 'Kase aahat', partOfSpeech: 'Phrase', englishMeaning: 'How are you? (formal)', hindiMeaning: 'आप कैसे हैं?', exampleMarathi: 'काका, तुम्ही कसे आहात?', exampleEnglish: 'Uncle, how are you?', exampleHindi: 'चाचाजी, आप कैसे हैं?' },
+    { word: 'ठीक आहे', transliteration: 'Theek aahe', partOfSpeech: 'Adverb', englishMeaning: 'Okay / All right', hindiMeaning: 'ठीक है / अच्छा', exampleMarathi: 'ठीक आहे, आपण उद्या भेटू.', exampleEnglish: 'Okay, we will meet tomorrow.', exampleHindi: 'ठीक है, हम कल मिलेंगे।' },
+    { word: 'हो', transliteration: 'Ho', partOfSpeech: 'Adverb', englishMeaning: 'Yes', hindiMeaning: 'हाँ', exampleMarathi: 'हो, मी मराठी शिकत आहे.', exampleEnglish: 'Yes, I am learning Marathi.', exampleHindi: 'हाँ, मैं मराठी सीख रहा हूँ।' },
+    { word: 'नाही', transliteration: 'Naahi', partOfSpeech: 'Adverb', englishMeaning: 'No', hindiMeaning: 'नहीं', exampleMarathi: 'नाही, मला चहा नको आहे.', exampleEnglish: 'No, I do not want tea.', exampleHindi: 'नहीं, मुझे चाय नहीं चाहिए।' },
+    { word: 'पाणी', transliteration: 'Paani', partOfSpeech: 'Noun', englishMeaning: 'Water', hindiMeaning: 'पानी / जल', exampleMarathi: 'मला प्यायला पाणी हवे आहे.', exampleEnglish: 'I want water to drink.', exampleHindi: 'मुझे पीने के लिए पानी चाहिए।' },
+    { word: 'जेवण', transliteration: 'Jevan', partOfSpeech: 'Noun', englishMeaning: 'Food / Meal', hindiMeaning: 'खाना / भोजन', exampleMarathi: 'तुम्ही जेवण केले का?', exampleEnglish: 'Did you have your food?', exampleHindi: 'क्या आपने खाना खाया?' },
+    { word: 'चहा', transliteration: 'Chaha', partOfSpeech: 'Noun', englishMeaning: 'Tea', hindiMeaning: 'चाय', exampleMarathi: 'मला गरम चहा आवडतो.', exampleEnglish: 'I like hot tea.', exampleHindi: 'मुझे गर्म चाय पसंद है।' },
+    { word: 'घर', transliteration: 'Ghar', partOfSpeech: 'Noun', englishMeaning: 'House / Home', hindiMeaning: 'घर / मकान', exampleMarathi: 'हे माझे नवीन घर आहे.', exampleEnglish: 'This is my new house.', exampleHindi: 'यह मेरा नया घर है।' },
+    { word: 'शाळा', transliteration: 'Shaala', partOfSpeech: 'Noun', englishMeaning: 'School', hindiMeaning: 'स्कूल / विद्यालय', exampleMarathi: 'मुले शाळेत जात आहेत.', exampleEnglish: 'Children are going to school.', exampleHindi: 'बच्चे स्कूल जा रहे हैं।' },
+    { word: 'गाव', transliteration: 'Gaav', partOfSpeech: 'Noun', englishMeaning: 'Village / Town', hindiMeaning: 'गाँव / शहर', exampleMarathi: 'माझे गाव खूप सुंदर आहे.', exampleEnglish: 'My village is very beautiful.', exampleHindi: 'मेरा गाँव बहुत सुंदर है।' },
+    { word: 'नाव', transliteration: 'Naav', partOfSpeech: 'Noun', englishMeaning: 'Name', hindiMeaning: 'नाम', exampleMarathi: 'तुमचे नाव काय आहे?', exampleEnglish: 'What is your name?', exampleHindi: 'आपका नाम क्या है?' },
+    { word: 'मित्र', transliteration: 'Mitra', partOfSpeech: 'Noun', englishMeaning: 'Friend', hindiMeaning: 'मित्र / दोस्त', exampleMarathi: 'तो माझा चांगला मित्र आहे.', exampleEnglish: 'He is my good friend.', exampleHindi: 'वह मेरा अच्छा दोस्त है।' },
+    { word: 'आज', transliteration: 'Aaj', partOfSpeech: 'Adverb', englishMeaning: 'Today', hindiMeaning: 'आज', exampleMarathi: 'आज खूप चांगला दिवस आहे.', exampleEnglish: 'Today is a very good day.', exampleHindi: 'आज बहुत अच्छा दिन है।' },
+    { word: 'उद्या', transliteration: 'Udya', partOfSpeech: 'Adverb', englishMeaning: 'Tomorrow', hindiMeaning: 'कल (आने वाला)', exampleMarathi: 'मी उद्या मुंबईला जाईन.', exampleEnglish: 'I will go to Mumbai tomorrow.', exampleHindi: 'मैं कल मुंबई जाऊँगा।' },
+    { word: 'काल', transliteration: 'Kaal', partOfSpeech: 'Adverb', englishMeaning: 'Yesterday', hindiMeaning: 'कल (बीता हुआ)', exampleMarathi: 'काल खूप पाऊस पडला.', exampleEnglish: 'It rained heavily yesterday.', exampleHindi: 'कल बहुत तेज बारिश हुई थी।' },
+    { word: 'मला', transliteration: 'Mala', partOfSpeech: 'Pronoun', englishMeaning: 'To me / For me', hindiMeaning: 'मुझे / मुझको', exampleMarathi: 'मला मराठी बोलायला आवडते.', exampleEnglish: 'I like to speak Marathi.', exampleHindi: 'मुझे मराठी बोलना पसंद है।' },
+    { word: 'तुला', transliteration: 'Tula', partOfSpeech: 'Pronoun', englishMeaning: 'To you (informal)', hindiMeaning: 'तुम्हें / तुझको', exampleMarathi: 'तुला काय हवे आहे?', exampleEnglish: 'What do you want?', exampleHindi: 'तुम्हें क्या चाहिए?' },
+    { word: 'किती', transliteration: 'Kiti', partOfSpeech: 'Adjective', englishMeaning: 'How much / How many', hindiMeaning: 'कितना / कितने', exampleMarathi: 'या पुस्तकाची किंमत किती आहे?', exampleEnglish: 'How much does this book cost?', exampleHindi: 'इस किताब की कीमत कितनी है?' },
+    { word: 'कुठे', transliteration: 'Kuthe', partOfSpeech: 'Adverb', englishMeaning: 'Where', hindiMeaning: 'कहाँ', exampleMarathi: 'तुम्ही कुठे जात आहात?', exampleEnglish: 'Where are you going?', exampleHindi: 'आप कहाँ जा रहे हैं?' },
+    { word: 'कधी', transliteration: 'Kadhi', partOfSpeech: 'Adverb', englishMeaning: 'When', hindiMeaning: 'कब', exampleMarathi: 'तुम्ही परत कधी येणार?', exampleEnglish: 'When will you return?', exampleHindi: 'आप वापस कब आएंगे?' },
+    { word: 'काय', transliteration: 'Kaay', partOfSpeech: 'Pronoun', englishMeaning: 'What', hindiMeaning: 'क्या', exampleMarathi: 'तुझ्या हातात काय आहे?', exampleEnglish: 'What is in your hand?', exampleHindi: 'तुम्हारे हाथ में क्या है?' },
+    { word: 'कोण', transliteration: 'Koun', partOfSpeech: 'Pronoun', englishMeaning: 'Who', hindiMeaning: 'कौन', exampleMarathi: 'तिथे दरवाजावर कोण उभे आहे?', exampleEnglish: 'Who is standing at the door?', exampleHindi: 'वहाँ दरवाजे पर कौन खड़ा है?' },
+    { word: 'का', transliteration: 'Ka', partOfSpeech: 'Adverb', englishMeaning: 'Why', hindiMeaning: 'क्यों', exampleMarathi: 'तुम्ही हसत आहात का?', exampleEnglish: 'Why are you laughing?', exampleHindi: 'आप क्यों हंस रहे हैं?' },
+    { word: 'कसे', transliteration: 'Kase', partOfSpeech: 'Adverb', englishMeaning: 'How', hindiMeaning: 'कैसे', exampleMarathi: 'हे काम कसे करायचे?', exampleEnglish: 'How to do this work?', exampleHindi: 'यह काम कैसे करना है?' },
+    { word: 'सुंदर', transliteration: 'Sundar', partOfSpeech: 'Adjective', englishMeaning: 'Beautiful', hindiMeaning: 'सुंदर / खूबसूरत', exampleMarathi: 'ती बाग खूप सुंदर आहे.', exampleEnglish: 'That garden is very beautiful.', exampleHindi: 'वह बगीचा बहुत सुंदर है।' },
+    { word: 'मोठा', transliteration: 'Motha', partOfSpeech: 'Adjective', englishMeaning: 'Big / Large', hindiMeaning: 'बड़ा', exampleMarathi: 'हा मोठा बंगला आहे.', exampleEnglish: 'This is a big bungalow.', exampleHindi: 'यह बड़ा बंगला है।' },
+    { word: 'लहान', transliteration: 'Lahaan', partOfSpeech: 'Adjective', englishMeaning: 'Small / Little', hindiMeaning: 'छोटा', exampleMarathi: 'मला लहान कुत्र्याचे पिल्लू हवे आहे.', exampleEnglish: 'I want a small puppy.', exampleHindi: 'मुझे एक छोटा पिल्ला चाहिए।' }
+  ];
 
   /**
    * Initialize UI — inject SVG defs
@@ -1007,6 +1041,160 @@ const UI = (() => {
     });
   }
 
+  function renderDictionary(onLookupAI, onSpeak) {
+    app().innerHTML = `
+      <div class="screen active dictionary-screen" id="screen-dictionary">
+        <div class="screen-header">
+          <h1 class="screen-title text-gradient">Marathi Dictionary</h1>
+          <p class="screen-subtitle">Instant offline search with AI vocabulary lookup</p>
+        </div>
+
+        <div class="glass-card dictionary-search-container">
+          <label for="dictSearchInput">Search Word</label>
+          <div class="search-input-wrapper">
+            <input 
+              type="text" 
+              id="dictSearchInput" 
+              class="input-field" 
+              placeholder="Type in Marathi or English..."
+            />
+            <button class="btn btn-primary" id="btnDictSearch">Search 🔍</button>
+          </div>
+
+          <div class="dict-chips-section">
+            <div class="dict-chips-title">Common Words</div>
+            <div class="dict-chips-list" id="dictChipsList">
+              ${LOCAL_DICTIONARY.map(item => `
+                <button class="dict-chip" data-word="${item.word}">${item.word}</button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div id="dictResultContainer"></div>
+
+        ${_renderNavBar('dictionary')}
+      </div>
+    `;
+
+    _bindNavBarEvents();
+
+    const searchInput = document.getElementById('dictSearchInput');
+    const searchBtn = document.getElementById('btnDictSearch');
+    const resultContainer = document.getElementById('dictResultContainer');
+
+    function performSearch(query) {
+      if (!query) return;
+      query = query.trim().toLowerCase();
+
+      resultContainer.innerHTML = '';
+
+      const match = LOCAL_DICTIONARY.find(item => 
+        item.word.toLowerCase() === query ||
+        item.transliteration.toLowerCase() === query ||
+        item.englishMeaning.toLowerCase().includes(query) ||
+        item.hindiMeaning.toLowerCase().includes(query)
+      );
+
+      if (match) {
+        _renderDictCard(match);
+      } else {
+        resultContainer.innerHTML = `
+          <div class="dict-ai-prompt glass-card">
+            <div class="dict-ai-prompt__text">
+              Word "<strong>${query}</strong>" was not found in the local database.
+              Would you like to query the AI tutor online?
+            </div>
+            <button class="btn btn-primary" id="btnLookupAI">AI Lookup 🤖</button>
+          </div>
+        `;
+
+        document.getElementById('btnLookupAI').addEventListener('click', async () => {
+          const btn = document.getElementById('btnLookupAI');
+          btn.disabled = true;
+          btn.innerHTML = '<div class="loading-spinner" style="width:20px;height:20px;margin:0"></div>';
+
+          try {
+            const aiResult = await onLookupAI(query);
+            if (aiResult && aiResult.word) {
+              _renderDictCard(aiResult);
+            } else {
+              resultContainer.innerHTML = `
+                <div class="glass-card" style="text-align: center; color: var(--color-error)">
+                  Could not retrieve AI definition. Please verify your internet and API key.
+                </div>
+              `;
+            }
+          } catch (err) {
+            showToast('AI Lookup failed.');
+            resultContainer.innerHTML = `
+              <div class="glass-card" style="text-align: center; color: var(--color-error)">
+                Error: ${err.message || 'AI Lookup failed.'}
+              </div>
+            `;
+          }
+        });
+      }
+    }
+
+    function _renderDictCard(item) {
+      resultContainer.innerHTML = `
+        <div class="glass-card dict-card">
+          <div class="dict-word-header">
+            <div class="dict-word-main">
+              <div class="dict-word-marathi">${item.word}</div>
+              <div class="dict-word-translit">${item.transliteration}</div>
+              <div class="dict-word-pos">${item.partOfSpeech || 'Word'}</div>
+            </div>
+            <button class="btn btn-icon btn-secondary small" id="btnSpeakDictWord" title="Speak word" style="border-radius: var(--radius-full)">🔊</button>
+          </div>
+
+          <div class="dict-word-meanings">
+            <div class="dict-meaning-row">
+              <div class="dict-meaning-label">English Meaning</div>
+              <div class="dict-meaning-value">${item.englishMeaning}</div>
+            </div>
+            <div class="dict-meaning-row" style="margin-top: var(--space-xs)">
+              <div class="dict-meaning-label">Hindi Meaning</div>
+              <div class="dict-meaning-value">${item.hindiMeaning}</div>
+            </div>
+          </div>
+
+          ${item.exampleMarathi ? `
+            <div class="dict-example-box">
+              <div class="dict-example-title">Example Usage</div>
+              <div class="dict-example-marathi">${item.exampleMarathi}</div>
+              <div class="dict-example-translation">${item.exampleEnglish}</div>
+              ${item.exampleHindi ? `<div class="dict-example-translation" style="font-style: normal; opacity: 0.85; margin-top: 2px">${item.exampleHindi}</div>` : ''}
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      document.getElementById('btnSpeakDictWord').addEventListener('click', () => {
+        onSpeak(item.word);
+      });
+    }
+
+    document.querySelectorAll('.dict-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const word = chip.dataset.word;
+        searchInput.value = word;
+        performSearch(word);
+      });
+    });
+
+    searchBtn.addEventListener('click', () => {
+      performSearch(searchInput.value);
+    });
+
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch(searchInput.value);
+      }
+    });
+  }
+
   function _renderNavBar(activeTab) {
     return `
       <div class="bottom-nav">
@@ -1017,6 +1205,10 @@ const UI = (() => {
         <button class="nav-item ${activeTab === 'translator' ? 'active' : ''}" id="navTranslator">
           <span class="nav-icon">🔄</span>
           <span class="nav-text">Translate</span>
+        </button>
+        <button class="nav-item ${activeTab === 'dictionary' ? 'active' : ''}" id="navDictionary">
+          <span class="nav-icon">📚</span>
+          <span class="nav-text">Dictionary</span>
         </button>
         <button class="nav-item ${activeTab === 'videos' ? 'active' : ''}" id="navVideos">
           <span class="nav-icon">🎥</span>
@@ -1033,6 +1225,7 @@ const UI = (() => {
   function _bindNavBarEvents() {
     document.getElementById('navLessons')?.addEventListener('click', () => App.showLessons());
     document.getElementById('navTranslator')?.addEventListener('click', () => App.showTranslator());
+    document.getElementById('navDictionary')?.addEventListener('click', () => App.showDictionary());
     document.getElementById('navVideos')?.addEventListener('click', () => App.showVideos());
     document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
   }
@@ -1053,6 +1246,7 @@ const UI = (() => {
     showToast,
     renderWelcome,
     renderTranslator,
-    renderVideos
+    renderVideos,
+    renderDictionary
   };
 })();

@@ -8,28 +8,28 @@
 
 /* --- CSS Custom Properties (Design Tokens) --- */
 :root {
-  /* Colors — Indigo/Violet palette */
-  --bg-primary: #0a0a1a;
-  --bg-secondary: #11112b;
-  --bg-card: rgba(25, 25, 60, 0.6);
-  --bg-glass: rgba(255, 255, 255, 0.05);
+  /* Colors — Deep Blue & Cyan Palette */
+  --bg-primary: #030712;
+  --bg-secondary: #0b1329;
+  --bg-card: rgba(13, 27, 60, 0.6);
+  --bg-glass: rgba(255, 255, 255, 0.04);
   --bg-glass-hover: rgba(255, 255, 255, 0.08);
   --bg-glass-active: rgba(255, 255, 255, 0.12);
 
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
   --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
   --gradient-warning: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-  --gradient-bg: linear-gradient(180deg, #0a0a1a 0%, #1a1040 50%, #0a0a1a 100%);
+  --gradient-bg: linear-gradient(180deg, #020813 0%, #081a3e 50%, #020813 100%);
 
-  --color-primary: #667eea;
-  --color-primary-light: #8b9cf7;
-  --color-secondary: #764ba2;
-  --color-accent: #f093fb;
+  --color-primary: #0072ff;
+  --color-primary-light: #60a5fa;
+  --color-secondary: #004ea8;
+  --color-accent: #00d2ff;
   --color-success: #43e97b;
   --color-warning: #f6d365;
   --color-error: #f5576c;
-  --color-info: #4facfe;
+  --color-info: #3b82f6;
 
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
@@ -76,26 +76,26 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 50%;
-  --border-glass: 1px solid rgba(255, 255, 255, 0.1);
-  --border-active: 1px solid rgba(102, 126, 234, 0.5);
+  --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+  --border-active: 1px solid rgba(0, 114, 255, 0.5);
 
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow-primary: 0 0 20px rgba(102, 126, 234, 0.3);
-  --shadow-glow-success: 0 0 20px rgba(67, 233, 123, 0.3);
-  --shadow-glow-error: 0 0 20px rgba(245, 87, 108, 0.3);
-  --shadow-glow-accent: 0 0 20px rgba(240, 147, 251, 0.3);
+  --shadow-glow-primary: 0 0 20px rgba(0, 114, 255, 0.25);
+  --shadow-glow-success: 0 0 20px rgba(67, 233, 123, 0.25);
+  --shadow-glow-error: 0 0 20px rgba(245, 87, 108, 0.25);
+  --shadow-glow-accent: 0 0 20px rgba(0, 210, 255, 0.25);
 
   /* Transitions */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-fast: 150ms var(--ease-out);
-  --transition-base: 250ms var(--ease-out);
-  --transition-slow: 400ms var(--ease-out);
-  --transition-spring: 500ms var(--ease-spring);
+  --transition-base: 300ms var(--ease-out);
+  --transition-slow: 450ms var(--ease-out);
+  --transition-spring: 400ms var(--ease-spring);
 
   /* Z-index scale */
   --z-base: 1;
@@ -146,8 +146,8 @@ body::after {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(ellipse at 30% 20%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, rgba(118, 75, 162, 0.06) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 30% 20%, rgba(0, 114, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(0, 198, 255, 0.06) 0%, transparent 50%);
   z-index: -1;
   animation: ambientDrift 20s ease-in-out infinite alternate;
 }
@@ -172,7 +172,8 @@ body::after {
   display: none;
   padding: var(--space-md);
   padding-bottom: calc(var(--space-3xl) + 20px);
-  animation: fadeSlideIn 400ms var(--ease-out);
+  animation: fadeSlideIn 350ms var(--ease-out) forwards;
+  will-change: transform, opacity;
 }
 
 .screen.active {
@@ -182,11 +183,11 @@ body::after {
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0, 10px, 0) scale3d(0.98, 0.98, 1);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   }
 }
 
@@ -1995,5 +1996,198 @@ body::after {
 
 .chart-bar:hover .bar-tooltip {
   opacity: 1;
+}
+
+/* ============================================================
+   DICTIONARY SCREEN
+   ============================================================ */
+.dictionary-screen {
+  padding-top: var(--space-md);
+}
+
+.dictionary-search-container {
+  margin-bottom: var(--space-lg);
+}
+
+.search-input-wrapper {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.search-input-wrapper .input-field {
+  flex: 1;
+}
+
+.search-input-wrapper .btn {
+  width: auto;
+  padding: 14px 20px;
+}
+
+/* Local Dictionary Chips */
+.dict-chips-section {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.dict-chips-title {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-sm);
+}
+
+.dict-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.dict-chip {
+  padding: 6px 12px;
+  background: var(--bg-glass);
+  border: var(--border-glass);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+}
+
+.dict-chip:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--color-primary-light);
+}
+
+/* Dictionary Result Card */
+.dict-card {
+  margin-top: var(--space-md);
+  animation: slideUp 400ms var(--ease-spring);
+}
+
+.dict-word-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.dict-word-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dict-word-marathi {
+  font-family: var(--font-marathi);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.dict-word-translit {
+  font-size: var(--fs-md);
+  color: var(--color-primary-light);
+  font-style: italic;
+}
+
+.dict-word-pos {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.dict-word-meanings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.dict-meaning-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dict-meaning-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.dict-meaning-value {
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+}
+
+/* Example Box */
+.dict-example-box {
+  background: rgba(0, 114, 255, 0.05);
+  border-left: 3px solid var(--color-primary);
+  padding: var(--space-md);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-top: var(--space-md);
+}
+
+.dict-example-title {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary-light);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.dict-example-marathi {
+  font-family: var(--font-marathi);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  margin-bottom: 2px;
+}
+
+.dict-example-translation {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-normal);
+}
+
+/* AI Fallback Prompt styling */
+.dict-ai-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: rgba(0, 210, 255, 0.03);
+  border: 1px dashed rgba(0, 210, 255, 0.2);
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+.dict-ai-prompt__text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.dict-ai-prompt .btn {
+  width: auto;
+  padding: 10px 20px;
 }
 

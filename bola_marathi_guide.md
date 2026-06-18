@@ -58,9 +58,9 @@ c:\Translation\Translation\
 ## 2. Core Modules & Technological Implementation
 
 ### A. The Front-End Shell & PWA Support
-* **Responsive HTML5 SPA**: `index.html` defines the viewport and loads dependencies sequentially. The screen transition engine dynamically swaps view hierarchies in the `#app` container with smooth fade-in animations.
-* **PWA Manifest (`manifest.json`)**: Configured for standalone, app-like display (`display: standalone`) with a dark primary theme color (`#0a0a1a`). It defines icons, enabling native system installation on desktop systems (Chrome/Edge app) and mobile home screens.
-* **Service Worker Caching (`sw.js`)**: Employs an **Offline-First caching strategy** using the `CacheStorage` API. Static assets (CSS, JS, fonts, curriculum JSON) are cached locally under the name `bola-marathi-v4`. This allows the core lesson structure, video screens, translator views, and local speech synthesis to run without internet connectivity.
+* **Responsive HTML5 SPA**: `index.html` defines the viewport and loads dependencies sequentially. The screen transition engine dynamically swaps view hierarchies in the `#app` container with smooth hardware-accelerated spring animations (scale and slide-up).
+* **PWA Manifest (`manifest.json`)**: Configured for standalone, app-like display (`display: standalone`) with a dark primary theme color (`#030712`). It defines icons, enabling native system installation on desktop systems (Chrome/Edge app) and mobile home screens.
+* **Service Worker Caching (`sw.js`)**: Employs an **Offline-First caching strategy** using the `CacheStorage` API. Static assets (CSS, JS, fonts, curriculum JSON) are cached locally under the name `bola-marathi-v5`. This allows the core lesson structure, video screens, translator views, and local speech synthesis to run without internet connectivity.
 
 ### B. Text-to-Speech (TTS) Engine (`js/audio.js`)
 * **Web Speech API**: Uses `window.speechSynthesis` to convert written Marathi text to audio output dynamically.
@@ -75,23 +75,11 @@ c:\Translation\Translation\
 * **Cross-Browser Audio Fallback**: For browsers lacking native Marathi speech recognition (like Safari/iOS), the engine records raw audio using the **MediaRecorder API** to capture a `.webm`/`.wav` blob. The file is converted to a base64 data string and dispatched to the Gemini API for cloud transcription.
 * **Audio Visualizer**: Utilizing the **Web Audio API**, the app instantiates an `AudioContext`, attaches a `MediaStreamAudioSourceNode` from the microphone, and queries an `AnalyserNode` to draw a real-time pulsing audio wave.
 
-### D. Gemini AI Pronunciation & Translation Engines (`js/ai-feedback.js`)
+### D. Gemini AI Pronunciation, Translation, & Dictionary Engines (`js/ai-feedback.js`)
 * **Gemini API model (`gemini-1.5-flash`)**: Chosen for low-latency responses, deep Marathi language comprehension, and robust support for Structured Output Schemas.
-* **Speech Assessment Prompts**: Sends the expected Marathi phrase, user transcription/audio, and lesson metadata. It instructs Gemini to assess the speech and return a structured JSON response matching the following schema:
-  ```json
-  {
-    "score": 88,
-    "accuracy": "good",
-    "feedback": "Your pronunciation of 'नमस्कार' was excellent, but try to enunciate 'कसे' slightly more clearly.",
-    "wordScores": [
-      { "word": "नमस्कार", "score": 95, "transliteration": "namaskar" },
-      { "word": "तुम्ही", "score": 85, "transliteration": "tumhi" },
-      { "word": "कसे", "score": 75, "transliteration": "kase", "tip": "Stress the 'ka' syllable." }
-    ],
-    "encouragement": "तुम्ही खूप छान शिकत आहात! 🌟"
-  }
-  ```
+* **Speech Assessment Prompts**: Sends the expected Marathi phrase, user transcription/audio, and lesson context. It instructs Gemini to assess the speech and return a structured JSON response matching the feedback schema.
 * **AI Translator**: Employs the same model to perform bi-directional translation (English ➔ Marathi, Marathi ➔ English, Hindi ➔ Marathi, Marathi ➔ Hindi). It outputs the translated text along with a Latin phonetic transliteration guide to help users pronounce the output.
+* **AI Dictionary Lookup**: Queries Gemini using a strict dictionary schema to translate, categorize (Part of Speech), and provide phonetic spelling, Hindi/English meanings, and contextual example sentences for any word.
 
 ### E. Gamified Progress Tracking (`js/progress.js`)
 * **LocalStorage Persistence**: Stores user statistics locally in browser storage, removing the need for a backend database.
@@ -104,25 +92,34 @@ c:\Translation\Translation\
 
 ## 3. Visual Layouts & Custom CSS Styling
 
-* **Theme**: Premium glassmorphic dark mode (`background: #0a0a1a`) with linear gradients (Indigo/Violet theme).
+* **Theme**: Premium glassmorphic dark mode (`background: #030712`) with blue linear gradients (Cyan/Blue theme).
 * **Double Circular Charts (Dashboard)**: Uses SVG vectors to render:
   1. **Daily Target Progress Ring**: Displays study minutes logged today relative to a 15-minute target.
   2. **Course Completion Ring**: Computes overall lesson completion (`completed_lessons / 100`) and updates its stroke offsets dynamically.
   Both rings are placed side-by-side inside a responsive flexbox container (`.progress-rings-container`).
 * **Weekly activity chart**: Renders a vertical bar chart dynamically using pure HTML/CSS flexbox. Bar heights are calculated relative to the maximum active minutes and show exact durations using hover tooltips.
 * **Stats Grid**: A 2x2 grid displaying user statistics (Streak, XP, Total Lessons, Total Study Time).
-* **Bottom Navigation Bar**: A glassmorphic navigation bar pinned to the bottom of the screen with smooth transitions, managing routing for **Lessons**, **Translate**, **Videos**, and **Dashboard**.
+* **Bottom Navigation Bar**: A glassmorphic navigation bar pinned to the bottom of the screen with smooth transitions, managing routing for **Lessons**, **Translate**, **Dictionary**, **Videos**, and **Dashboard** (5 tabs).
 
 ---
 
-## 4. Video Lessons Library
+## 4. Searchable Marathi Dictionary Space
+
+* **Bilingual Search Engine**: Search bar allowing users to find words in Marathi, English, or Hindi, matching offline or utilizing the AI lookup.
+* **30-Word Local Database**: Built-in offline vocabulary data list for immediate, latency-free results.
+* **AI Fallback Lookup**: Interactive button that triggers Gemini API's `lookupWord` module to get detailed definitions, phonetic transcription, and bilingual example sentences for any query.
+* **Voice Synthesis Integration**: Includes an audio speak icon (`🔊`) to read dictionary search terms aloud using native Marathi TTS.
+
+---
+
+## 5. Video Lessons Library
 
 * **12-Module Video Course**: Embeds educational YouTube videos mapped directly to each of the 12 curriculum modules.
 * **Responsive Iframe Container**: Styled with a 16:9 CSS aspect ratio box (`padding-top: 56.25%`), ensuring videos adjust perfectly to any screen size without layout shifting.
 
 ---
 
-## 5. Summary of Technologies Used End-to-End
+## 6. Summary of Technologies Used End-to-End
 
 | Layer | Technology / API | Purpose |
 | :--- | :--- | :--- |
@@ -134,13 +131,14 @@ c:\Translation\Translation\
 | **Audio Analysis** | Web Audio API (`AudioContext`, `AnalyserNode`) | Real-time waveform visualizer while recording |
 | **AI Assessment** | Google Gemini API (`gemini-1.5-flash`) | AI speech assessment, grading, and structured JSON output |
 | **AI Translation**  | Google Gemini API (`gemini-1.5-flash`) | Bi-directional English/Hindi/Marathi translation |
+| **AI Dictionary**   | Google Gemini API (`gemini-1.5-flash`) | Online word lookups, meanings, and bilingual example generation |
 | **Data Storage** | Web Storage API (`localStorage`) | Saving user progress, XP, streaks, and settings offline |
 | **Video Platform** | YouTube Player Embed API | Streaming video tutorials for each module |
 | **Hosting Server**  | Python `http.server` module | Lightweight local web hosting for desktop browsers |
 
 ---
 
-## 6. How to Generate/Export this Guide as a PDF
+## 7. How to Generate/Export this Guide as a PDF
 
 You can easily generate a clean, styled PDF of this guide directly from your laptop:
 

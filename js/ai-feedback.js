@@ -376,8 +376,83 @@ INSTRUCTIONS:
     }
   }
 
+  async function lookupWord(word, apiKey) {
+    if (!apiKey) {
+      throw new Error('API key required for online lookup. Please configure it in Settings.');
+    }
+
+    const prompt = `You are a professional Marathi-English-Hindi dictionary. Provide the translation, part of speech, transliteration, meanings, and a contextual example sentence for the searched word.
+    
+    SEARCH WORD: "${word}"
+    
+    INSTRUCTIONS:
+    1. If the searched word is in English or Hindi, translate it to Marathi and then provide the dictionary information for that Marathi word.
+    2. If the word is in Marathi, provide details directly.
+    3. Respond ONLY with valid JSON in this exact format:
+    {
+      "word": "<Marathi word in Devanagari>",
+      "transliteration": "<Latin phonetic pronunciation guide, e.g. namaskar>",
+      "partOfSpeech": "<Noun / Verb / Adjective / Adverb / Phrase / Greeting>",
+      "englishMeaning": "<Clear English definition/translation>",
+      "hindiMeaning": "<Clear Hindi definition/translation in Devanagari>",
+      "exampleMarathi": "<A natural, simple example sentence in Marathi Devanagari using this word>",
+      "exampleEnglish": "<English translation of the example sentence>",
+      "exampleHindi": "<Hindi translation of the example sentence in Devanagari>"
+    }`;
+
+    try {
+      const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{ text: prompt }]
+          }],
+          generationConfig: {
+            temperature: 0.1,
+            maxOutputTokens: 512,
+            responseMimeType: 'application/json',
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to communicate with Gemini API');
+      }
+
+      const data = await response.json();
+      const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      
+      if (!resultText) {
+        throw new Error('Empty response from AI dictionary');
+      }
+
+      let parsedText = resultText.trim();
+      if (parsedText.startsWith('```')) {
+        const jsonMatch = parsedText.match(/```(?:json)?\s*([\s\S]*?)```/);
+        if (jsonMatch) parsedText = jsonMatch[1].trim();
+      }
+
+      const parsed = JSON.parse(parsedText);
+      return {
+        word: parsed.word || word,
+        transliteration: parsed.transliteration || '',
+        partOfSpeech: parsed.partOfSpeech || 'Word',
+        englishMeaning: parsed.englishMeaning || '',
+        hindiMeaning: parsed.hindiMeaning || '',
+        exampleMarathi: parsed.exampleMarathi || '',
+        exampleEnglish: parsed.exampleEnglish || '',
+        exampleHindi: parsed.exampleHindi || ''
+      };
+    } catch (err) {
+      console.error('Dictionary API error:', err);
+      throw err;
+    }
+  }
+
   return {
     assess,
     translate,
+    lookupWord,
   };
 })();

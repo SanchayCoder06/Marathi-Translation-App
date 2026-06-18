@@ -103,6 +103,20 @@ const App = (() => {
     );
   }
 
+  function _showDictionary() {
+    _currentScreen = 'dictionary';
+    AudioEngine.stopSpeaking();
+    UI.renderDictionary(
+      async (word) => {
+        const apiKey = Progress.getApiKey();
+        return await AIFeedback.lookupWord(word, apiKey);
+      },
+      (text) => {
+        AudioEngine.speak(text, 'normal');
+      }
+    );
+  }
+
   function _showOnboarding() {
     _currentScreen = 'onboarding';
     UI.renderOnboarding(() => {
@@ -421,6 +435,7 @@ const App = (() => {
     showDashboard: _showDashboard,
     showTranslator: _showTranslator,
     showVideos: _showVideos,
+    showDictionary: _showDictionary,
     showSettings: _showSettings
   };
 })();
