@@ -112,7 +112,17 @@ const App = (() => {
     const lastModuleId = localStorage.getItem('bolaMarathi_lastModuleId');
     const lastLessonId = localStorage.getItem('bolaMarathi_lastLessonId');
 
-    const onboardingComplete = localStorage.getItem('bolaMarathi_onboardingComplete') === 'true';
+    let onboardingComplete = localStorage.getItem('bolaMarathi_onboardingComplete') === 'true';
+    
+    // Auto-migrate users who completed onboarding before the onboardingComplete flag was added
+    const stats = Progress.getStats();
+    const hasProgress = (stats && (stats.completedLessons > 0 || stats.xp > 0));
+    const wasOnSubScreen = (lastScreen !== 'welcome' && lastScreen !== 'onboarding');
+    if (!onboardingComplete && (hasProgress || wasOnSubScreen)) {
+      localStorage.setItem('bolaMarathi_onboardingComplete', 'true');
+      onboardingComplete = true;
+    }
+
     if (!onboardingComplete && lastScreen !== 'welcome' && lastScreen !== 'onboarding') {
       _showWelcome(true);
       return;
