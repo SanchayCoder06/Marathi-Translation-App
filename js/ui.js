@@ -88,6 +88,10 @@ const UI = (() => {
             <span class="nav-icon">📖</span>
             <span class="nav-text">Lessons</span>
           </button>
+          <button class="nav-item" id="navPhrases" data-tab="phrases">
+            <span class="nav-icon">💬</span>
+            <span class="nav-text">Phrases</span>
+          </button>
           <button class="nav-item" id="navTranslator" data-tab="translator">
             <span class="nav-icon">🔄</span>
             <span class="nav-text">Translate</span>
@@ -95,10 +99,6 @@ const UI = (() => {
           <button class="nav-item" id="navDictionary" data-tab="dictionary">
             <span class="nav-icon">📚</span>
             <span class="nav-text">Dictionary</span>
-          </button>
-          <button class="nav-item" id="navVideos" data-tab="videos">
-            <span class="nav-icon">🎥</span>
-            <span class="nav-text">Videos</span>
           </button>
           <button class="nav-item" id="navDashboard" data-tab="dashboard">
             <span class="nav-icon">📊</span>
@@ -113,9 +113,9 @@ const UI = (() => {
 
       // Bind events once
       document.getElementById('navLessons')?.addEventListener('click', () => App.showLessons());
+      document.getElementById('navPhrases')?.addEventListener('click', () => App.showPhraseBank());
       document.getElementById('navTranslator')?.addEventListener('click', () => App.showTranslator());
       document.getElementById('navDictionary')?.addEventListener('click', () => App.showDictionary());
-      document.getElementById('navVideos')?.addEventListener('click', () => App.showVideos());
       document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
       document.getElementById('navSettings')?.addEventListener('click', () => App.showSettings());
     }
@@ -222,6 +222,54 @@ const UI = (() => {
 
   function renderLessons(modules, onModuleClick, onSettingsClick) {
     _updateNavBar('lessons');
+    
+    // Group modules/units by level
+    const levels = {};
+    modules.forEach(m => {
+      const lvl = m.level || 1;
+      if (!levels[lvl]) {
+        levels[lvl] = {
+          title: m.levelTitle || `Level ${lvl}`,
+          hours: m.levelHours || '2 hrs',
+          units: []
+        };
+      }
+      levels[lvl].units.push(m);
+    });
+
+    const levelsHTML = Object.keys(levels).sort((a,b)=>a-b).map(levelNum => {
+      const level = levels[levelNum];
+      return `
+        <div class="level-group">
+          <div class="level-header">
+            <div class="level-header__left">
+              <span class="level-badge">Level ${levelNum}</span>
+              <span class="level-title">${level.title}</span>
+            </div>
+            <span class="level-hours">${level.hours}</span>
+          </div>
+          <div class="unit-list">
+            ${level.units.map(u => {
+              const progress = Progress.getModuleProgress(u.id, u.totalLessons);
+              const isCompleted = progress.percentage === 100;
+              return `
+                <div class="unit-card glass-card" data-unit-id="${u.id}">
+                  <div class="unit-card__num ${isCompleted ? 'completed' : ''}">${u.id.substring(1)}</div>
+                  <div class="unit-card__info">
+                    <div class="unit-card__title">${u.title}</div>
+                    <div class="unit-card__desc">${u.description}</div>
+                  </div>
+                  <div class="unit-card__status">
+                    ${progress.percentage > 0 ? `<span class="unit-card__progress-pill">${progress.percentage}%</span>` : '<span class="unit-card__arrow">›</span>'}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
+
     app().innerHTML = `
       <div class="screen active" id="screen-lessons">
         <div class="dashboard-header">
@@ -231,10 +279,18 @@ const UI = (() => {
           <div class="dashboard-header__settings" id="btnSettings" title="Settings">⚙️</div>
         </div>
 
+        <!-- WELCOME HERO SECTION (NO IMAGES) -->
+        <div class="welcome-hero-card glass-card">
+          <div class="welcome-hero-content">
+            <h2 class="welcome-hero-title">नमस्कार! Let's Speak Marathi</h2>
+            <p class="welcome-hero-text">Learn conversational Marathi step-by-step with interactive pronunciation cards and instant AI feedback. 32 structured units from sounds to real-world dialogues.</p>
+          </div>
+        </div>
+
         <div class="modules-section">
-          <div class="modules-section__title">Learning Modules</div>
-          <div class="module-grid">
-            ${modules.map(m => _renderModuleCard(m)).join('')}
+          <div class="modules-section__title">COURSE LEVELS</div>
+          <div class="levels-container">
+            ${levelsHTML}
           </div>
         </div>
       </div>
@@ -243,12 +299,10 @@ const UI = (() => {
     // Bind events
     document.getElementById('btnSettings').addEventListener('click', onSettingsClick);
 
-    document.querySelectorAll('.module-card').forEach(card => {
+    document.querySelectorAll('.unit-card').forEach(card => {
       card.addEventListener('click', () => {
-        const moduleId = card.dataset.moduleId;
-        if (!card.classList.contains('locked')) {
-          onModuleClick(moduleId);
-        }
+        const unitId = card.dataset.unitId;
+        onModuleClick(unitId);
       });
     });
   }
@@ -432,70 +486,101 @@ const UI = (() => {
     _updateNavBar('lessons');
     const progress = Progress.getModuleProgress(module.id, module.totalLessons);
     const testProgress = Progress.getTestProgress(module.id);
-    const canTakeTest = progress.percentage >= 80;
+    const isLessonCompleted = progress.percentage === 100;
+    const canTakeTest = isLessonCompleted;
+
+    // Since each unit has exactly 1 lesson
+    const lesson = module.lessons[0];
 
     app().innerHTML = `
-      <div class="screen active" id="screen-module">
+      <div class="screen active unit-detail-screen" id="screen-module">
         <div class="module-header">
           <div class="module-header__back" id="btnModuleBack">←</div>
           <div class="module-header__info">
-            <div class="module-header__title">${module.icon} ${module.title}</div>
-            <div class="module-header__subtitle">${progress.completedLessons}/${module.totalLessons} completed</div>
+            <div class="module-header__title">${module.icon} Unit ${module.id.substring(1)}</div>
+            <div class="module-header__subtitle">${module.title}</div>
           </div>
         </div>
 
-        <div class="module-progress-bar">
+        <div class="unit-meta-pill-row">
+          <span class="level-badge">Level ${module.level}</span>
+          <span class="unit-hours-badge">${module.estimatedHours} hrs practice</span>
+        </div>
+
+        <div class="module-progress-bar" style="margin-top: var(--space-md);">
           <div class="module-progress-bar__fill" style="width: ${progress.percentage}%"></div>
         </div>
+        <div class="unit-completion-text">${isLessonCompleted ? 'Unit Lesson Completed! 🎉' : 'Lesson not started yet'}</div>
 
-        <div class="assessment-actions">
-          <button class="btn btn-flashcard" id="btnFlashcards">📇 Flashcards</button>
-          <button class="btn btn-test ${canTakeTest ? '' : 'locked'}" id="btnModuleTest" title="${canTakeTest ? 'Take module test' : 'Complete 80% of lessons to unlock'}">
-            ${testProgress?.passed ? '✅' : '📝'} ${testProgress?.passed ? `Retake Test` : canTakeTest ? 'Take Test' : '🔒 Test'}
-          </button>
+        <!-- Main Core Lesson Card (Beginner Friendly) -->
+        <div class="glass-card start-lesson-card" id="btnStartUnitLesson">
+          <div class="start-lesson-icon">📖</div>
+          <div class="start-lesson-info">
+            <div class="start-lesson-title">Start Lesson Player</div>
+            <div class="start-lesson-desc">Audio-first study: Listen, speak, and get AI feedback</div>
+          </div>
+          <div class="start-lesson-arrow">➔</div>
         </div>
 
-        <div class="lesson-list">
-          ${module.lessons.map(l => _renderLessonItem(l)).join('')}
+        <!-- Practice & Test Row -->
+        <div class="practice-test-row">
+          <div class="glass-card practice-card-btn" id="btnUnitFlashcards">
+            <span class="practice-card-icon">📇</span>
+            <div class="practice-card-title">Flashcards</div>
+            <div class="practice-card-desc">Spaced repetition review</div>
+          </div>
+
+          <div class="glass-card practice-card-btn ${canTakeTest ? '' : 'locked'}" id="btnUnitModuleTest" title="${canTakeTest ? 'Take unit test' : 'Complete the lesson player first to unlock'}">
+            <span class="practice-card-icon">${testProgress?.passed ? '✅' : '🔒'}</span>
+            <div class="practice-card-title">Unit Test</div>
+            <div class="practice-card-desc">${testProgress?.passed ? 'Test Passed!' : 'Unlock at 100%'}</div>
+          </div>
+        </div>
+
+        <!-- Phrases Preview Section (Beginner friendly: study before playing) -->
+        <div class="phrases-preview-section">
+          <div class="phrases-preview-title">Vocabulary Preview</div>
+          <p class="phrases-preview-subtitle">Listen and study these phrases before speaking:</p>
+          
+          <div class="preview-phrase-list">
+            ${lesson.phrases.map(p => `
+              <div class="glass-card preview-phrase-item">
+                <div class="preview-phrase-text-group">
+                  <div class="preview-phrase-marathi">${p.marathi}</div>
+                  <div class="preview-phrase-translit">${p.transliteration}</div>
+                  <div class="preview-phrase-english">${p.english}</div>
+                </div>
+                <button class="btn btn-preview-play" data-text="${p.marathi}">🔊</button>
+              </div>
+            `).join('')}
+          </div>
         </div>
       </div>
     `;
 
     document.getElementById('btnModuleBack').addEventListener('click', onBack);
-    document.getElementById('btnFlashcards')?.addEventListener('click', () => App.showFlashcards(module.id));
+    
+    document.getElementById('btnStartUnitLesson').addEventListener('click', () => {
+      onLessonClick(lesson.id);
+    });
+
+    document.getElementById('btnUnitFlashcards').addEventListener('click', () => {
+      App.showFlashcards(module.id);
+    });
+
     if (canTakeTest) {
-      document.getElementById('btnModuleTest')?.addEventListener('click', () => App.showModuleTest(module.id));
+      document.getElementById('btnUnitModuleTest').addEventListener('click', () => {
+        App.showModuleTest(module.id);
+      });
     }
 
-    document.querySelectorAll('.lesson-item').forEach(item => {
-      item.addEventListener('click', () => {
-        onLessonClick(item.dataset.lessonId);
+    document.querySelectorAll('.btn-preview-play').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const text = btn.dataset.text;
+        AudioEngine.speak(text, 'normal');
       });
     });
-  }
-
-  function _renderLessonItem(lesson) {
-    const progress = Progress.getLessonProgress(lesson.id);
-    const isCompleted = progress.completed;
-    const quizProg = Progress.getQuizProgress(lesson.id);
-    const hasQuiz = lesson.hasQuiz;
-
-    return `
-      <div class="glass-card lesson-item" data-lesson-id="${lesson.id}">
-        <div class="lesson-item__number ${isCompleted ? 'completed' : ''}">
-          ${isCompleted ? '✓' : lesson.lessonNumber}
-        </div>
-        <div class="lesson-item__info">
-          <div class="lesson-item__title">${lesson.title}</div>
-          <div class="lesson-item__title-marathi">${lesson.titleMarathi || ''}</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0">
-          ${isCompleted ? `<div class="lesson-item__score">${progress.avgScore}%</div>` : ''}
-          ${hasQuiz && quizProg ? `<div class="lesson-item__quiz-passed">✓ Quiz</div>` : ''}
-          ${hasQuiz && !quizProg ? `<div class="lesson-item__quiz-badge">QUIZ</div>` : ''}
-        </div>
-      </div>
-    `;
   }
 
   // ============================================================
@@ -1092,68 +1177,338 @@ const UI = (() => {
     });
   }
 
-  const VIDEOS_DATA = {
-    'm1': { title: 'Greetings & Basics', youtubeId: 'mD5T-YQ9pM0', desc: 'Learn essential everyday Marathi greetings, courtesy words, and formal/informal speech.' },
-    'm2': { title: 'Introducing Yourself', youtubeId: 'v50Z7v1r7lM', desc: 'Introduce your name, profession, origin, talk about your family, and share future plans.' },
-    'm3': { title: 'Numbers & Time', youtubeId: 'b8H-L2K3kP4', desc: 'Master Marathi counting from 1 to 100, read times on clocks, days, months, and seasons.' },
-    'm4': { title: 'At the Market', youtubeId: 'R8mX7rT6bM9', desc: 'Navigate grocery shopping, bargain like a local, buy vegetables/fruits, and pay using cash or UPI.' },
-    'm5': { title: 'Food & Dining', youtubeId: 'y8N3fP7rV2m', desc: 'Order delicious Maharashtrian dishes, specify taste preferences, ask for kitchen utensils, and request the bill.' },
-    'm6': { title: 'Directions & Travel', youtubeId: 'K8rT9mP5v6c', desc: 'Ask for directions, understand navigation instructions, buy local train tickets, and ask about travel timetables.' },
-    'm7': { title: 'Daily Routine', youtubeId: 'J8n3vP9rT5m', desc: 'Discuss your morning habits, describe household chores, talk about office work schedule, and leisure activities.' },
-    'm8': { title: 'People & Descriptions', youtubeId: 'L5v6mP9rT8n', desc: 'Describe peoples heights, physical features, outer appearances, traits, emotions, and family bonds.' },
-    'm9': { title: 'Health & Emergencies', youtubeId: 'N8mP3v6rT9k', desc: 'Explain bodily discomforts to a doctor, buy medications at a pharmacy, and shout or phone for emergency help.' },
-    'm10': { title: 'Social Conversations', youtubeId: 'H5n6vP7rT8m', desc: 'Discuss hobbies, weather, small talk with neighbors, invite friends over, and show polite hospitality.' },
-    'm11': { title: 'Work & Business', youtubeId: 'P8r3vP9rT6k', desc: 'Introduce yourself in corporate settings, speak on phone calls, manage office vocabulary, and schedule business meetings.' },
-    'm12': { title: 'Culture & Celebration', youtubeId: 'C8mP5v6rT9k', desc: 'Celebrate Ganesh Utsav, offer blessings to children, understand cultural idioms, and greet congratulations.' }
-  };
-
-  function renderVideos(activeModuleId, onModuleChange) {
-    _updateNavBar('videos');
-    const video = VIDEOS_DATA[activeModuleId];
+  function renderPhraseBank() {
+    _updateNavBar('phrases');
     
+    // Get all phrases from the curriculum
+    const modules = Curriculum.getModules();
+    const allPhrases = [];
+    
+    modules.forEach(m => {
+      const fullMod = Curriculum.getModule(m.id);
+      if (fullMod) {
+        fullMod.lessons.forEach(l => {
+          const fullLesson = Curriculum.getLesson(l.id);
+          if (fullLesson) {
+            fullLesson.phrases.forEach(p => {
+              allPhrases.push({
+                ...p,
+                moduleId: m.id,
+                moduleTitle: m.title,
+                moduleIcon: m.icon,
+                lessonId: l.id
+              });
+            });
+          }
+        });
+      }
+    });
+
     app().innerHTML = `
-      <div class="screen active videos-screen" id="screen-videos">
+      <div class="screen active phrase-bank-screen" id="screen-phrases">
         <div class="screen-header">
-          <h1 class="screen-title text-gradient">Video Lessons</h1>
-          <p class="screen-subtitle">Curated video tutorials by module</p>
+          <h1 class="screen-title text-gradient">Phrase Bank</h1>
+          <p class="screen-subtitle">Your personal pronunciation practice bank</p>
         </div>
 
-        <div class="video-module-select">
-          <label for="videoModuleDropdown">Select Module</label>
-          <select id="videoModuleDropdown" class="input-field select-field">
-            ${Object.keys(VIDEOS_DATA).map(mid => `
-              <option value="${mid}" ${mid === activeModuleId ? 'selected' : ''}>
-                Module ${mid.substring(1)}: ${VIDEOS_DATA[mid].title}
-              </option>
-            `).join('')}
+        <div class="phrase-bank-controls">
+          <input type="text" id="phraseSearch" class="input-field search-field" placeholder="Search phrases (English or Marathi)..." />
+          <select id="phraseFilter" class="input-field select-field">
+            <option value="all">All Units</option>
+            ${modules.map(m => `<option value="${m.id}">${m.icon} ${m.title}</option>`).join('')}
           </select>
         </div>
 
-        <div class="glass-card video-card">
-          <div class="video-embed-container">
-            <iframe 
-              src="https://www.youtube.com/embed/${video.youtubeId}" 
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-            </iframe>
+        <div class="phrase-bank-stats glass-card">
+          <div class="phrase-stat-item">
+            <span class="phrase-stat-num" id="pbTotalCount">0</span>
+            <span class="phrase-stat-label">Total Phrases</span>
           </div>
-          
-          <div class="video-details" style="margin-top: var(--space-md)">
-            <h3>${video.title}</h3>
-            <p style="font-size: var(--fs-sm); color: var(--text-secondary); margin-top: 4px; line-height: var(--lh-relaxed)">
-              ${video.desc}
-            </p>
+          <div class="phrase-stat-item">
+            <span class="phrase-stat-num" id="pbLearnedCount">0</span>
+            <span class="phrase-stat-label">Practiced</span>
+          </div>
+          <div class="phrase-stat-item">
+            <span class="phrase-stat-num" id="pbAvgScore">0%</span>
+            <span class="phrase-stat-label">Avg Accuracy</span>
           </div>
         </div>
 
+        <div class="phrase-bank-list" id="phraseBankList">
+          <!-- Phrases will be rendered dynamically -->
+        </div>
       </div>
     `;
 
-    const dropdown = document.getElementById('videoModuleDropdown');
-    dropdown.addEventListener('change', () => {
-      onModuleChange(dropdown.value);
+    // Bind event listeners for search and filtering
+    const searchInput = document.getElementById('phraseSearch');
+    const filterSelect = document.getElementById('phraseFilter');
+    
+    searchInput.addEventListener('input', _updateList);
+    filterSelect.addEventListener('change', _updateList);
+
+    // Initial update
+    _updateList();
+
+    function _updateList() {
+      const q = searchInput.value.toLowerCase();
+      const mid = filterSelect.value;
+
+      let filtered = allPhrases;
+      if (mid !== 'all') {
+        filtered = filtered.filter(p => p.moduleId === mid);
+      }
+      if (q) {
+        filtered = filtered.filter(p => 
+          p.marathi.includes(q) || 
+          p.transliteration.toLowerCase().includes(q) || 
+          p.english.toLowerCase().includes(q)
+        );
+      }
+
+      // Calculate stats for this selection
+      const practiced = filtered.filter(p => Progress.getPhraseScore(p.id) > 0);
+      const avg = practiced.length > 0 
+        ? Math.round(practiced.reduce((sum, p) => sum + Progress.getPhraseScore(p.id), 0) / practiced.length)
+        : 0;
+
+      document.getElementById('pbTotalCount').textContent = filtered.length;
+      document.getElementById('pbLearnedCount').textContent = practiced.length;
+      document.getElementById('pbAvgScore').textContent = `${avg}%`;
+
+      const listContainer = document.getElementById('phraseBankList');
+      if (filtered.length === 0) {
+        listContainer.innerHTML = `
+          <div class="no-results glass-card">
+            <span style="font-size: 2rem">🔍</span>
+            <p>No phrases found matching your search.</p>
+          </div>
+        `;
+        return;
+      }
+
+      listContainer.innerHTML = filtered.map(p => {
+        const score = Progress.getPhraseScore(p.id);
+        const hasScore = score > 0;
+        const scoreClass = hasScore ? _scoreToClass(score) : 'unpracticed';
+        return `
+          <div class="glass-card phrase-card" data-phrase-id="${p.id}">
+            <div class="phrase-card__header">
+              <span class="phrase-card__module-info">${p.moduleIcon} ${p.moduleTitle}</span>
+              <span class="phrase-card__score-badge ${scoreClass}">
+                ${hasScore ? `${score}%` : 'Not practiced'}
+              </span>
+            </div>
+            <div class="phrase-card__body">
+              <div class="phrase-card__marathi">${p.marathi}</div>
+              <div class="phrase-card__translit">${p.transliteration}</div>
+              <div class="phrase-card__english">${p.english}</div>
+            </div>
+            <div class="phrase-card__actions">
+              <button class="btn btn-audio-play" data-text="${p.marathi}">🔊 Listen</button>
+              <button class="btn btn-audio-practice" data-phrase-id="${p.id}">🎤 Practice</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Bind actions
+      listContainer.querySelectorAll('.btn-audio-play').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const text = btn.dataset.text;
+          AudioEngine.speak(text, 'normal');
+        });
+      });
+
+      listContainer.querySelectorAll('.btn-audio-practice').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const phraseId = btn.dataset.phraseId;
+          const phrase = allPhrases.find(x => x.id === phraseId);
+          if (phrase) {
+            _showPracticeModal(phrase);
+          }
+        });
+      });
+    }
+  }
+
+  function _showPracticeModal(phrase) {
+    // Create modal element
+    const modal = document.createElement('div');
+    modal.className = 'practice-modal-overlay';
+    modal.id = 'practiceModal';
+    
+    modal.innerHTML = `
+      <div class="glass-card practice-modal-content">
+        <div class="practice-modal-close" id="btnPracticeModalClose">×</div>
+        
+        <div class="practice-modal-header">
+          <span class="practice-modal-title">Practice Phrase</span>
+        </div>
+        
+        <div class="practice-modal-phrase">
+          <div class="practice-modal-marathi">${phrase.marathi}</div>
+          <div class="practice-modal-translit">${phrase.transliteration}</div>
+          <div class="practice-modal-english">${phrase.english}</div>
+        </div>
+
+        <div class="record-section" style="margin-top: var(--space-lg)">
+          <!-- Waveform visualizer -->
+          <div class="waveform" id="pbWaveform">
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+            <div class="waveform__bar"></div>
+          </div>
+
+          <div class="record-section__timer" id="pbRecordTimer" style="display: none">0:00</div>
+          
+          <button class="btn-record" id="pbBtnRecord">🎤</button>
+          <div class="record-section__label" id="pbRecordLabel">Tap to record your pronunciation</div>
+        </div>
+
+        <div id="pbFeedbackContainer"></div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Bind close
+    document.getElementById('btnPracticeModalClose').addEventListener('click', () => {
+      // Stop recording if active
+      if (AudioEngine.isRecording()) {
+        AudioEngine.stopRecording();
+      }
+      modal.remove();
+      // Refresh list to update score badge
+      renderPhraseBank();
+    });
+
+    const btnRecord = document.getElementById('pbBtnRecord');
+    const label = document.getElementById('pbRecordLabel');
+    const timer = document.getElementById('pbRecordTimer');
+    const waveform = document.getElementById('pbWaveform');
+    const feedbackContainer = document.getElementById('pbFeedbackContainer');
+    
+    let isProcessing = false;
+
+    btnRecord.addEventListener('click', async () => {
+      if (isProcessing) return;
+
+      if (AudioEngine.isRecording()) {
+        AudioEngine.stopRecording();
+        return;
+      }
+
+      // Reset feedback
+      feedbackContainer.innerHTML = '';
+      
+      // Update UI state to recording
+      btnRecord.classList.add('recording');
+      btnRecord.innerHTML = '⏹️';
+      label.textContent = 'Recording... Tap to stop';
+      timer.style.display = 'block';
+      waveform.classList.add('active');
+
+      try {
+        const result = await AudioEngine.startRecording((seconds) => {
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          timer.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        });
+
+        // Reset UI state
+        btnRecord.classList.remove('recording');
+        btnRecord.innerHTML = '🎤';
+        label.textContent = 'Tap to record your pronunciation';
+        timer.style.display = 'none';
+        waveform.classList.remove('active');
+
+        isProcessing = true;
+        
+        // Show loading state
+        feedbackContainer.innerHTML = `
+          <div class="glass-card feedback-card" style="text-align: center; margin-top: var(--space-md)">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Analyzing your pronunciation...</div>
+          </div>
+        `;
+
+        // Get AI feedback
+        const feedback = await AIFeedback.assess({
+          expectedMarathi: phrase.marathi,
+          expectedTransliteration: phrase.transliteration,
+          expectedEnglish: phrase.english,
+          userTranscription: result.transcription,
+          audioBlob: result.audioBlob,
+          apiKey: Progress.getApiKey(),
+        });
+
+        // Save score
+        Progress.savePhraseScore(phrase.id, feedback.score);
+
+        // Render feedback in modal
+        const gradeClass = feedback.accuracy;
+        feedbackContainer.innerHTML = `
+          <div class="glass-card feedback-card" style="margin-top: var(--space-md); animation: fadeSlideIn 0.3s ease;">
+            <div class="feedback-card__header">
+              <div class="feedback-score">
+                <div class="feedback-score__value ${gradeClass}" id="pbScoreValue">0</div>
+                <div>
+                  <div class="feedback-score__label">Score</div>
+                </div>
+              </div>
+              <div class="feedback-grade ${gradeClass}">
+                ${feedback.accuracy.charAt(0).toUpperCase() + feedback.accuracy.slice(1)}
+              </div>
+            </div>
+
+            <div class="feedback-card__message">${feedback.feedback}</div>
+
+            ${feedback.wordScores.length > 0 ? `
+              <div class="word-scores">
+                ${feedback.wordScores.map(ws => `
+                  <div class="word-score-chip ${_scoreToClass(ws.score)}">
+                    ${ws.word}
+                    <span style="font-family: var(--font-ui); font-size: var(--fs-xs); opacity: 0.7; margin-left: 4px">${ws.score}%</span>
+                  </div>
+                `).join('')}
+              </div>
+              ${feedback.wordScores.filter(ws => ws.tip).map(ws => `
+                <div class="word-tip">
+                  <strong>${ws.word}</strong> (${ws.transliteration}): ${ws.tip}
+                </div>
+              `).join('')}
+            ` : ''}
+
+            <div class="feedback-card__encouragement">${feedback.encouragement}</div>
+          </div>
+        `;
+
+        _animateCounter('pbScoreValue', feedback.score, 800);
+        isProcessing = false;
+
+      } catch (err) {
+        console.error('Recording error:', err);
+        btnRecord.classList.remove('recording');
+        btnRecord.innerHTML = '🎤';
+        label.textContent = 'Tap to record your pronunciation';
+        timer.style.display = 'none';
+        waveform.classList.remove('active');
+        feedbackContainer.innerHTML = '';
+        isProcessing = false;
+        showToast(err.message || 'Recording failed. Please check microphone access.');
+      }
     });
   }
 
@@ -1719,7 +2074,7 @@ const UI = (() => {
     showToast,
     renderWelcome,
     renderTranslator,
-    renderVideos,
+    renderPhraseBank,
     renderDictionary,
     renderFlashcards,
     renderQuiz,

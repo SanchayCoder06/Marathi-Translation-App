@@ -12,7 +12,16 @@ const Curriculum = (() => {
    * @param {Object} data - The lessons.json data
    */
   function init(data) {
-    _data = data;
+    if (data && data.modules) {
+      _data = {
+        modules: data.modules.filter(m => m.id.startsWith('u')).map(m => {
+          m.level = parseInt(m.level, 10) || 1;
+          return m;
+        })
+      };
+    } else {
+      _data = data;
+    }
   }
 
   /**
@@ -30,13 +39,12 @@ const Curriculum = (() => {
       }
     }
 
-    // Merge new modules (m13–m20) into _data
+    // Merge new modules into _data
     if (newModulesData && newModulesData.modules && _data) {
-      // Avoid duplicates
       const existingIds = new Set(_data.modules.map(m => m.id));
       for (const mod of newModulesData.modules) {
-        if (!existingIds.has(mod.id)) {
-          // Extract quiz data from embedded lesson quizzes in new_modules format
+        if (mod.id.startsWith('u') && !existingIds.has(mod.id)) {
+          mod.level = parseInt(mod.level, 10) || 1;
           _data.modules.push(mod);
         }
       }
@@ -80,6 +88,7 @@ const Curriculum = (() => {
         titleMarathi: l.titleMarathi,
         lessonNumber: l.lessonNumber,
         phraseCount: l.phrases.length,
+        phrases: l.phrases,
         hasQuiz: !!(l.quiz?.length > 0 || _assessments?.[moduleId]?.lessonQuizzes?.[l.id]?.length > 0),
       })),
     };

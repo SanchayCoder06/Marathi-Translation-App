@@ -3,7 +3,7 @@
 // Caches app shell and lesson data for offline support
 // ============================================================
 
-const CACHE_NAME = 'bola-marathi-v9';
+const CACHE_NAME = 'bola-marathi-v13';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -16,7 +16,6 @@ const STATIC_ASSETS = [
   '/js/app.js',
   '/data/lessons.json',
   '/data/assessments.json',
-  '/data/new_modules.json',
   '/manifest.json',
 ];
 
@@ -44,7 +43,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch — cache-first for static assets, network-first for API calls
+// Fetch — network-first with cache fallback for app shell, cache-first for fonts/external static resources
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
@@ -75,18 +74,19 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-first for everything else (app shell, lesson data)
+  // Network-first with cache fallback for everything else (app shell, lesson data)
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        // Cache successful responses
+    fetch(event.request)
+      .then((response) => {
+        // Cache successful GET responses
         if (response.ok && event.request.method === 'GET') {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         }
         return response;
-      });
-    })
+      })
+      .catch(() => {
+        return caches.match(event.request);
+      })
   );
 });

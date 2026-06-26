@@ -104,13 +104,10 @@ const App = (() => {
     );
   }
 
-  function _showVideos(activeModuleId = 'm1') {
-    _currentScreen = 'videos';
+  function _showPhraseBank() {
+    _currentScreen = 'phrases';
     AudioEngine.stopSpeaking();
-    UI.renderVideos(
-      activeModuleId,
-      (moduleId) => _showVideos(moduleId)
-    );
+    UI.renderPhraseBank();
   }
 
   function _showDictionary() {
@@ -520,7 +517,7 @@ const App = (() => {
     showLessons: _showLessons,
     showDashboard: _showDashboard,
     showTranslator: _showTranslator,
-    showVideos: _showVideos,
+    showPhraseBank: _showPhraseBank,
     showDictionary: _showDictionary,
     showSettings: _showSettings,
     showFlashcards: _showFlashcards,

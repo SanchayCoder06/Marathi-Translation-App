@@ -1,494 +1,3714 @@
 {
   "moduleAssessments": [
     {
-      "moduleId": "m1",
+      "moduleId": "u1",
       "flashcards": [
-        { "id": "m1-fc1", "front": "नमस्कार", "frontHint": "Namaskar", "back": "Hello / Greetings", "backHint": "Universal formal greeting" },
-        { "id": "m1-fc2", "front": "धन्यवाद", "frontHint": "Dhanyavaad", "back": "Thank you", "backHint": "Express gratitude" },
-        { "id": "m1-fc3", "front": "कृपया", "frontHint": "Krupaya", "back": "Please", "backHint": "Polite request" },
-        { "id": "m1-fc4", "front": "सुप्रभात", "frontHint": "Suprabhat", "back": "Good morning", "backHint": "Morning greeting" },
-        { "id": "m1-fc5", "front": "शुभ रात्री", "frontHint": "Shubh raatri", "back": "Good night", "backHint": "Night farewell" },
-        { "id": "m1-fc6", "front": "हो", "frontHint": "Ho", "back": "Yes", "backHint": "Affirmation" },
-        { "id": "m1-fc7", "front": "नाही", "frontHint": "Naahi", "back": "No", "backHint": "Negation" },
-        { "id": "m1-fc8", "front": "माफ करा", "frontHint": "Maaf kara", "back": "Sorry / Excuse me", "backHint": "Apology" },
-        { "id": "m1-fc9", "front": "ठीक आहे", "frontHint": "Theek aahe", "back": "Okay / All right", "backHint": "Agreement" },
-        { "id": "m1-fc10", "front": "कसे आहात?", "frontHint": "Kase aahat?", "back": "How are you? (formal)", "backHint": "Polite inquiry" },
-        { "id": "m1-fc11", "front": "मी ठीक आहे", "frontHint": "Mi theek aahe", "back": "I am fine", "backHint": "Standard reply" },
-        { "id": "m1-fc12", "front": "येतो", "frontHint": "Yeto", "back": "Bye (male speaker)", "backHint": "Casual farewell" },
-        { "id": "m1-fc13", "front": "पुन्हा भेटू", "frontHint": "Punhaa bhetoo", "back": "Let's meet again", "backHint": "Friendly farewell" }
+        {
+          "id": "u1-fc-u1-l1-p1",
+          "front": "टिळक भारताचे थोर नेते होते.",
+          "back": "Tilak was a great leader of India.",
+          "transliteration": "Tilak bhaarataache thor nete hote."
+        },
+        {
+          "id": "u1-fc-u1-l1-p2",
+          "front": "पाणी जीवन आहे.",
+          "back": "Water is life.",
+          "transliteration": "Paani jeevan aahe."
+        },
+        {
+          "id": "u1-fc-u1-l1-p3",
+          "front": "बाळ खूप गोड हसले.",
+          "back": "The baby laughed very sweetly.",
+          "transliteration": "Baal khoop god hasale."
+        },
+        {
+          "id": "u1-fc-u1-l1-p4",
+          "front": "कमळ चिखलात उगवते.",
+          "back": "Lotus grows in mud.",
+          "transliteration": "Kamal chikhalaat ugavate."
+        },
+        {
+          "id": "u1-fc-u1-l1-p5",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u1-fc-u1-l1-p6",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        }
       ],
       "moduleTest": {
-        "title": "Greetings & Basics Test",
+        "moduleId": "u1",
         "passingScore": 70,
         "questions": [
-          { "id": "m1-t1", "question": "What does 'नमस्कार' mean?", "options": ["Hello / Greetings", "Thank you", "Goodbye", "Please"], "correctIndex": 0, "explanation": "नमस्कार (Namaskar) is the universal Marathi greeting." },
-          { "id": "m1-t2", "question": "How do you say 'Good morning' in Marathi?", "options": ["शुभ रात्री", "सुप्रभात", "नमस्कार", "धन्यवाद"], "correctIndex": 1, "explanation": "सुप्रभात (Suprabhat) means Good morning." },
-          { "id": "m1-t3", "question": "Which word means 'Thank you'?", "options": ["कृपया", "माफ करा", "धन्यवाद", "ठीक आहे"], "correctIndex": 2, "explanation": "धन्यवाद (Dhanyavaad) means Thank you." },
-          { "id": "m1-t4", "question": "How do you say 'Please' in Marathi?", "options": ["हो", "नाही", "कृपया", "धन्यवाद"], "correctIndex": 2, "explanation": "कृपया (Krupaya) means Please." },
-          { "id": "m1-t5", "question": "What does 'ठीक आहे' mean?", "options": ["Good morning", "Thank you", "Okay / All right", "How are you?"], "correctIndex": 2, "explanation": "ठीक आहे (Theek aahe) means Okay or All right." },
-          { "id": "m1-t6", "question": "'कसे आहात?' is used to ask:", "options": ["What is your name?", "How are you?", "Where are you going?", "What do you want?"], "correctIndex": 1, "explanation": "कसे आहात? (Kase aahat?) means How are you? — formal form." },
-          { "id": "m1-t7", "question": "A male speaker says goodbye by saying:", "options": ["येते", "येतो", "निरोप", "शुभ रात्री"], "correctIndex": 1, "explanation": "येतो (Yeto) is the casual goodbye said by male speakers." },
-          { "id": "m1-t8", "question": "How do you say 'No' in Marathi?", "options": ["हो", "नाही", "ठीक", "माफ"], "correctIndex": 1, "explanation": "नाही (Naahi) means No." },
-          { "id": "m1-t9", "question": "What does 'माफ करा' mean?", "options": ["Good night", "Thank you", "Please", "Sorry / Excuse me"], "correctIndex": 3, "explanation": "माफ करा (Maaf kara) means Sorry or Excuse me." },
-          { "id": "m1-t10", "question": "'पुन्हा भेटू' translates to:", "options": ["Good morning", "Let's meet again", "How are you?", "Goodbye forever"], "correctIndex": 1, "explanation": "पुन्हा भेटू (Punhaa bhetoo) means Let's meet again — a warm farewell." }
+          {
+            "id": "u1-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'The baby laughed very sweetly.'",
+            "options": [
+              "टिळक भारताचे थोर नेते होते.",
+              "पाणी जीवन आहे.",
+              "बाळ खूप गोड हसले.",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'बाळ खूप गोड हसले.' means 'The baby laughed very sweetly.'."
+          },
+          {
+            "id": "u1-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'टिळक भारताचे थोर नेते होते.'?",
+            "options": [
+              "Paani jeevan aahe.",
+              "Tilak bhaarataache thor nete hote.",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Tilak bhaarataache thor nete hote.'."
+          },
+          {
+            "id": "u1-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'पाणी जीवन आहे.'",
+            "options": [
+              "Tilak was a great leader of India.",
+              "Water is life.",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'पाणी जीवन आहे.' translates to 'Water is life.'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m1-l1": [
-          { "id": "m1-l1-q1", "question": "How do you say 'Good morning' in Marathi?", "options": ["सुप्रभात", "शुभ रात्री", "नमस्कार", "धन्यवाद"], "correctIndex": 0, "explanation": "सुप्रभात (Suprabhat) means Good morning." },
-          { "id": "m1-l1-q2", "question": "A female speaker leaving says:", "options": ["येतो", "येते", "निरोप", "नमस्कार"], "correctIndex": 1, "explanation": "येते (Yete) is the casual goodbye said by female speakers." },
-          { "id": "m1-l1-q3", "question": "Which greeting is most formal in Marathi?", "options": ["हाय", "नमस्ते", "नमस्कार", "हेलो"], "correctIndex": 2, "explanation": "नमस्कार (Namaskar) is the most formal and universally appropriate Marathi greeting." }
-        ],
-        "m1-l2": [
-          { "id": "m1-l2-q1", "question": "Which word means 'Thank you' in Marathi?", "options": ["कृपया", "धन्यवाद", "माफ करा", "ठीक आहे"], "correctIndex": 1, "explanation": "धन्यवाद (Dhanyavaad) is the standard word for Thank you." },
-          { "id": "m1-l2-q2", "question": "How do you say 'Please' in Marathi?", "options": ["धन्यवाद", "माफ करा", "कृपया", "हो"], "correctIndex": 2, "explanation": "कृपया (Krupaya) means Please in Marathi." },
-          { "id": "m1-l2-q3", "question": "What does 'माफ करा' mean?", "options": ["Thank you", "You're welcome", "Sorry / Excuse me", "Please"], "correctIndex": 2, "explanation": "माफ करा (Maaf kara) is used to apologize or to say Excuse me." }
-        ],
-        "m1-l3": [
-          { "id": "m1-l3-q1", "question": "How do you ask 'What is your name?' in Marathi?", "options": ["तुम्ही कुठे आहात?", "तुमचे नाव काय आहे?", "तुम्ही कसे आहात?", "तुम्हाला काय हवे आहे?"], "correctIndex": 1, "explanation": "तुमचे नाव काय आहे? (Tumache naav kaay aahe?) means What is your name?" },
-          { "id": "m1-l3-q2", "question": "How would you say 'My name is Rajan'?", "options": ["माझे नाव राजन आहे.", "मी राजन कुठे आहे?", "राजन येतो.", "माझे नाव काय आहे?"], "correctIndex": 0, "explanation": "माझे नाव राजन आहे. (Majhe naav Rajan aahe.) means My name is Rajan." },
-          { "id": "m1-l3-q3", "question": "Which phrase means 'Nice to meet you'?", "options": ["पुन्हा भेटू", "भेटून आनंद झाला", "नमस्कार", "ठीक आहे"], "correctIndex": 1, "explanation": "भेटून आनंद झाला (Bhetoon aanand zhaala) means Nice/happy to meet you." }
-        ],
-        "m1-l4": [
-          { "id": "m1-l4-q1", "question": "How do you say 'I am from Mumbai'?", "options": ["मी मुंबईला जातो.", "मी मुंबईहून आहे.", "मुंबई कुठे आहे?", "मी मुंबईत राहतो."], "correctIndex": 1, "explanation": "मी मुंबईहून आहे. (Mi Mumbaihoon aahe.) means I am from Mumbai." },
-          { "id": "m1-l4-q2", "question": "Which question asks 'Where are you from?'", "options": ["तुम्ही कुठे जाता?", "तुम्ही कुठून आहात?", "तुम्ही काय करता?", "तुमचे नाव काय आहे?"], "correctIndex": 1, "explanation": "तुम्ही कुठून आहात? (Tumhi kuthoon aahat?) means Where are you from?" },
-          { "id": "m1-l4-q3", "question": "How do you say 'I understand'?", "options": ["मला माहीत नाही", "मला समजते", "मी शिकतो", "मला आवडते"], "correctIndex": 1, "explanation": "मला समजते (Mala samajte) means I understand." }
-        ],
-        "m1-l5": [
-          { "id": "m1-l5-q1", "question": "How do you say 'I don't understand' in Marathi?", "options": ["मला समजत नाही", "मला माहीत आहे", "मी बोलतो", "मला आवडत नाही"], "correctIndex": 0, "explanation": "मला समजत नाही (Mala samajat naahi) means I don't understand." },
-          { "id": "m1-l5-q2", "question": "Which phrase means 'Please speak slowly'?", "options": ["जोरात बोला", "हळू बोला", "थांबा", "पुन्हा सांगा"], "correctIndex": 1, "explanation": "हळू बोला (Haloo bola) means Please speak slowly." },
-          { "id": "m1-l5-q3", "question": "'पुन्हा सांगा' means:", "options": ["Speak louder", "Please stop", "Please say it again", "I understand"], "correctIndex": 2, "explanation": "पुन्हा सांगा (Punhaa saangaa) means Please say it again." }
+        "u1-l1": [
+          {
+            "id": "u1-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'टिळक भारताचे थोर नेते होते.'?",
+            "options": [
+              "Tilak was a great leader of India.",
+              "Water is life.",
+              "The baby laughed very sweetly.",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'टिळक भारताचे थोर नेते होते.' translates to 'Tilak was a great leader of India.'."
+          },
+          {
+            "id": "u1-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Water is life.'?",
+            "options": [
+              "टिळक भारताचे थोर नेते होते.",
+              "पाणी जीवन आहे.",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'पाणी जीवन आहे.' means 'Water is life.'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m2",
+      "moduleId": "u2",
       "flashcards": [
-        { "id": "m2-fc1", "front": "एक", "frontHint": "Ek", "back": "One (1)", "backHint": "First number" },
-        { "id": "m2-fc2", "front": "दोन", "frontHint": "Don", "back": "Two (2)", "backHint": "Second number" },
-        { "id": "m2-fc3", "front": "तीन", "frontHint": "Teen", "back": "Three (3)", "backHint": "Third number" },
-        { "id": "m2-fc4", "front": "चार", "frontHint": "Chaar", "back": "Four (4)", "backHint": "Fourth number" },
-        { "id": "m2-fc5", "front": "पाच", "frontHint": "Paach", "back": "Five (5)", "backHint": "Fifth number" },
-        { "id": "m2-fc6", "front": "दहा", "frontHint": "Dahaa", "back": "Ten (10)", "backHint": "Tenth number" },
-        { "id": "m2-fc7", "front": "वीस", "frontHint": "Vees", "back": "Twenty (20)", "backHint": "Score" },
-        { "id": "m2-fc8", "front": "शंभर", "frontHint": "Shambhar", "back": "Hundred (100)", "backHint": "Century" },
-        { "id": "m2-fc9", "front": "किती वाजले?", "frontHint": "Kiti vaajle?", "back": "What time is it?", "backHint": "Asking for time" },
-        { "id": "m2-fc10", "front": "आज", "frontHint": "Aaj", "back": "Today", "backHint": "Current day" },
-        { "id": "m2-fc11", "front": "उद्या", "frontHint": "Udya", "back": "Tomorrow", "backHint": "Next day" },
-        { "id": "m2-fc12", "front": "काल", "frontHint": "Kaal", "back": "Yesterday", "backHint": "Previous day" }
+        {
+          "id": "u2-fc-u2-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u2-fc-u2-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u2-fc-u2-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u2-fc-u2-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u2-fc-u2-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u2-fc-u2-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Numbers & Time Test",
+        "moduleId": "u2",
         "passingScore": 70,
         "questions": [
-          { "id": "m2-t1", "question": "What is 'three' in Marathi?", "options": ["दोन", "चार", "तीन", "पाच"], "correctIndex": 2, "explanation": "तीन (Teen) means three." },
-          { "id": "m2-t2", "question": "How do you say 'What time is it?' in Marathi?", "options": ["किती वाजले?", "आज काय आहे?", "किती पैसे?", "वेळ किती आहे?"], "correctIndex": 0, "explanation": "किती वाजले? (Kiti vaajle?) is the standard way to ask for the time." },
-          { "id": "m2-t3", "question": "Which word means 'Tomorrow'?", "options": ["काल", "आज", "उद्या", "आता"], "correctIndex": 2, "explanation": "उद्या (Udya) means tomorrow." },
-          { "id": "m2-t4", "question": "How do you say 'One hundred'?", "options": ["दहा", "वीस", "पन्नास", "शंभर"], "correctIndex": 3, "explanation": "शंभर (Shambhar) means one hundred." },
-          { "id": "m2-t5", "question": "'काल' refers to:", "options": ["Today", "Tomorrow", "Yesterday", "Now"], "correctIndex": 2, "explanation": "काल (Kaal) means yesterday in Marathi." },
-          { "id": "m2-t6", "question": "What number is 'पाच'?", "options": ["3", "4", "5", "6"], "correctIndex": 2, "explanation": "पाच (Paach) means five." },
-          { "id": "m2-t7", "question": "How do you say 'Twenty' in Marathi?", "options": ["दहा", "वीस", "तीस", "चाळीस"], "correctIndex": 1, "explanation": "वीस (Vees) means twenty." },
-          { "id": "m2-t8", "question": "The Marathi word for 'Week' is:", "options": ["महिना", "वर्ष", "आठवडा", "दिवस"], "correctIndex": 2, "explanation": "आठवडा (Aathavada) means week in Marathi." },
-          { "id": "m2-t9", "question": "'सकाळी' means:", "options": ["In the evening", "At night", "In the morning", "At noon"], "correctIndex": 2, "explanation": "सकाळी (Sakaali) means in the morning." },
-          { "id": "m2-t10", "question": "How do you say 'It is 3 o'clock'?", "options": ["तीन तास झाले", "तीन वाजले", "तीन दिवस", "आता तीन"], "correctIndex": 1, "explanation": "तीन वाजले (Teen vaajle) means It is 3 o'clock." }
+          {
+            "id": "u2-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u2-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u2-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m2-l1": [
-          { "id": "m2-l1-q1", "question": "What is 'five' in Marathi?", "options": ["तीन", "चार", "पाच", "सहा"], "correctIndex": 2, "explanation": "पाच (Paach) means five." },
-          { "id": "m2-l1-q2", "question": "How do you say 'two' in Marathi?", "options": ["एक", "दोन", "तीन", "चार"], "correctIndex": 1, "explanation": "दोन (Don) means two." },
-          { "id": "m2-l1-q3", "question": "What number does 'दहा' represent?", "options": ["5", "8", "10", "12"], "correctIndex": 2, "explanation": "दहा (Dahaa) means ten." }
-        ],
-        "m2-l2": [
-          { "id": "m2-l2-q1", "question": "How do you say 'What time is it?'", "options": ["किती वाजले?", "आज काय आहे?", "वेळ आहे का?", "आता काय वाजले?"], "correctIndex": 0, "explanation": "किती वाजले? is the standard Marathi phrase for asking the time." },
-          { "id": "m2-l2-q2", "question": "'सकाळी' means:", "options": ["Evening", "Afternoon", "Morning", "Night"], "correctIndex": 2, "explanation": "सकाळी (Sakaali) means in the morning." },
-          { "id": "m2-l2-q3", "question": "How do you say 'at night' in Marathi?", "options": ["सकाळी", "दुपारी", "संध्याकाळी", "रात्री"], "correctIndex": 3, "explanation": "रात्री (Raatri) means at night." }
-        ],
-        "m2-l3": [
-          { "id": "m2-l3-q1", "question": "Which word means 'yesterday'?", "options": ["आज", "उद्या", "काल", "आता"], "correctIndex": 2, "explanation": "काल (Kaal) means yesterday in Marathi." },
-          { "id": "m2-l3-q2", "question": "How do you say 'today'?", "options": ["काल", "उद्या", "परवा", "आज"], "correctIndex": 3, "explanation": "आज (Aaj) means today." },
-          { "id": "m2-l3-q3", "question": "'परवा' typically refers to:", "options": ["Today", "Tomorrow", "Day after tomorrow", "Last week"], "correctIndex": 2, "explanation": "परवा (Parwaa) means the day after tomorrow." }
+        "u2-l1": [
+          {
+            "id": "u2-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u2-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m3",
+      "moduleId": "u3",
       "flashcards": [
-        { "id": "m3-fc1", "front": "आई", "frontHint": "Aai", "back": "Mother", "backHint": "Maternal figure" },
-        { "id": "m3-fc2", "front": "बाबा", "frontHint": "Baabaa", "back": "Father", "backHint": "Paternal figure" },
-        { "id": "m3-fc3", "front": "भाऊ", "frontHint": "Bhaau", "back": "Brother", "backHint": "Male sibling" },
-        { "id": "m3-fc4", "front": "बहीण", "frontHint": "Baheen", "back": "Sister", "backHint": "Female sibling" },
-        { "id": "m3-fc5", "front": "आजी", "frontHint": "Aaji", "back": "Grandmother", "backHint": "Mother's/Father's mother" },
-        { "id": "m3-fc6", "front": "आजोबा", "frontHint": "Aajobaa", "back": "Grandfather", "backHint": "Mother's/Father's father" },
-        { "id": "m3-fc7", "front": "मुलगा", "frontHint": "Mulgaa", "back": "Son / Boy", "backHint": "Male child" },
-        { "id": "m3-fc8", "front": "मुलगी", "frontHint": "Mulgi", "back": "Daughter / Girl", "backHint": "Female child" },
-        { "id": "m3-fc9", "front": "काका", "frontHint": "Kaakaa", "back": "Uncle (Father's brother)", "backHint": "Paternal uncle" },
-        { "id": "m3-fc10", "front": "मित्र", "frontHint": "Mitra", "back": "Friend (male)", "backHint": "Male companion" },
-        { "id": "m3-fc11", "front": "मैत्रीण", "frontHint": "Maitreen", "back": "Friend (female)", "backHint": "Female companion" },
-        { "id": "m3-fc12", "front": "नवरा", "frontHint": "Navaraa", "back": "Husband", "backHint": "Spouse (male)" }
+        {
+          "id": "u3-fc-u3-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u3-fc-u3-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u3-fc-u3-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u3-fc-u3-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u3-fc-u3-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u3-fc-u3-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Family & People Test",
+        "moduleId": "u3",
         "passingScore": 70,
         "questions": [
-          { "id": "m3-t1", "question": "What does 'आई' mean?", "options": ["Sister", "Grandmother", "Mother", "Aunt"], "correctIndex": 2, "explanation": "आई (Aai) means Mother in Marathi." },
-          { "id": "m3-t2", "question": "The Marathi word for 'Brother' is:", "options": ["बहीण", "भाऊ", "नवरा", "मुलगा"], "correctIndex": 1, "explanation": "भाऊ (Bhaau) means Brother." },
-          { "id": "m3-t3", "question": "What does 'आजोबा' mean?", "options": ["Uncle", "Father", "Grandfather", "Elder brother"], "correctIndex": 2, "explanation": "आजोबा (Aajobaa) means Grandfather." },
-          { "id": "m3-t4", "question": "How do you say 'daughter' in Marathi?", "options": ["मुलगा", "मुलगी", "बहीण", "आई"], "correctIndex": 1, "explanation": "मुलगी (Mulgi) means daughter or girl." },
-          { "id": "m3-t5", "question": "'मित्र' refers to a:", "options": ["Teacher", "Male friend", "Brother", "Neighbour"], "correctIndex": 1, "explanation": "मित्र (Mitra) means a male friend or companion." },
-          { "id": "m3-t6", "question": "What does 'काका' mean?", "options": ["Grandfather", "Father", "Uncle", "Elder brother"], "correctIndex": 2, "explanation": "काका (Kaakaa) is the Marathi word for paternal uncle." },
-          { "id": "m3-t7", "question": "The word for 'wife' in Marathi is:", "options": ["मैत्रीण", "बायको", "बहीण", "मुलगी"], "correctIndex": 1, "explanation": "बायको (Baayko) means wife in Marathi." },
-          { "id": "m3-t8", "question": "How do you say 'My family is big'?", "options": ["माझे कुटुंब लहान आहे.", "माझे कुटुंब मोठे आहे.", "माझ्या घरात कोण आहे?", "माझे नाव मोठे आहे."], "correctIndex": 1, "explanation": "माझे कुटुंब मोठे आहे. (Majhe kutumb mothe aahe.) means My family is big." },
-          { "id": "m3-t9", "question": "'आजी' refers to:", "options": ["Aunt", "Mother", "Grandmother", "Elder sister"], "correctIndex": 2, "explanation": "आजी (Aaji) means Grandmother in Marathi." },
-          { "id": "m3-t10", "question": "A female friend is called:", "options": ["मित्र", "बहीण", "मैत्रीण", "मुलगी"], "correctIndex": 2, "explanation": "मैत्रीण (Maitreen) is the word for a female friend in Marathi." }
+          {
+            "id": "u3-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u3-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u3-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m3-l1": [
-          { "id": "m3-l1-q1", "question": "What does 'आई' mean in Marathi?", "options": ["Sister", "Mother", "Grandmother", "Aunt"], "correctIndex": 1, "explanation": "आई (Aai) means Mother." },
-          { "id": "m3-l1-q2", "question": "How do you say 'Father' in Marathi?", "options": ["आई", "भाऊ", "बाबा", "काका"], "correctIndex": 2, "explanation": "बाबा (Baabaa) means Father." },
-          { "id": "m3-l1-q3", "question": "The word 'भाऊ' means:", "options": ["Father", "Son", "Brother", "Uncle"], "correctIndex": 2, "explanation": "भाऊ (Bhaau) means Brother." }
-        ],
-        "m3-l2": [
-          { "id": "m3-l2-q1", "question": "How do you say 'grandfather'?", "options": ["आजी", "आजोबा", "काका", "बाबा"], "correctIndex": 1, "explanation": "आजोबा (Aajobaa) means Grandfather." },
-          { "id": "m3-l2-q2", "question": "What does 'मुलगी' mean?", "options": ["Boy/Son", "Girl/Daughter", "Sister", "Mother"], "correctIndex": 1, "explanation": "मुलगी (Mulgi) means girl or daughter." },
-          { "id": "m3-l2-q3", "question": "'मैत्रीण' is used for a:", "options": ["Male friend", "Female friend", "Sister", "Cousin"], "correctIndex": 1, "explanation": "मैत्रीण (Maitreen) means female friend." }
+        "u3-l1": [
+          {
+            "id": "u3-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u3-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m4",
+      "moduleId": "u4",
       "flashcards": [
-        { "id": "m4-fc1", "front": "जेवण", "frontHint": "Jevan", "back": "Food / Meal", "backHint": "General term for food" },
-        { "id": "m4-fc2", "front": "पाणी", "frontHint": "Paani", "back": "Water", "backHint": "Essential drink" },
-        { "id": "m4-fc3", "front": "चहा", "frontHint": "Chaha", "back": "Tea", "backHint": "Popular beverage" },
-        { "id": "m4-fc4", "front": "भाकरी", "frontHint": "Bhaakari", "back": "Flatbread (sorghum/millet)", "backHint": "Traditional Maharashtrian bread" },
-        { "id": "m4-fc5", "front": "भात", "frontHint": "Bhaat", "back": "Rice", "backHint": "Cooked rice" },
-        { "id": "m4-fc6", "front": "आमटी", "frontHint": "Aamati", "back": "Lentil curry (dal)", "backHint": "Spiced lentil dish" },
-        { "id": "m4-fc7", "front": "गोड", "frontHint": "God", "back": "Sweet", "backHint": "Taste descriptor" },
-        { "id": "m4-fc8", "front": "तिखट", "frontHint": "Tikhat", "back": "Spicy / Hot", "backHint": "Taste descriptor" },
-        { "id": "m4-fc9", "front": "भूक लागली", "frontHint": "Bhook laagali", "back": "I am hungry", "backHint": "Expressing hunger" },
-        { "id": "m4-fc10", "front": "तहान लागली", "frontHint": "Tahaan laagali", "back": "I am thirsty", "backHint": "Expressing thirst" },
-        { "id": "m4-fc11", "front": "मला आवडते", "frontHint": "Mala aavadte", "back": "I like it", "backHint": "Expressing preference" },
-        { "id": "m4-fc12", "front": "जेवण झाले का?", "frontHint": "Jevan zhale ka?", "back": "Have you eaten?", "backHint": "Common Marathi greeting" }
+        {
+          "id": "u4-fc-u4-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u4-fc-u4-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u4-fc-u4-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u4-fc-u4-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u4-fc-u4-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u4-fc-u4-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Food & Dining Test",
+        "moduleId": "u4",
         "passingScore": 70,
         "questions": [
-          { "id": "m4-t1", "question": "How do you say 'I am hungry' in Marathi?", "options": ["तहान लागली", "भूक लागली", "मला जेवायचे नाही", "मला पाणी हवे"], "correctIndex": 1, "explanation": "भूक लागली (Bhook laagali) means I am hungry." },
-          { "id": "m4-t2", "question": "What does 'पाणी' mean?", "options": ["Tea", "Milk", "Water", "Juice"], "correctIndex": 2, "explanation": "पाणी (Paani) means Water." },
-          { "id": "m4-t3", "question": "How do you say 'It is spicy'?", "options": ["हे गोड आहे", "हे तिखट आहे", "हे आंबट आहे", "हे खारट आहे"], "correctIndex": 1, "explanation": "हे तिखट आहे (He tikhat aahe) means It is spicy." },
-          { "id": "m4-t4", "question": "What is 'भात'?", "options": ["Bread", "Rice", "Lentils", "Vegetable"], "correctIndex": 1, "explanation": "भात (Bhaat) means cooked rice." },
-          { "id": "m4-t5", "question": "'जेवण झाले का?' is a way to say:", "options": ["What do you want to eat?", "Let's have food.", "Have you eaten?", "The food is ready."], "correctIndex": 2, "explanation": "जेवण झाले का? (Jevan zhale ka?) means Have you eaten? — a common Marathi greeting." },
-          { "id": "m4-t6", "question": "What does 'गोड' mean?", "options": ["Salty", "Spicy", "Sour", "Sweet"], "correctIndex": 3, "explanation": "गोड (God) means Sweet." },
-          { "id": "m4-t7", "question": "How do you say 'I like tea'?", "options": ["मला चहा नको आहे", "मला चहा आवडतो", "चहा गरम आहे", "चहा मिळेल का?"], "correctIndex": 1, "explanation": "मला चहा आवडतो (Mala chaha aavdato) means I like tea." },
-          { "id": "m4-t8", "question": "'तहान लागली' means:", "options": ["I am hungry", "I am full", "I am thirsty", "I need food"], "correctIndex": 2, "explanation": "तहान लागली (Tahaan laagali) means I am thirsty." },
-          { "id": "m4-t9", "question": "भाकरी is a type of:", "options": ["Rice dish", "Lentil curry", "Traditional flatbread", "Sweet dessert"], "correctIndex": 2, "explanation": "भाकरी (Bhaakari) is a traditional Maharashtrian flatbread made from sorghum or millet." },
-          { "id": "m4-t10", "question": "How do you ask for water politely?", "options": ["पाणी दे.", "मला पाणी मिळेल का?", "पाणी आण.", "पाणी कुठे आहे?"], "correctIndex": 1, "explanation": "मला पाणी मिळेल का? (Mala paani milel ka?) politely means Can I get some water?" }
+          {
+            "id": "u4-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u4-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u4-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m4-l1": [
-          { "id": "m4-l1-q1", "question": "How do you say 'I am hungry'?", "options": ["तहान लागली", "भूक लागली", "मला झोप आली", "मला थकवा आला"], "correctIndex": 1, "explanation": "भूक लागली (Bhook laagali) means I am hungry." },
-          { "id": "m4-l1-q2", "question": "What is 'पाणी'?", "options": ["Tea", "Milk", "Water", "Juice"], "correctIndex": 2, "explanation": "पाणी (Paani) means Water." },
-          { "id": "m4-l1-q3", "question": "How do you say 'Sweet' in Marathi?", "options": ["तिखट", "आंबट", "गोड", "खारट"], "correctIndex": 2, "explanation": "गोड (God) means Sweet in Marathi." }
-        ],
-        "m4-l2": [
-          { "id": "m4-l2-q1", "question": "भाकरी is best described as:", "options": ["A spicy curry", "Traditional flatbread", "A sweet dessert", "A rice dish"], "correctIndex": 1, "explanation": "भाकरी is a traditional Maharashtrian flatbread made from sorghum or millet flour." },
-          { "id": "m4-l2-q2", "question": "How do you say 'Have you eaten?'", "options": ["जेवण आणा", "जेवण झाले का?", "जेवण चांगले आहे", "जेवायला बसा"], "correctIndex": 1, "explanation": "जेवण झाले का? means Have you eaten? — a common Marathi greeting." },
-          { "id": "m4-l2-q3", "question": "What does 'मला आवडते' mean?", "options": ["I don't like it", "I want it", "I like it", "I need it"], "correctIndex": 2, "explanation": "मला आवडते (Mala aavadte) means I like it." }
+        "u4-l1": [
+          {
+            "id": "u4-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u4-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m5",
+      "moduleId": "u5",
       "flashcards": [
-        { "id": "m5-fc1", "front": "कुठे आहे?", "frontHint": "Kuthe aahe?", "back": "Where is it?", "backHint": "Asking for location" },
-        { "id": "m5-fc2", "front": "डावीकडे", "frontHint": "Daavikade", "back": "To the left", "backHint": "Direction: left" },
-        { "id": "m5-fc3", "front": "उजवीकडे", "frontHint": "Ujavikade", "back": "To the right", "backHint": "Direction: right" },
-        { "id": "m5-fc4", "front": "सरळ जा", "frontHint": "Saral jaa", "back": "Go straight", "backHint": "Direction: straight" },
-        { "id": "m5-fc5", "front": "बस", "frontHint": "Bas", "back": "Bus", "backHint": "Public transport" },
-        { "id": "m5-fc6", "front": "रिक्षा", "frontHint": "Rikshaa", "back": "Auto-rickshaw", "backHint": "Common city transport" },
-        { "id": "m5-fc7", "front": "रेल्वे स्थानक", "frontHint": "Railway station", "back": "Railway station", "backHint": "Train terminus" },
-        { "id": "m5-fc8", "front": "किती अंतर आहे?", "frontHint": "Kiti antar aahe?", "back": "How far is it?", "backHint": "Asking distance" },
-        { "id": "m5-fc9", "front": "जवळ", "frontHint": "Javal", "back": "Nearby / Close", "backHint": "Proximity" },
-        { "id": "m5-fc10", "front": "लांब", "frontHint": "Laanb", "back": "Far", "backHint": "Distance" }
+        {
+          "id": "u5-fc-u5-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u5-fc-u5-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u5-fc-u5-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u5-fc-u5-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u5-fc-u5-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u5-fc-u5-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Getting Around Test",
+        "moduleId": "u5",
         "passingScore": 70,
         "questions": [
-          { "id": "m5-t1", "question": "How do you say 'Where is the bus stop?'", "options": ["बस स्थानक कुठे आहे?", "बस कधी येते?", "बस किती वाजता येते?", "बस येईल का?"], "correctIndex": 0, "explanation": "बस स्थानक कुठे आहे? (Bas sthaanak kuthe aahe?) means Where is the bus stop?" },
-          { "id": "m5-t2", "question": "'उजवीकडे वळा' means:", "options": ["Turn left", "Go straight", "Turn right", "Stop here"], "correctIndex": 2, "explanation": "उजवीकडे वळा (Ujavikade valaa) means Turn right." },
-          { "id": "m5-t3", "question": "What does 'जवळ' mean?", "options": ["Far", "Nearby", "Behind", "Opposite"], "correctIndex": 1, "explanation": "जवळ (Javal) means nearby or close." },
-          { "id": "m5-t4", "question": "How do you ask 'How far is it?'", "options": ["किती वेळ लागेल?", "किती अंतर आहे?", "किती पैसे लागतील?", "कुठे जायचे आहे?"], "correctIndex": 1, "explanation": "किती अंतर आहे? (Kiti antar aahe?) means How far is it?" },
-          { "id": "m5-t5", "question": "A रिक्षा is:", "options": ["A train", "A bus", "An auto-rickshaw", "A taxi"], "correctIndex": 2, "explanation": "रिक्षा (Rikshaa) is an auto-rickshaw, a common three-wheeled vehicle." },
-          { "id": "m5-t6", "question": "'सरळ जा' means:", "options": ["Turn left", "Go straight", "Stop", "Come back"], "correctIndex": 1, "explanation": "सरळ जा (Saral jaa) means Go straight." },
-          { "id": "m5-t7", "question": "How do you say 'It is far' in Marathi?", "options": ["ते जवळ आहे", "ते लांब आहे", "ते इथेच आहे", "ते बंद आहे"], "correctIndex": 1, "explanation": "ते लांब आहे (Te laanb aahe) means It is far." },
-          { "id": "m5-t8", "question": "रेल्वे स्थानक means:", "options": ["Bus depot", "Airport", "Railway station", "Hotel"], "correctIndex": 2, "explanation": "रेल्वे स्थानक means Railway station." },
-          { "id": "m5-t9", "question": "To say 'Turn left' you say:", "options": ["उजवीकडे वळा", "डावीकडे वळा", "मागे वळा", "सरळ जा"], "correctIndex": 1, "explanation": "डावीकडे वळा (Daavikade valaa) means Turn left." },
-          { "id": "m5-t10", "question": "How do you say 'I want to go to the market'?", "options": ["मला बाजारात जायचे आहे.", "बाजार कुठे आहे?", "मी बाजारात गेलो.", "बाजार बंद आहे."], "correctIndex": 0, "explanation": "मला बाजारात जायचे आहे. (Mala baazaraat jaayche aahe.) means I want to go to the market." }
+          {
+            "id": "u5-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u5-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u5-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m5-l1": [
-          { "id": "m5-l1-q1", "question": "How do you ask 'Where is the station?'", "options": ["स्थानक कधी उघडते?", "स्थानक कुठे आहे?", "स्थानक किती लांब आहे?", "स्थानक बंद आहे का?"], "correctIndex": 1, "explanation": "स्थानक कुठे आहे? means Where is the station?" },
-          { "id": "m5-l1-q2", "question": "'डावीकडे' means:", "options": ["Right", "Straight", "Left", "Back"], "correctIndex": 2, "explanation": "डावीकडे (Daavikade) means to the left." },
-          { "id": "m5-l1-q3", "question": "What does 'लांब' mean?", "options": ["Close", "Far", "Left", "Right"], "correctIndex": 1, "explanation": "लांब (Laanb) means far." }
+        "u5-l1": [
+          {
+            "id": "u5-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u5-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m6",
+      "moduleId": "u6",
       "flashcards": [
-        { "id": "m6-fc1", "front": "हे किती रुपयांना आहे?", "frontHint": "He kiti rupyaanna aahe?", "back": "How much does this cost?", "backHint": "Asking for price" },
-        { "id": "m6-fc2", "front": "महाग", "frontHint": "Mahaag", "back": "Expensive", "backHint": "Price descriptor" },
-        { "id": "m6-fc3", "front": "स्वस्त", "frontHint": "Swast", "back": "Cheap / Affordable", "backHint": "Price descriptor" },
-        { "id": "m6-fc4", "front": "थोडे कमी करा", "frontHint": "Thode kami kara", "back": "Please reduce a bit", "backHint": "Bargaining phrase" },
-        { "id": "m6-fc5", "front": "मला हे नको", "frontHint": "Mala he nako", "back": "I don't want this", "backHint": "Declining a purchase" },
-        { "id": "m6-fc6", "front": "मला हे द्या", "frontHint": "Mala he dyaa", "back": "Give me this one", "backHint": "Selecting an item" },
-        { "id": "m6-fc7", "front": "पैसे", "frontHint": "Paise", "back": "Money", "backHint": "Currency" },
-        { "id": "m6-fc8", "front": "बाजार", "frontHint": "Baazaar", "back": "Market", "backHint": "Shopping area" },
-        { "id": "m6-fc9", "front": "दुकान", "frontHint": "Dukaan", "back": "Shop / Store", "backHint": "Retail outlet" }
+        {
+          "id": "u6-fc-u6-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u6-fc-u6-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u6-fc-u6-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u6-fc-u6-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u6-fc-u6-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u6-fc-u6-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Shopping Test",
+        "moduleId": "u6",
         "passingScore": 70,
         "questions": [
-          { "id": "m6-t1", "question": "How do you ask for the price?", "options": ["हे काय आहे?", "हे किती रुपयांना आहे?", "हे कुठे मिळेल?", "हे चांगले आहे का?"], "correctIndex": 1, "explanation": "हे किती रुपयांना आहे? means How much does this cost?" },
-          { "id": "m6-t2", "question": "What does 'महाग' mean?", "options": ["Cheap", "Free", "Expensive", "Good quality"], "correctIndex": 2, "explanation": "महाग (Mahaag) means expensive." },
-          { "id": "m6-t3", "question": "'थोडे कमी करा' is used when:", "options": ["Asking for directions", "Bargaining for a lower price", "Ordering food", "Greeting someone"], "correctIndex": 1, "explanation": "थोडे कमी करा means Please reduce a bit — used when bargaining." },
-          { "id": "m6-t4", "question": "What does 'स्वस्त' mean?", "options": ["Good", "Expensive", "Cheap / Affordable", "Fresh"], "correctIndex": 2, "explanation": "स्वस्त (Swast) means cheap or affordable." },
-          { "id": "m6-t5", "question": "How do you say 'Give me this one'?", "options": ["मला हे नको", "मला हे द्या", "हे किती आहे?", "हे चांगले नाही"], "correctIndex": 1, "explanation": "मला हे द्या (Mala he dyaa) means Give me this one." },
-          { "id": "m6-t6", "question": "दुकान means:", "options": ["Market", "Shop / Store", "Street", "Home"], "correctIndex": 1, "explanation": "दुकान (Dukaan) means shop or store." },
-          { "id": "m6-t7", "question": "How do you say 'I don't have money'?", "options": ["माझ्याकडे पैसे नाहीत", "मला पैसे नको", "पैसे महाग आहेत", "माझे पैसे गेले"], "correctIndex": 0, "explanation": "माझ्याकडे पैसे नाहीत (Maajhyakade paise naahit) means I don't have money." },
-          { "id": "m6-t8", "question": "बाजार means:", "options": ["Shop", "Market", "Road", "Mall"], "correctIndex": 1, "explanation": "बाजार (Baazaar) means market." },
-          { "id": "m6-t9", "question": "'मला हे नको' means:", "options": ["Give me this", "I want this", "I don't want this", "Is this good?"], "correctIndex": 2, "explanation": "मला हे नको (Mala he nako) means I don't want this." },
-          { "id": "m6-t10", "question": "How do you say 'It's too expensive'?", "options": ["हे खूप स्वस्त आहे", "हे खूप महाग आहे", "हे खूप चांगले आहे", "हे खूप लहान आहे"], "correctIndex": 1, "explanation": "हे खूप महाग आहे (He khoop mahaag aahe) means It's too expensive." }
+          {
+            "id": "u6-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u6-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u6-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m6-l1": [
-          { "id": "m6-l1-q1", "question": "How do you ask 'How much does this cost?'", "options": ["हे काय आहे?", "हे किती रुपयांना आहे?", "हे कुठे आहे?", "हे चांगले आहे का?"], "correctIndex": 1, "explanation": "हे किती रुपयांना आहे? means How much does this cost?" },
-          { "id": "m6-l1-q2", "question": "What does 'महाग' mean?", "options": ["Cheap", "Expensive", "Good", "Available"], "correctIndex": 1, "explanation": "महाग (Mahaag) means expensive." },
-          { "id": "m6-l1-q3", "question": "To bargain for a lower price you say:", "options": ["थोडे जास्त द्या", "थोडे कमी करा", "ठीक आहे", "मला नको"], "correctIndex": 1, "explanation": "थोडे कमी करा means Please reduce a bit — the standard bargaining phrase." }
+        "u6-l1": [
+          {
+            "id": "u6-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u6-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m7",
+      "moduleId": "u7",
       "flashcards": [
-        { "id": "m7-fc1", "front": "मी उठतो", "frontHint": "Mi uthato", "back": "I wake up", "backHint": "Morning routine" },
-        { "id": "m7-fc2", "front": "आंघोळ करतो", "frontHint": "Aanghol karato", "back": "I take a bath", "backHint": "Daily hygiene" },
-        { "id": "m7-fc3", "front": "नाश्ता", "frontHint": "Naashta", "back": "Breakfast", "backHint": "Morning meal" },
-        { "id": "m7-fc4", "front": "कामावर जातो", "frontHint": "Kaamavar jaato", "back": "I go to work", "backHint": "Work commute" },
-        { "id": "m7-fc5", "front": "झोपतो", "frontHint": "Jhopato", "back": "I sleep", "backHint": "Sleep routine" },
-        { "id": "m7-fc6", "front": "व्यायाम करतो", "frontHint": "Vyaayaam karato", "back": "I exercise", "backHint": "Physical activity" },
-        { "id": "m7-fc7", "front": "स्वयंपाक", "frontHint": "Swayampak", "back": "Cooking", "backHint": "Kitchen activity" },
-        { "id": "m7-fc8", "front": "बाजारात जातो", "frontHint": "Baazaraat jaato", "back": "I go to the market", "backHint": "Shopping errand" }
+        {
+          "id": "u7-fc-u7-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u7-fc-u7-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u7-fc-u7-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u7-fc-u7-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u7-fc-u7-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u7-fc-u7-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Daily Routines Test",
+        "moduleId": "u7",
         "passingScore": 70,
         "questions": [
-          { "id": "m7-t1", "question": "How do you say 'I wake up at 6'?", "options": ["मी सहा वाजता उठतो.", "मी सहा वाजता झोपतो.", "मी सहा वाजता जेवतो.", "मी सहा वाजता जातो."], "correctIndex": 0, "explanation": "मी सहा वाजता उठतो. means I wake up at 6 o'clock." },
-          { "id": "m7-t2", "question": "What does 'नाश्ता' mean?", "options": ["Lunch", "Dinner", "Breakfast", "Snack"], "correctIndex": 2, "explanation": "नाश्ता (Naashta) means Breakfast." },
-          { "id": "m7-t3", "question": "'स्वयंपाक' refers to:", "options": ["Exercise", "Cooking", "Sleeping", "Bathing"], "correctIndex": 1, "explanation": "स्वयंपाक (Swayampak) means cooking." },
-          { "id": "m7-t4", "question": "How do you say 'I go to work'?", "options": ["मी कामावर येतो.", "मी कामावर जातो.", "मी कामावर राहतो.", "मी कामावर थांबतो."], "correctIndex": 1, "explanation": "मी कामावर जातो. (Mi kaamavar jaato.) means I go to work." },
-          { "id": "m7-t5", "question": "What does 'व्यायाम करतो' mean?", "options": ["I cook", "I sleep", "I exercise", "I eat"], "correctIndex": 2, "explanation": "व्यायाम करतो (Vyaayaam karato) means I exercise." },
-          { "id": "m7-t6", "question": "How do you say 'I take a bath'?", "options": ["मी जेवतो", "मी उठतो", "मी आंघोळ करतो", "मी झोपतो"], "correctIndex": 2, "explanation": "मी आंघोळ करतो (Mi aanghol karato) means I take a bath." },
-          { "id": "m7-t7", "question": "'झोपतो' means:", "options": ["I wake up", "I eat", "I sleep", "I work"], "correctIndex": 2, "explanation": "झोपतो (Jhopato) means I sleep." },
-          { "id": "m7-t8", "question": "How do you say 'I cook food'?", "options": ["मी जेवतो.", "मी स्वयंपाक करतो.", "मी बाजारात जातो.", "मी खातो."], "correctIndex": 1, "explanation": "मी स्वयंपाक करतो. means I cook food." },
-          { "id": "m7-t9", "question": "The morning routine phrase for 'I brush teeth' is:", "options": ["मी दात घासतो.", "मी आंघोळ करतो.", "मी नाश्ता करतो.", "मी उठतो."], "correctIndex": 0, "explanation": "मी दात घासतो. (Mi daat ghaasto.) means I brush my teeth." },
-          { "id": "m7-t10", "question": "How do you say 'Every day I go for a walk'?", "options": ["मी रोज फिरायला जातो.", "मी आज फिरायला जातो.", "मी उद्या फिरायला जाणार.", "मी काल फिरायला गेलो."], "correctIndex": 0, "explanation": "मी रोज फिरायला जातो. (Mi roj firayala jaato.) means Every day I go for a walk." }
+          {
+            "id": "u7-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u7-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u7-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m7-l1": [
-          { "id": "m7-l1-q1", "question": "How do you say 'I wake up'?", "options": ["मी झोपतो", "मी उठतो", "मी जातो", "मी खातो"], "correctIndex": 1, "explanation": "मी उठतो (Mi uthato) means I wake up." },
-          { "id": "m7-l1-q2", "question": "What is 'नाश्ता'?", "options": ["Lunch", "Dinner", "Breakfast", "Dessert"], "correctIndex": 2, "explanation": "नाश्ता (Naashta) means Breakfast." },
-          { "id": "m7-l1-q3", "question": "'आंघोळ करतो' means:", "options": ["I cook", "I sleep", "I take a bath", "I go out"], "correctIndex": 2, "explanation": "आंघोळ करतो means I take a bath." }
+        "u7-l1": [
+          {
+            "id": "u7-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u7-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m8",
+      "moduleId": "u8",
       "flashcards": [
-        { "id": "m8-fc1", "front": "पाऊस", "frontHint": "Paaus", "back": "Rain", "backHint": "Precipitation" },
-        { "id": "m8-fc2", "front": "ऊन", "frontHint": "Oon", "back": "Sunshine / Heat", "backHint": "Sunny weather" },
-        { "id": "m8-fc3", "front": "थंडी", "frontHint": "Thandi", "back": "Cold / Winter", "backHint": "Cold weather" },
-        { "id": "m8-fc4", "front": "उकाडा", "frontHint": "Ukaadaa", "back": "Heat / Humidity", "backHint": "Hot humid weather" },
-        { "id": "m8-fc5", "front": "नदी", "frontHint": "Nadi", "back": "River", "backHint": "Natural water body" },
-        { "id": "m8-fc6", "front": "डोंगर", "frontHint": "Dongar", "back": "Hill / Mountain", "backHint": "Elevated terrain" },
-        { "id": "m8-fc7", "front": "समुद्र", "frontHint": "Samudra", "back": "Ocean / Sea", "backHint": "Large water body" },
-        { "id": "m8-fc8", "front": "आज हवामान कसे आहे?", "frontHint": "Today weather how is?", "back": "How is the weather today?", "backHint": "Weather inquiry" }
+        {
+          "id": "u8-fc-u8-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u8-fc-u8-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u8-fc-u8-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u8-fc-u8-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u8-fc-u8-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u8-fc-u8-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Weather & Nature Test",
+        "moduleId": "u8",
         "passingScore": 70,
         "questions": [
-          { "id": "m8-t1", "question": "How do you say 'It is raining'?", "options": ["ऊन पडत आहे", "पाऊस पडत आहे", "थंडी आहे", "वारा आहे"], "correctIndex": 1, "explanation": "पाऊस पडत आहे (Paaus padat aahe) means It is raining." },
-          { "id": "m8-t2", "question": "What does 'थंडी' mean?", "options": ["Rain", "Hot weather", "Cold weather", "Wind"], "correctIndex": 2, "explanation": "थंडी (Thandi) means cold weather or winter." },
-          { "id": "m8-t3", "question": "How do you ask 'How is the weather today?'", "options": ["आज किती वाजले?", "आज हवामान कसे आहे?", "आज काय आहे?", "आज कुठे जायचे?"], "correctIndex": 1, "explanation": "आज हवामान कसे आहे? means How is the weather today?" },
-          { "id": "m8-t4", "question": "डोंगर means:", "options": ["River", "Ocean", "Hill / Mountain", "Forest"], "correctIndex": 2, "explanation": "डोंगर (Dongar) means hill or mountain." },
-          { "id": "m8-t5", "question": "'उकाडा' describes:", "options": ["A cold night", "Rainy season", "Hot and humid weather", "Windy conditions"], "correctIndex": 2, "explanation": "उकाडा (Ukaadaa) describes hot, humid, and oppressive weather." },
-          { "id": "m8-t6", "question": "What is 'समुद्र'?", "options": ["River", "Lake", "Ocean / Sea", "Pond"], "correctIndex": 2, "explanation": "समुद्र (Samudra) means ocean or sea." },
-          { "id": "m8-t7", "question": "How do you say 'It is very hot today'?", "options": ["आज खूप थंडी आहे.", "आज खूप पाऊस आहे.", "आज खूप ऊन आहे.", "आज खूप वारा आहे."], "correctIndex": 2, "explanation": "आज खूप ऊन आहे. (Aaj khoop oon aahe.) means It is very hot/sunny today." },
-          { "id": "m8-t8", "question": "नदी means:", "options": ["Mountain", "Sea", "River", "Lake"], "correctIndex": 2, "explanation": "नदी (Nadi) means river." },
-          { "id": "m8-t9", "question": "How do you say 'I love the rain'?", "options": ["मला पाऊस आवडतो.", "मला थंडी आवडते.", "मला ऊन आवडते.", "मला वारा आवडतो."], "correctIndex": 0, "explanation": "मला पाऊस आवडतो. (Mala paaus aavadte.) means I love the rain." },
-          { "id": "m8-t10", "question": "'ऊन पडत आहे' means:", "options": ["It is raining", "It is cold", "The sun is shining", "It is windy"], "correctIndex": 2, "explanation": "ऊन पडत आहे (Oon padat aahe) means the sun is shining / it is sunny." }
+          {
+            "id": "u8-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u8-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u8-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m8-l1": [
-          { "id": "m8-l1-q1", "question": "How do you say 'It is raining'?", "options": ["ऊन आहे", "पाऊस पडत आहे", "थंडी आहे", "वारा आहे"], "correctIndex": 1, "explanation": "पाऊस पडत आहे means It is raining." },
-          { "id": "m8-l1-q2", "question": "What does 'थंडी' mean?", "options": ["Hot", "Cold", "Windy", "Rainy"], "correctIndex": 1, "explanation": "थंडी (Thandi) means cold." },
-          { "id": "m8-l1-q3", "question": "डोंगर means:", "options": ["River", "Mountain", "Ocean", "Forest"], "correctIndex": 1, "explanation": "डोंगर (Dongar) means mountain or hill." }
+        "u8-l1": [
+          {
+            "id": "u8-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u8-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m9",
+      "moduleId": "u9",
       "flashcards": [
-        { "id": "m9-fc1", "front": "डोकेदुखी", "frontHint": "Dokedukhi", "back": "Headache", "backHint": "Common ailment" },
-        { "id": "m9-fc2", "front": "ताप", "frontHint": "Taap", "back": "Fever", "backHint": "Elevated temperature" },
-        { "id": "m9-fc3", "front": "दुखते", "frontHint": "Dukhate", "back": "It hurts / It is paining", "backHint": "Expressing pain" },
-        { "id": "m9-fc4", "front": "डॉक्टर", "frontHint": "Doctor", "back": "Doctor", "backHint": "Medical professional" },
-        { "id": "m9-fc5", "front": "दवाखाना", "frontHint": "Davakhana", "back": "Clinic / Hospital", "backHint": "Medical facility" },
-        { "id": "m9-fc6", "front": "औषध", "frontHint": "Aushadh", "back": "Medicine", "backHint": "Medical treatment" },
-        { "id": "m9-fc7", "front": "मला बरे नाही", "frontHint": "Mala bare naahi", "back": "I am not well", "backHint": "Expressing illness" },
-        { "id": "m9-fc8", "front": "रुग्णालय", "frontHint": "Rugnalay", "back": "Hospital", "backHint": "Healthcare facility" }
+        {
+          "id": "u9-fc-u9-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u9-fc-u9-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u9-fc-u9-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u9-fc-u9-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u9-fc-u9-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u9-fc-u9-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Health & Body Test",
+        "moduleId": "u9",
         "passingScore": 70,
         "questions": [
-          { "id": "m9-t1", "question": "How do you say 'I have a headache'?", "options": ["मला ताप आहे.", "मला डोकेदुखी आहे.", "मला पोटदुखी आहे.", "मला थकवा आहे."], "correctIndex": 1, "explanation": "मला डोकेदुखी आहे. (Mala dokedukhi aahe.) means I have a headache." },
-          { "id": "m9-t2", "question": "What does 'ताप' mean?", "options": ["Cold", "Fever", "Cough", "Weakness"], "correctIndex": 1, "explanation": "ताप (Taap) means fever." },
-          { "id": "m9-t3", "question": "How do you say 'I am not well'?", "options": ["मी ठीक आहे.", "मला बरे वाटते.", "मला बरे नाही.", "मी खूप चांगला आहे."], "correctIndex": 2, "explanation": "मला बरे नाही (Mala bare naahi) means I am not well." },
-          { "id": "m9-t4", "question": "दवाखाना means:", "options": ["Pharmacy", "Hospital/Clinic", "Doctor", "Medicine"], "correctIndex": 1, "explanation": "दवाखाना (Davakhana) means clinic or small hospital." },
-          { "id": "m9-t5", "question": "How do you say 'My stomach hurts'?", "options": ["माझे डोके दुखते.", "माझे पोट दुखते.", "माझा पाय दुखतो.", "माझे हात दुखतात."], "correctIndex": 1, "explanation": "माझे पोट दुखते. (Majhe pot dukhate.) means My stomach hurts." },
-          { "id": "m9-t6", "question": "औषध means:", "options": ["Doctor", "Hospital", "Medicine", "Nurse"], "correctIndex": 2, "explanation": "औषध (Aushadh) means medicine." },
-          { "id": "m9-t7", "question": "How do you say 'I need a doctor'?", "options": ["मला डॉक्टर नको आहे.", "मला डॉक्टरकडे जायचे आहे.", "मला डॉक्टरची गरज आहे.", "मी डॉक्टर आहे."], "correctIndex": 2, "explanation": "मला डॉक्टरची गरज आहे. (Mala doctorchi garaj aahe.) means I need a doctor." },
-          { "id": "m9-t8", "question": "'दुखते' means:", "options": ["It is good", "It hurts", "It is cold", "It is fine"], "correctIndex": 1, "explanation": "दुखते (Dukhate) means it hurts or it is paining." },
-          { "id": "m9-t9", "question": "What is 'रुग्णालय'?", "options": ["Clinic", "Pharmacy", "Hospital", "Laboratory"], "correctIndex": 2, "explanation": "रुग्णालय (Rugnalay) is the formal Marathi word for hospital." },
-          { "id": "m9-t10", "question": "How do you say 'I feel better now'?", "options": ["आता मला बरे नाही.", "आता मला बरे वाटते.", "मला अजून ताप आहे.", "मला औषध नको आहे."], "correctIndex": 1, "explanation": "आता मला बरे वाटते. (Aata mala bare vaatate.) means I feel better now." }
+          {
+            "id": "u9-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u9-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u9-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m9-l1": [
-          { "id": "m9-l1-q1", "question": "How do you say 'I have a fever'?", "options": ["मला डोकेदुखी आहे.", "मला ताप आहे.", "मला खोकला आहे.", "मला थकवा आहे."], "correctIndex": 1, "explanation": "मला ताप आहे. (Mala taap aahe.) means I have a fever." },
-          { "id": "m9-l1-q2", "question": "'दवाखाना' means:", "options": ["Market", "School", "Clinic / Hospital", "Temple"], "correctIndex": 2, "explanation": "दवाखाना (Davakhana) means clinic or small hospital." },
-          { "id": "m9-l1-q3", "question": "What does 'औषध' mean?", "options": ["Doctor", "Nurse", "Medicine", "Hospital"], "correctIndex": 2, "explanation": "औषध (Aushadh) means medicine." }
+        "u9-l1": [
+          {
+            "id": "u9-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u9-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m10",
+      "moduleId": "u10",
       "flashcards": [
-        { "id": "m10-fc1", "front": "काम", "frontHint": "Kaam", "back": "Work / Job", "backHint": "Occupation" },
-        { "id": "m10-fc2", "front": "कार्यालय", "frontHint": "Kaaryaalay", "back": "Office", "backHint": "Workplace" },
-        { "id": "m10-fc3", "front": "शाळा", "frontHint": "Shaala", "back": "School", "backHint": "Educational institution" },
-        { "id": "m10-fc4", "front": "शिक्षक", "frontHint": "Shikshak", "back": "Teacher", "backHint": "Educator" },
-        { "id": "m10-fc5", "front": "विद्यार्थी", "frontHint": "Vidyaarthi", "back": "Student", "backHint": "Learner" },
-        { "id": "m10-fc6", "front": "बैठक", "frontHint": "Baithak", "back": "Meeting", "backHint": "Professional gathering" },
-        { "id": "m10-fc7", "front": "तुम्ही काय करता?", "frontHint": "Tumhi kaay karata?", "back": "What do you do? (job)", "backHint": "Asking profession" },
-        { "id": "m10-fc8", "front": "पगार", "frontHint": "Pagaar", "back": "Salary", "backHint": "Remuneration" }
+        {
+          "id": "u10-fc-u10-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u10-fc-u10-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u10-fc-u10-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u10-fc-u10-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u10-fc-u10-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u10-fc-u10-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Work & Education Test",
+        "moduleId": "u10",
         "passingScore": 70,
         "questions": [
-          { "id": "m10-t1", "question": "How do you ask 'What do you do for work?'", "options": ["तुम्ही कुठे राहता?", "तुम्ही काय करता?", "तुम्ही कुठून आलात?", "तुमचे नाव काय?"], "correctIndex": 1, "explanation": "तुम्ही काय करता? (Tumhi kaay karata?) means What do you do? — asking about profession." },
-          { "id": "m10-t2", "question": "कार्यालय means:", "options": ["School", "Hospital", "Office", "Market"], "correctIndex": 2, "explanation": "कार्यालय (Kaaryaalay) means office." },
-          { "id": "m10-t3", "question": "How do you say 'I am a teacher'?", "options": ["मी विद्यार्थी आहे.", "मी डॉक्टर आहे.", "मी शिक्षक आहे.", "मी व्यापारी आहे."], "correctIndex": 2, "explanation": "मी शिक्षक आहे. (Mi shikshak aahe.) means I am a teacher." },
-          { "id": "m10-t4", "question": "What does 'बैठक' mean?", "options": ["Chair", "Meeting", "Table", "Room"], "correctIndex": 1, "explanation": "बैठक (Baithak) means a meeting." },
-          { "id": "m10-t5", "question": "'विद्यार्थी' refers to a:", "options": ["Teacher", "Doctor", "Student", "Worker"], "correctIndex": 2, "explanation": "विद्यार्थी (Vidyaarthi) means student." },
-          { "id": "m10-t6", "question": "How do you say 'I work in an office'?", "options": ["मी शाळेत जातो.", "मी कार्यालयात काम करतो.", "मी घरात काम करतो.", "मी दुकानात काम करतो."], "correctIndex": 1, "explanation": "मी कार्यालयात काम करतो. means I work in an office." },
-          { "id": "m10-t7", "question": "पगार means:", "options": ["Job", "Office", "Salary", "Holiday"], "correctIndex": 2, "explanation": "पगार (Pagaar) means salary." },
-          { "id": "m10-t8", "question": "शाळा is the Marathi word for:", "options": ["College", "Office", "School", "Temple"], "correctIndex": 2, "explanation": "शाळा (Shaala) means school." },
-          { "id": "m10-t9", "question": "How do you say 'I have a meeting today'?", "options": ["आज माझी सुट्टी आहे.", "आज माझी बैठक आहे.", "आज मी घरी आहे.", "आज मला काम नाही."], "correctIndex": 1, "explanation": "आज माझी बैठक आहे. (Aaj maaji baithak aahe.) means I have a meeting today." },
-          { "id": "m10-t10", "question": "How do you say 'I am a student'?", "options": ["मी शिक्षक आहे.", "मी विद्यार्थी आहे.", "मी कामगार आहे.", "मी डॉक्टर आहे."], "correctIndex": 1, "explanation": "मी विद्यार्थी आहे. (Mi vidyaarthi aahe.) means I am a student." }
+          {
+            "id": "u10-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u10-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u10-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m10-l1": [
-          { "id": "m10-l1-q1", "question": "How do you ask someone's profession?", "options": ["तुमचे नाव काय?", "तुम्ही काय करता?", "तुम्ही कुठे राहता?", "तुम्ही कुठून आलात?"], "correctIndex": 1, "explanation": "तुम्ही काय करता? means What do you do? — asking about profession." },
-          { "id": "m10-l1-q2", "question": "What does 'शिक्षक' mean?", "options": ["Student", "Doctor", "Teacher", "Engineer"], "correctIndex": 2, "explanation": "शिक्षक (Shikshak) means teacher." },
-          { "id": "m10-l1-q3", "question": "कार्यालय means:", "options": ["School", "Office", "Hospital", "Shop"], "correctIndex": 1, "explanation": "कार्यालय (Kaaryaalay) means office." }
+        "u10-l1": [
+          {
+            "id": "u10-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u10-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m11",
+      "moduleId": "u11",
       "flashcards": [
-        { "id": "m11-fc1", "front": "आनंद", "frontHint": "Aanand", "back": "Happiness / Joy", "backHint": "Positive emotion" },
-        { "id": "m11-fc2", "front": "दुःख", "frontHint": "Dukh", "back": "Sadness / Grief", "backHint": "Negative emotion" },
-        { "id": "m11-fc3", "front": "राग", "frontHint": "Raag", "back": "Anger", "backHint": "Strong emotion" },
-        { "id": "m11-fc4", "front": "मला वाटते", "frontHint": "Mala vaate", "back": "I think / I feel", "backHint": "Expressing opinion" },
-        { "id": "m11-fc5", "front": "माझ्या मते", "frontHint": "Maajhya mate", "back": "In my opinion", "backHint": "Giving viewpoint" },
-        { "id": "m11-fc6", "front": "मला आवडत नाही", "frontHint": "Mala aavadat naahi", "back": "I don't like it", "backHint": "Expressing dislike" },
-        { "id": "m11-fc7", "front": "खूप छान", "frontHint": "Khoop chhaan", "back": "Very nice / Excellent", "backHint": "Positive expression" },
-        { "id": "m11-fc8", "front": "भीती", "frontHint": "Bheeti", "back": "Fear", "backHint": "Fearful emotion" }
+        {
+          "id": "u11-fc-u11-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u11-fc-u11-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u11-fc-u11-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u11-fc-u11-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u11-fc-u11-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u11-fc-u11-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Emotions & Opinions Test",
+        "moduleId": "u11",
         "passingScore": 70,
         "questions": [
-          { "id": "m11-t1", "question": "How do you say 'I am happy'?", "options": ["मला दुःख आहे.", "मला आनंद आहे.", "मला राग आहे.", "मला भीती आहे."], "correctIndex": 1, "explanation": "मला आनंद आहे. (Mala aanand aahe.) means I am happy." },
-          { "id": "m11-t2", "question": "'माझ्या मते' means:", "options": ["I think so", "In my opinion", "I agree", "I disagree"], "correctIndex": 1, "explanation": "माझ्या मते (Maajhya mate) means In my opinion." },
-          { "id": "m11-t3", "question": "What does 'राग' mean?", "options": ["Happiness", "Sadness", "Anger", "Fear"], "correctIndex": 2, "explanation": "राग (Raag) means anger." },
-          { "id": "m11-t4", "question": "How do you say 'I don't like this'?", "options": ["हे मला खूप आवडते.", "हे मला आवडत नाही.", "हे छान आहे.", "हे ठीक आहे."], "correctIndex": 1, "explanation": "हे मला आवडत नाही. (He mala aavadat naahi.) means I don't like this." },
-          { "id": "m11-t5", "question": "'खूप छान' means:", "options": ["Very bad", "Very expensive", "Very nice / Excellent", "Very sad"], "correctIndex": 2, "explanation": "खूप छान (Khoop chhaan) means very nice or excellent." },
-          { "id": "m11-t6", "question": "How do you say 'I think it is good'?", "options": ["मला वाटते हे चांगले आहे.", "मला माहीत नाही.", "हे चांगले नाही.", "मी सहमत नाही."], "correctIndex": 0, "explanation": "मला वाटते हे चांगले आहे. (Mala vaate he chaangle aahe.) means I think it is good." },
-          { "id": "m11-t7", "question": "What does 'दुःख' mean?", "options": ["Joy", "Anger", "Sadness", "Surprise"], "correctIndex": 2, "explanation": "दुःख (Dukh) means sadness or grief." },
-          { "id": "m11-t8", "question": "How do you say 'I agree with you'?", "options": ["मी तुमच्याशी सहमत नाही.", "मी तुमच्याशी सहमत आहे.", "मला माहीत नाही.", "मी विचार करतो."], "correctIndex": 1, "explanation": "मी तुमच्याशी सहमत आहे. means I agree with you." },
-          { "id": "m11-t9", "question": "'भीती' means:", "options": ["Anger", "Sadness", "Joy", "Fear"], "correctIndex": 3, "explanation": "भीती (Bheeti) means fear." },
-          { "id": "m11-t10", "question": "How do you express strong excitement?", "options": ["अरे देवा!", "छान!", "वाह! खूप छान!", "ठीक आहे."], "correctIndex": 2, "explanation": "वाह! खूप छान! (Waah! Khoop chhaan!) is an enthusiastic expression of excitement or admiration." }
+          {
+            "id": "u11-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u11-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u11-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m11-l1": [
-          { "id": "m11-l1-q1", "question": "How do you say 'I am happy'?", "options": ["मला दुःख आहे.", "मला राग आहे.", "मला आनंद आहे.", "मला भीती आहे."], "correctIndex": 2, "explanation": "मला आनंद आहे. means I am happy." },
-          { "id": "m11-l1-q2", "question": "'माझ्या मते' is used to express:", "options": ["Surprise", "Your opinion", "A question", "A greeting"], "correctIndex": 1, "explanation": "माझ्या मते (Maajhya mate) means In my opinion — used to share your viewpoint." },
-          { "id": "m11-l1-q3", "question": "'खूप छान' means:", "options": ["Very bad", "Very nice", "Very sad", "Very angry"], "correctIndex": 1, "explanation": "खूप छान (Khoop chhaan) means very nice or excellent." }
+        "u11-l1": [
+          {
+            "id": "u11-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u11-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
         ]
       }
     },
     {
-      "moduleId": "m12",
+      "moduleId": "u12",
       "flashcards": [
-        { "id": "m12-fc1", "front": "तुमचा विचार काय आहे?", "frontHint": "Tumcha vichar kaay aahe?", "back": "What do you think?", "backHint": "Asking for opinion" },
-        { "id": "m12-fc2", "front": "मी सांगतो", "frontHint": "Mi saangato", "back": "Let me tell you", "backHint": "Starting a story" },
-        { "id": "m12-fc3", "front": "खरे सांगायचे तर", "frontHint": "Khare saangaayche tar", "back": "To be honest / Frankly speaking", "backHint": "Candid opener" },
-        { "id": "m12-fc4", "front": "तुम्हाला माहीत आहे का?", "frontHint": "Tumhaala maahit aahe ka?", "back": "Did you know?", "backHint": "Sharing information" },
-        { "id": "m12-fc5", "front": "त्याचा अर्थ असा आहे", "frontHint": "Tyacha artha asaa aahe", "back": "It means / That means", "backHint": "Clarifying meaning" },
-        { "id": "m12-fc6", "front": "म्हणजे", "frontHint": "Mhanje", "back": "That is to say / Meaning", "backHint": "Clarifying connector" },
-        { "id": "m12-fc7", "front": "आपण बोलूया", "frontHint": "Aapan bolooyan", "back": "Let's talk", "backHint": "Initiating conversation" },
-        { "id": "m12-fc8", "front": "शेवटी", "frontHint": "Shevati", "back": "Finally / At the end", "backHint": "Concluding expression" }
+        {
+          "id": "u12-fc-u12-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u12-fc-u12-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u12-fc-u12-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u12-fc-u12-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u12-fc-u12-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u12-fc-u12-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
       ],
       "moduleTest": {
-        "title": "Advanced Conversations Test",
+        "moduleId": "u12",
         "passingScore": 70,
         "questions": [
-          { "id": "m12-t1", "question": "How do you ask 'What do you think?'", "options": ["तुम्हाला काय हवे?", "तुमचा विचार काय आहे?", "तुम्ही काय करता?", "तुम्हाला माहीत आहे?"], "correctIndex": 1, "explanation": "तुमचा विचार काय आहे? (Tumcha vichar kaay aahe?) means What do you think?" },
-          { "id": "m12-t2", "question": "'म्हणजे' is used to:", "options": ["Ask a question", "Clarify meaning", "Express anger", "Say goodbye"], "correctIndex": 1, "explanation": "म्हणजे (Mhanje) means 'that is to say' or 'meaning' — used to clarify." },
-          { "id": "m12-t3", "question": "How do you say 'To be honest...'?", "options": ["मला माहीत नाही...", "खरे सांगायचे तर...", "माझ्या मते...", "तुम्हाला माहीत आहे का?"], "correctIndex": 1, "explanation": "खरे सांगायचे तर (Khare saangaayche tar) means To be honest or Frankly speaking." },
-          { "id": "m12-t4", "question": "'आपण बोलूया' means:", "options": ["Let's go", "Let's eat", "Let's talk", "Let's stop"], "correctIndex": 2, "explanation": "आपण बोलूया (Aapan bolooyan) means Let's talk." },
-          { "id": "m12-t5", "question": "How do you say 'Did you know?'", "options": ["तुम्हाला माहीत आहे का?", "तुम्ही ऐकले का?", "तुम्हाला समजले का?", "तुम्ही पाहिले का?"], "correctIndex": 0, "explanation": "तुम्हाला माहीत आहे का? (Tumhaala maahit aahe ka?) means Did you know?" },
-          { "id": "m12-t6", "question": "'शेवटी' means:", "options": ["At the start", "In the middle", "Finally / At the end", "Soon"], "correctIndex": 2, "explanation": "शेवटी (Shevati) means finally or at the end." },
-          { "id": "m12-t7", "question": "How do you say 'It means...' in Marathi?", "options": ["म्हणजे...", "कारण...", "पण...", "आणि..."], "correctIndex": 0, "explanation": "म्हणजे (Mhanje) means 'that is to say' or 'it means'." },
-          { "id": "m12-t8", "question": "'मी सांगतो' is used when:", "options": ["Asking a question", "Saying goodbye", "Starting to tell someone something", "Expressing anger"], "correctIndex": 2, "explanation": "मी सांगतो (Mi saangato) means Let me tell you — used to start sharing information." },
-          { "id": "m12-t9", "question": "How do you say 'I understand what you mean'?", "options": ["मला तुमचा अर्थ समजतो.", "मला तुमचे ऐकायचे नाही.", "तुम्ही काय म्हणता?", "मला माहीत नाही."], "correctIndex": 0, "explanation": "मला तुमचा अर्थ समजतो. means I understand what you mean." },
-          { "id": "m12-t10", "question": "A good way to start a conversation is:", "options": ["निरोप घ्या.", "आपण बोलूया.", "झोपा आता.", "जाऊया."], "correctIndex": 1, "explanation": "आपण बोलूया. (Aapan bolooyan.) means Let's talk — a natural conversation opener." }
+          {
+            "id": "u12-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u12-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u12-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
         ]
       },
       "lessonQuizzes": {
-        "m12-l1": [
-          { "id": "m12-l1-q1", "question": "How do you ask 'What do you think?'", "options": ["तुम्हाला काय हवे?", "तुमचा विचार काय आहे?", "तुम्ही कुठे आहात?", "तुम्ही कोण आहात?"], "correctIndex": 1, "explanation": "तुमचा विचार काय आहे? means What do you think?" },
-          { "id": "m12-l1-q2", "question": "'म्हणजे' is used to:", "options": ["Greet someone", "Say goodbye", "Clarify meaning", "Express emotion"], "correctIndex": 2, "explanation": "म्हणजे (Mhanje) is a connecting word meaning 'that is to say' or 'meaning'." },
-          { "id": "m12-l1-q3", "question": "How do you start telling someone something?", "options": ["मी सांगतो...", "मी जातो...", "मी येतो...", "मी थांबतो..."], "correctIndex": 0, "explanation": "मी सांगतो... (Mi saangato...) means Let me tell you... — a natural story-starter." }
+        "u12-l1": [
+          {
+            "id": "u12-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u12-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u13",
+      "flashcards": [
+        {
+          "id": "u13-fc-u13-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u13-fc-u13-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u13-fc-u13-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u13-fc-u13-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u13-fc-u13-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u13-fc-u13-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u13",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u13-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u13-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u13-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u13-l1": [
+          {
+            "id": "u13-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u13-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u14",
+      "flashcards": [
+        {
+          "id": "u14-fc-u14-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u14-fc-u14-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u14-fc-u14-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u14-fc-u14-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u14-fc-u14-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u14-fc-u14-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u14",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u14-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u14-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u14-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u14-l1": [
+          {
+            "id": "u14-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u14-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u15",
+      "flashcards": [
+        {
+          "id": "u15-fc-u15-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u15-fc-u15-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u15-fc-u15-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u15-fc-u15-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u15-fc-u15-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u15-fc-u15-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u15",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u15-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u15-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u15-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u15-l1": [
+          {
+            "id": "u15-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u15-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u16",
+      "flashcards": [
+        {
+          "id": "u16-fc-u16-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u16-fc-u16-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u16-fc-u16-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u16-fc-u16-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u16-fc-u16-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u16-fc-u16-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u16",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u16-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u16-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u16-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u16-l1": [
+          {
+            "id": "u16-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u16-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u17",
+      "flashcards": [
+        {
+          "id": "u17-fc-u17-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u17-fc-u17-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u17-fc-u17-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u17-fc-u17-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u17-fc-u17-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u17-fc-u17-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u17",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u17-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u17-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u17-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u17-l1": [
+          {
+            "id": "u17-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u17-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u18",
+      "flashcards": [
+        {
+          "id": "u18-fc-u18-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u18-fc-u18-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u18-fc-u18-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u18-fc-u18-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u18-fc-u18-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u18-fc-u18-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u18",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u18-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u18-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u18-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u18-l1": [
+          {
+            "id": "u18-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u18-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u19",
+      "flashcards": [
+        {
+          "id": "u19-fc-u19-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u19-fc-u19-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u19-fc-u19-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u19-fc-u19-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u19-fc-u19-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u19-fc-u19-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u19",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u19-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u19-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u19-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u19-l1": [
+          {
+            "id": "u19-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u19-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u20",
+      "flashcards": [
+        {
+          "id": "u20-fc-u20-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u20-fc-u20-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u20-fc-u20-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u20-fc-u20-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u20-fc-u20-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u20-fc-u20-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u20",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u20-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u20-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u20-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u20-l1": [
+          {
+            "id": "u20-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u20-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u21",
+      "flashcards": [
+        {
+          "id": "u21-fc-u21-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u21-fc-u21-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u21-fc-u21-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u21-fc-u21-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u21-fc-u21-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u21-fc-u21-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u21",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u21-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u21-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u21-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u21-l1": [
+          {
+            "id": "u21-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u21-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u22",
+      "flashcards": [
+        {
+          "id": "u22-fc-u22-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u22-fc-u22-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u22-fc-u22-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u22-fc-u22-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u22-fc-u22-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u22-fc-u22-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u22",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u22-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u22-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u22-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u22-l1": [
+          {
+            "id": "u22-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u22-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u23",
+      "flashcards": [
+        {
+          "id": "u23-fc-u23-l1-p1",
+          "front": "गर्जे तो पडेल काय?",
+          "back": "Those who boast rarely act.",
+          "transliteration": "Garje to padel kaay?"
+        },
+        {
+          "id": "u23-fc-u23-l1-p2",
+          "front": "पळसाला पाने तीनच.",
+          "back": "The situation is the same everywhere.",
+          "transliteration": "Palasaala paane teenach."
+        },
+        {
+          "id": "u23-fc-u23-l1-p3",
+          "front": "उथळ पाण्याला खळखळाट फार.",
+          "back": "Empty vessels make the most noise.",
+          "transliteration": "Uthal paanyaala khalkhalaat faar."
+        },
+        {
+          "id": "u23-fc-u23-l1-p4",
+          "front": "अति शहाणा त्याचा बैल रिकामा.",
+          "back": "An over-smart person ends up in loss.",
+          "transliteration": "Ati shahaana tyaacha bail rikaama."
+        },
+        {
+          "id": "u23-fc-u23-l1-p5",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u23-fc-u23-l1-p6",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u23",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u23-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Empty vessels make the most noise.'",
+            "options": [
+              "गर्जे तो पडेल काय?",
+              "पळसाला पाने तीनच.",
+              "उथळ पाण्याला खळखळाट फार.",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'उथळ पाण्याला खळखळाट फार.' means 'Empty vessels make the most noise.'."
+          },
+          {
+            "id": "u23-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'गर्जे तो पडेल काय?'?",
+            "options": [
+              "Palasaala paane teenach.",
+              "Garje to padel kaay?",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Garje to padel kaay?'."
+          },
+          {
+            "id": "u23-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'पळसाला पाने तीनच.'",
+            "options": [
+              "Those who boast rarely act.",
+              "The situation is the same everywhere.",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'पळसाला पाने तीनच.' translates to 'The situation is the same everywhere.'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u23-l1": [
+          {
+            "id": "u23-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'गर्जे तो पडेल काय?'?",
+            "options": [
+              "Those who boast rarely act.",
+              "The situation is the same everywhere.",
+              "Empty vessels make the most noise.",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'गर्जे तो पडेल काय?' translates to 'Those who boast rarely act.'."
+          },
+          {
+            "id": "u23-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'The situation is the same everywhere.'?",
+            "options": [
+              "गर्जे तो पडेल काय?",
+              "पळसाला पाने तीनच.",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'पळसाला पाने तीनच.' means 'The situation is the same everywhere.'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u24",
+      "flashcards": [
+        {
+          "id": "u24-fc-u24-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u24-fc-u24-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u24-fc-u24-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u24-fc-u24-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u24-fc-u24-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u24-fc-u24-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u24",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u24-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u24-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u24-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u24-l1": [
+          {
+            "id": "u24-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u24-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u25",
+      "flashcards": [
+        {
+          "id": "u25-fc-u25-l1-p1",
+          "front": "लोड नका घेऊ, काम होऊन जाईल.",
+          "back": "Do not take stress, the work will be done.",
+          "transliteration": "Load naka gheu, kaam houn jaail."
+        },
+        {
+          "id": "u25-fc-u25-l1-p2",
+          "front": "तिथे खूप राडा झाला काल रात्री.",
+          "back": "There was a big fight there last night.",
+          "transliteration": "Tithe khoop raada zala kaal raatri."
+        },
+        {
+          "id": "u25-fc-u25-l1-p3",
+          "front": "बिंधास्त जा, काही काळजी नको करू.",
+          "back": "Go carefree, do not worry about anything.",
+          "transliteration": "Bindhaast ja, kaahi kaalaji nako karu."
+        },
+        {
+          "id": "u25-fc-u25-l1-p4",
+          "front": "काय मग, काय चाललंय दोस्ता?",
+          "back": "What's up, what's going on friend?",
+          "transliteration": "Kaay mag, kaay chaalalay dosta?"
+        },
+        {
+          "id": "u25-fc-u25-l1-p5",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u25-fc-u25-l1-p6",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u25",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u25-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Go carefree, do not worry about anything.'",
+            "options": [
+              "लोड नका घेऊ, काम होऊन जाईल.",
+              "तिथे खूप राडा झाला काल रात्री.",
+              "बिंधास्त जा, काही काळजी नको करू.",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'बिंधास्त जा, काही काळजी नको करू.' means 'Go carefree, do not worry about anything.'."
+          },
+          {
+            "id": "u25-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'लोड नका घेऊ, काम होऊन जाईल.'?",
+            "options": [
+              "Tithe khoop raada zala kaal raatri.",
+              "Load naka gheu, kaam houn jaail.",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Load naka gheu, kaam houn jaail.'."
+          },
+          {
+            "id": "u25-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'तिथे खूप राडा झाला काल रात्री.'",
+            "options": [
+              "Do not take stress, the work will be done.",
+              "There was a big fight there last night.",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'तिथे खूप राडा झाला काल रात्री.' translates to 'There was a big fight there last night.'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u25-l1": [
+          {
+            "id": "u25-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'लोड नका घेऊ, काम होऊन जाईल.'?",
+            "options": [
+              "Do not take stress, the work will be done.",
+              "There was a big fight there last night.",
+              "Go carefree, do not worry about anything.",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'लोड नका घेऊ, काम होऊन जाईल.' translates to 'Do not take stress, the work will be done.'."
+          },
+          {
+            "id": "u25-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'There was a big fight there last night.'?",
+            "options": [
+              "लोड नका घेऊ, काम होऊन जाईल.",
+              "तिथे खूप राडा झाला काल रात्री.",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'तिथे खूप राडा झाला काल रात्री.' means 'There was a big fight there last night.'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u26",
+      "flashcards": [
+        {
+          "id": "u26-fc-u26-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u26-fc-u26-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u26-fc-u26-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u26-fc-u26-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u26-fc-u26-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u26-fc-u26-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u26",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u26-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u26-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u26-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u26-l1": [
+          {
+            "id": "u26-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u26-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u27",
+      "flashcards": [
+        {
+          "id": "u27-fc-u27-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u27-fc-u27-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u27-fc-u27-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u27-fc-u27-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u27-fc-u27-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u27-fc-u27-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u27",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u27-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u27-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u27-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u27-l1": [
+          {
+            "id": "u27-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u27-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u28",
+      "flashcards": [
+        {
+          "id": "u28-fc-u28-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u28-fc-u28-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u28-fc-u28-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u28-fc-u28-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u28-fc-u28-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u28-fc-u28-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u28",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u28-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u28-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u28-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u28-l1": [
+          {
+            "id": "u28-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u28-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u29",
+      "flashcards": [
+        {
+          "id": "u29-fc-u29-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u29-fc-u29-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u29-fc-u29-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u29-fc-u29-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u29-fc-u29-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u29-fc-u29-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u29",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u29-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u29-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u29-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u29-l1": [
+          {
+            "id": "u29-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u29-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u30",
+      "flashcards": [
+        {
+          "id": "u30-fc-u30-l1-p1",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u30-fc-u30-l1-p2",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u30-fc-u30-l1-p3",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u30-fc-u30-l1-p4",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        },
+        {
+          "id": "u30-fc-u30-l1-p5",
+          "front": "शुभ रात्री",
+          "back": "Good night",
+          "transliteration": "Shubh raatri"
+        },
+        {
+          "id": "u30-fc-u30-l1-p6",
+          "front": "निरोप",
+          "back": "Goodbye / Farewell",
+          "transliteration": "Nirop"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u30",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u30-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Good morning'",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "सुप्रभात",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'सुप्रभात' means 'Good morning'."
+          },
+          {
+            "id": "u30-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'नमस्कार'?",
+            "options": [
+              "Namaste",
+              "Namaskaar",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Namaskaar'."
+          },
+          {
+            "id": "u30-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'नमस्ते'",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' translates to 'Hello'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u30-l1": [
+          {
+            "id": "u30-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'नमस्कार'?",
+            "options": [
+              "Hello / Greetings",
+              "Hello",
+              "Good morning",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'नमस्कार' translates to 'Hello / Greetings'."
+          },
+          {
+            "id": "u30-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Hello'?",
+            "options": [
+              "नमस्कार",
+              "नमस्ते",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'नमस्ते' means 'Hello'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u31",
+      "flashcards": [
+        {
+          "id": "u31-fc-u31-l1-p1",
+          "front": "तू उद्या सकाळी नक्की वेळेवर पोहोचशील का?",
+          "back": "Will you definitely arrive on time tomorrow morning?",
+          "transliteration": "Tu udya sakaali nakki velevar pohachashil ka?"
+        },
+        {
+          "id": "u31-fc-u31-l1-p2",
+          "front": "लवकरात लवकर हे काम संपवून टाक.",
+          "back": "Finish this work as soon as possible.",
+          "transliteration": "Lavakaraat lavakar he kaam sampavoon taak."
+        },
+        {
+          "id": "u31-fc-u31-l1-p3",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u31-fc-u31-l1-p4",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u31-fc-u31-l1-p5",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u31-fc-u31-l1-p6",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u31",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u31-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Hello / Greetings'",
+            "options": [
+              "तू उद्या सकाळी नक्की वेळेवर पोहोचशील का?",
+              "लवकरात लवकर हे काम संपवून टाक.",
+              "नमस्कार",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'नमस्कार' means 'Hello / Greetings'."
+          },
+          {
+            "id": "u31-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'तू उद्या सकाळी नक्की वेळेवर पोहोचशील का?'?",
+            "options": [
+              "Lavakaraat lavakar he kaam sampavoon taak.",
+              "Tu udya sakaali nakki velevar pohachashil ka?",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Tu udya sakaali nakki velevar pohachashil ka?'."
+          },
+          {
+            "id": "u31-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'लवकरात लवकर हे काम संपवून टाक.'",
+            "options": [
+              "Will you definitely arrive on time tomorrow morning?",
+              "Finish this work as soon as possible.",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'लवकरात लवकर हे काम संपवून टाक.' translates to 'Finish this work as soon as possible.'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u31-l1": [
+          {
+            "id": "u31-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'तू उद्या सकाळी नक्की वेळेवर पोहोचशील का?'?",
+            "options": [
+              "Will you definitely arrive on time tomorrow morning?",
+              "Finish this work as soon as possible.",
+              "Hello / Greetings",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'तू उद्या सकाळी नक्की वेळेवर पोहोचशील का?' translates to 'Will you definitely arrive on time tomorrow morning?'."
+          },
+          {
+            "id": "u31-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Finish this work as soon as possible.'?",
+            "options": [
+              "तू उद्या सकाळी नक्की वेळेवर पोहोचशील का?",
+              "लवकरात लवकर हे काम संपवून टाक.",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'लवकरात लवकर हे काम संपवून टाक.' means 'Finish this work as soon as possible.'."
+          }
+        ]
+      }
+    },
+    {
+      "moduleId": "u32",
+      "flashcards": [
+        {
+          "id": "u32-fc-u32-l1-p1",
+          "front": "मराठी शिकणे हा एक खूप छान प्रवास होता.",
+          "back": "Learning Marathi was a very wonderful journey.",
+          "transliteration": "Marathi shikane ha ek khoop thaan pravaas hota."
+        },
+        {
+          "id": "u32-fc-u32-l1-p2",
+          "front": "अभिनंदन, तुम्ही आता उत्तम मराठी बोलू शकता!",
+          "back": "Congratulations, you can now speak excellent Marathi!",
+          "transliteration": "Abhinandan, tumhi aata uttam marathi bolu shakata!"
+        },
+        {
+          "id": "u32-fc-u32-l1-p3",
+          "front": "नमस्कार",
+          "back": "Hello / Greetings",
+          "transliteration": "Namaskaar"
+        },
+        {
+          "id": "u32-fc-u32-l1-p4",
+          "front": "नमस्ते",
+          "back": "Hello",
+          "transliteration": "Namaste"
+        },
+        {
+          "id": "u32-fc-u32-l1-p5",
+          "front": "सुप्रभात",
+          "back": "Good morning",
+          "transliteration": "Suprabhat"
+        },
+        {
+          "id": "u32-fc-u32-l1-p6",
+          "front": "शुभ संध्याकाळ",
+          "back": "Good evening",
+          "transliteration": "Shubh sandhyaakaaL"
+        }
+      ],
+      "moduleTest": {
+        "moduleId": "u32",
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "u32-t1",
+            "type": "multiple-choice",
+            "question": "Translate to Marathi: 'Hello / Greetings'",
+            "options": [
+              "मराठी शिकणे हा एक खूप छान प्रवास होता.",
+              "अभिनंदन, तुम्ही आता उत्तम मराठी बोलू शकता!",
+              "नमस्कार",
+              "चुकीचा पर्याय"
+            ],
+            "answerIndex": 2,
+            "explanation": "'नमस्कार' means 'Hello / Greetings'."
+          },
+          {
+            "id": "u32-t2",
+            "type": "multiple-choice",
+            "question": "What is the transliteration of 'मराठी शिकणे हा एक खूप छान प्रवास होता.'?",
+            "options": [
+              "Abhinandan, tumhi aata uttam marathi bolu shakata!",
+              "Marathi shikane ha ek khoop thaan pravaas hota.",
+              "None",
+              "Other"
+            ],
+            "answerIndex": 1,
+            "explanation": "The phonetic spelling is 'Marathi shikane ha ek khoop thaan pravaas hota.'."
+          },
+          {
+            "id": "u32-t3",
+            "type": "multiple-choice",
+            "question": "Translate to English: 'अभिनंदन, तुम्ही आता उत्तम मराठी बोलू शकता!'",
+            "options": [
+              "Learning Marathi was a very wonderful journey.",
+              "Congratulations, you can now speak excellent Marathi!",
+              "Incorrect translation",
+              "No meaning"
+            ],
+            "answerIndex": 1,
+            "explanation": "'अभिनंदन, तुम्ही आता उत्तम मराठी बोलू शकता!' translates to 'Congratulations, you can now speak excellent Marathi!'."
+          }
+        ]
+      },
+      "lessonQuizzes": {
+        "u32-l1": [
+          {
+            "id": "u32-l1-q1",
+            "type": "multiple-choice",
+            "question": "What is the English meaning of 'मराठी शिकणे हा एक खूप छान प्रवास होता.'?",
+            "options": [
+              "Learning Marathi was a very wonderful journey.",
+              "Congratulations, you can now speak excellent Marathi!",
+              "Hello / Greetings",
+              "None of the above"
+            ],
+            "answerIndex": 0,
+            "explanation": "'मराठी शिकणे हा एक खूप छान प्रवास होता.' translates to 'Learning Marathi was a very wonderful journey.'."
+          },
+          {
+            "id": "u32-l1-q2",
+            "type": "multiple-choice",
+            "question": "Which is the correct Marathi translation for 'Congratulations, you can now speak excellent Marathi!'?",
+            "options": [
+              "मराठी शिकणे हा एक खूप छान प्रवास होता.",
+              "अभिनंदन, तुम्ही आता उत्तम मराठी बोलू शकता!",
+              "इतर काहीतरी",
+              "माहित नाही"
+            ],
+            "answerIndex": 1,
+            "explanation": "'अभिनंदन, तुम्ही आता उत्तम मराठी बोलू शकता!' means 'Congratulations, you can now speak excellent Marathi!'."
+          }
         ]
       }
     }
