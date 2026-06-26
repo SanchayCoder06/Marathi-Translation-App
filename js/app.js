@@ -126,16 +126,12 @@ const App = (() => {
       onboardingComplete = true;
     }
 
-    // Reset to starting/home page if opening a new tab/session (not a reload within the same tab)
+    // Reset to welcome page if opening a new tab/session (not a reload within the same tab)
     if (!isRefresh) {
-      if (onboardingComplete) {
-        lastScreen = 'lessons';
-      } else {
-        lastScreen = 'welcome';
-      }
+      lastScreen = 'welcome';
       lastModuleId = null;
       lastLessonId = null;
-      localStorage.setItem('bolaMarathi_lastScreen', lastScreen);
+      localStorage.setItem('bolaMarathi_lastScreen', 'welcome');
       localStorage.removeItem('bolaMarathi_lastModuleId');
       localStorage.removeItem('bolaMarathi_lastLessonId');
     }
