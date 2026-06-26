@@ -12,6 +12,30 @@ const App = (() => {
   let _lessonScores = [];       // Scores for each phrase in current lesson
   let _isProcessing = false;    // Prevent double-taps
 
+  // Helper to handle history state and local storage state updates uniformly
+  function _updateHistoryState(screen, params, hash, historyMode) {
+    _currentScreen = screen;
+    localStorage.setItem('bolaMarathi_lastScreen', screen);
+    if (params) {
+      if (params.moduleId) {
+        _currentModuleId = params.moduleId;
+        localStorage.setItem('bolaMarathi_lastModuleId', params.moduleId);
+      }
+      if (params.lessonId) {
+        _currentLessonId = params.lessonId;
+        localStorage.setItem('bolaMarathi_lastLessonId', params.lessonId);
+      }
+      if (params.fromScreen) {
+        localStorage.setItem('bolaMarathi_settingsFromScreen', params.fromScreen);
+      }
+    }
+    if (historyMode === true || historyMode === 'push') {
+      window.history.pushState({ screen, params }, '', hash);
+    } else if (historyMode === 'replace') {
+      window.history.replaceState({ screen, params }, '', hash);
+    }
+  }
+
   // ============================================================
   // INITIALIZATION
   // ============================================================
@@ -44,8 +68,32 @@ const App = (() => {
       return;
     }
 
-    // Show welcoming page first
-    _showWelcome();
+    // Restore last session screen if present, otherwise show welcome page
+    _restoreLastScreen();
+
+    // Register popstate listener for back button / swipe gestures
+    window.addEventListener('popstate', (event) => {
+      if (event.state && event.state.screen) {
+        const { screen, params } = event.state;
+        switch (screen) {
+          case 'welcome': _showWelcome(false); break;
+          case 'onboarding': _showOnboarding(false); break;
+          case 'lessons': _showLessons(false); break;
+          case 'dashboard': _showDashboard(false); break;
+          case 'translator': _showTranslator(false); break;
+          case 'phrases': _showPhraseBank(false); break;
+          case 'dictionary': _showDictionary(false); break;
+          case 'module': _showModuleDetail(params.moduleId, false); break;
+          case 'settings': _showSettings(params.fromScreen, false); break;
+          case 'lesson': _startLesson(params.lessonId, false); break;
+          case 'flashcards': _showFlashcards(params.moduleId, false); break;
+          case 'quiz': _showLessonQuiz(params.lessonId, params.moduleId, false); break;
+          case 'test': _showModuleTest(params.moduleId, false); break;
+        }
+      } else {
+        _showWelcome(false);
+      }
+    });
 
     // Start session timer
     Progress.startSession();
@@ -59,12 +107,76 @@ const App = (() => {
     _registerSW();
   }
 
+  function _restoreLastScreen() {
+    const lastScreen = localStorage.getItem('bolaMarathi_lastScreen') || 'welcome';
+    const lastModuleId = localStorage.getItem('bolaMarathi_lastModuleId');
+    const lastLessonId = localStorage.getItem('bolaMarathi_lastLessonId');
+
+    const apiKey = Progress.getApiKey();
+    if (!apiKey && lastScreen !== 'welcome' && lastScreen !== 'onboarding') {
+      _showWelcome(true);
+      return;
+    }
+
+    if (lastScreen === 'module' && lastModuleId) {
+      window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
+      _showModuleDetail(lastModuleId, true);
+    } else if (lastScreen === 'lesson' && lastLessonId) {
+      window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
+      if (lastModuleId) {
+        window.history.pushState({ screen: 'module', params: { moduleId: lastModuleId } }, '', `#module/${lastModuleId}`);
+      }
+      _startLesson(lastLessonId, true);
+    } else if (lastScreen === 'flashcards' && lastModuleId) {
+      window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
+      window.history.pushState({ screen: 'module', params: { moduleId: lastModuleId } }, '', `#module/${lastModuleId}`);
+      _showFlashcards(lastModuleId, true);
+    } else if (lastScreen === 'quiz' && lastLessonId) {
+      window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
+      if (lastModuleId) {
+        window.history.pushState({ screen: 'module', params: { moduleId: lastModuleId } }, '', `#module/${lastModuleId}`);
+      }
+      _showLessonQuiz(lastLessonId, lastModuleId, true);
+    } else if (lastScreen === 'test' && lastModuleId) {
+      window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
+      window.history.pushState({ screen: 'module', params: { moduleId: lastModuleId } }, '', `#module/${lastModuleId}`);
+      _showModuleTest(lastModuleId, true);
+    } else if (lastScreen === 'settings') {
+      const fromScreen = localStorage.getItem('bolaMarathi_settingsFromScreen') || 'lessons';
+      window.history.replaceState({ screen: fromScreen, params: {} }, '', `#${fromScreen}`);
+      _showSettings(fromScreen, true);
+    } else if (['dashboard', 'translator', 'phrases', 'dictionary'].includes(lastScreen)) {
+      window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
+      window.history.pushState({ screen: lastScreen, params: {} }, '', `#${lastScreen}`);
+      switch (lastScreen) {
+        case 'dashboard': _showDashboard(false); break;
+        case 'translator': _showTranslator(false); break;
+        case 'phrases': _showPhraseBank(false); break;
+        case 'dictionary': _showDictionary(false); break;
+      }
+    } else {
+      window.history.replaceState({ screen: lastScreen, params: { moduleId: lastModuleId, lessonId: lastLessonId } }, '', `#${lastScreen}`);
+      switch (lastScreen) {
+        case 'lessons': _showLessons(false); break;
+        case 'welcome':
+        case 'onboarding':
+        default:
+          if (lastScreen === 'onboarding') {
+            _showOnboarding(false);
+          } else {
+            _showWelcome(false);
+          }
+          break;
+      }
+    }
+  }
+
   // ============================================================
   // SCREEN NAVIGATION
   // ============================================================
 
-  function _showWelcome() {
-    _currentScreen = 'welcome';
+  function _showWelcome(historyMode = 'push') {
+    _updateHistoryState('welcome', {}, '#welcome', historyMode);
     AudioEngine.stopSpeaking();
     UI.renderWelcome(() => {
       const apiKey = Progress.getApiKey();
@@ -76,8 +188,8 @@ const App = (() => {
     });
   }
 
-  function _showTranslator() {
-    _currentScreen = 'translator';
+  function _showTranslator(historyMode = 'push') {
+    _updateHistoryState('translator', {}, '#translator', historyMode);
     AudioEngine.stopSpeaking();
     UI.renderTranslator(
       async (text, direction) => {
@@ -100,14 +212,14 @@ const App = (() => {
     );
   }
 
-  function _showPhraseBank() {
-    _currentScreen = 'phrases';
+  function _showPhraseBank(historyMode = 'push') {
+    _updateHistoryState('phrases', {}, '#phrases', historyMode);
     AudioEngine.stopSpeaking();
     UI.renderPhraseBank();
   }
 
-  function _showDictionary() {
-    _currentScreen = 'dictionary';
+  function _showDictionary(historyMode = 'push') {
+    _updateHistoryState('dictionary', {}, '#dictionary', historyMode);
     AudioEngine.stopSpeaking();
     UI.renderDictionary(
       async (word) => {
@@ -120,15 +232,16 @@ const App = (() => {
     );
   }
 
-  function _showOnboarding() {
-    _currentScreen = 'onboarding';
+  // Define _showOnboarding before it's used
+  function _showOnboarding(historyMode = 'push') {
+    _updateHistoryState('onboarding', {}, '#onboarding', historyMode);
     UI.renderOnboarding(() => {
       _showLessons();
     });
   }
 
-  function _showLessons() {
-    _currentScreen = 'lessons';
+  function _showLessons(historyMode = 'push') {
+    _updateHistoryState('lessons', {}, '#lessons', historyMode);
     AudioEngine.stopSpeaking();
     const modules = Curriculum.getModules();
     UI.renderLessons(
@@ -138,8 +251,8 @@ const App = (() => {
     );
   }
 
-  function _showDashboard() {
-    _currentScreen = 'dashboard';
+  function _showDashboard(historyMode = 'push') {
+    _updateHistoryState('dashboard', {}, '#dashboard', historyMode);
     AudioEngine.stopSpeaking();
     
     const stats = Progress.getStats();
@@ -168,9 +281,8 @@ const App = (() => {
     );
   }
 
-  function _showModuleDetail(moduleId) {
-    _currentScreen = 'module';
-    _currentModuleId = moduleId;
+  function _showModuleDetail(moduleId, historyMode = 'push') {
+    _updateHistoryState('module', { moduleId }, `#module/${moduleId}`, historyMode);
     AudioEngine.stopSpeaking();
  
     const module = Curriculum.getModule(moduleId);
@@ -185,21 +297,17 @@ const App = (() => {
     UI.renderModuleDetail(
       module,
       (lessonId) => _startLesson(lessonId),
-      () => _showLessons()
+      () => window.history.back()
     );
   }
 
-  function _showSettings(fromScreen = 'lessons') {
-    _currentScreen = 'settings';
+  function _showSettings(fromScreen = 'lessons', historyMode = 'push') {
+    _updateHistoryState('settings', { fromScreen }, '#settings', historyMode);
     AudioEngine.stopSpeaking();
  
     UI.renderSettings(
       () => {
-        if (fromScreen === 'dashboard') {
-          _showDashboard();
-        } else {
-          _showLessons();
-        }
+        window.history.back();
       },
       () => {
         Progress.resetAll();
@@ -213,8 +321,8 @@ const App = (() => {
   // LESSON PLAYER LOGIC
   // ============================================================
 
-  function _startLesson(lessonId) {
-    _currentScreen = 'lesson';
+  function _startLesson(lessonId, historyMode = 'push') {
+    _updateHistoryState('lesson', { lessonId }, `#lesson/${lessonId}`, historyMode);
     _currentLessonId = lessonId;
     _currentPhraseIndex = 0;
     _lessonScores = [];
@@ -223,7 +331,7 @@ const App = (() => {
     const lesson = Curriculum.getLesson(lessonId);
     if (!lesson) {
       UI.showToast('Lesson not found');
-      _showModuleDetail(_currentModuleId);
+      window.history.back();
       return;
     }
 
@@ -237,7 +345,7 @@ const App = (() => {
 
     UI.renderLessonPlayer(lesson, _currentPhraseIndex, () => {
       // Back button
-      _showModuleDetail(lesson.moduleId);
+      window.history.back();
     });
 
     // Bind audio controls
@@ -412,10 +520,10 @@ const App = (() => {
     UI.showLessonComplete(
       lesson.title,
       stats,
-      next ? () => _startLesson(next.lessonId) : null,
-      () => _startLesson(lesson.id),
+      next ? () => _startLesson(next.lessonId, 'replace') : null,
+      () => _startLesson(lesson.id, 'replace'),
       () => _showLessons(),
-      quizQuestions.length > 0 ? () => _showLessonQuiz(lesson.id, lesson.moduleId) : null
+      quizQuestions.length > 0 ? () => _showLessonQuiz(lesson.id, lesson.moduleId, 'replace') : null
     );
   }
 
@@ -423,14 +531,14 @@ const App = (() => {
   // ASSESSMENT SCREENS
   // ============================================================
 
-  function _showFlashcards(moduleId) {
-    _currentScreen = 'flashcards';
+  function _showFlashcards(moduleId, historyMode = 'push') {
+    _updateHistoryState('flashcards', { moduleId }, `#flashcards/${moduleId}`, historyMode);
     AudioEngine.stopSpeaking();
     const cards = Curriculum.getFlashcards(moduleId);
     const module = Curriculum.getModule(moduleId);
     if (!cards.length) {
       UI.showToast('No flashcards available for this module yet.');
-      _showModuleDetail(moduleId);
+      window.history.back();
       return;
     }
     UI.renderFlashcards(
@@ -438,19 +546,19 @@ const App = (() => {
       module ? `${module.icon} ${module.title}` : 'Flashcards',
       (knownCount) => {
         Progress.saveFlashcardSession(moduleId, knownCount, cards.length);
-        _showModuleDetail(moduleId);
+        window.history.back();
       },
-      () => _showModuleDetail(moduleId)
+      () => window.history.back()
     );
   }
 
-  function _showLessonQuiz(lessonId, moduleId) {
-    _currentScreen = 'quiz';
+  function _showLessonQuiz(lessonId, moduleId, historyMode = 'push') {
+    _updateHistoryState('quiz', { lessonId, moduleId }, `#quiz/${lessonId}`, historyMode);
     AudioEngine.stopSpeaking();
     const questions = Curriculum.getLessonQuiz(lessonId);
     const lesson = Curriculum.getLesson(lessonId);
     if (!questions.length) {
-      _showModuleDetail(moduleId || lesson?.moduleId);
+      window.history.back();
       return;
     }
     UI.renderQuiz(
@@ -458,23 +566,21 @@ const App = (() => {
       lesson ? lesson.title : 'Quiz',
       (score) => {
         Progress.saveQuizScore(lessonId, score);
-        const next = Curriculum.getNextLesson(lessonId);
-        // After quiz, show continue options
-        _showModuleDetail(moduleId || lesson?.moduleId);
         UI.showToast(`Quiz complete! Score: ${score}% 🎉`);
+        window.history.back();
       },
-      () => _showModuleDetail(moduleId || lesson?.moduleId)
+      () => window.history.back()
     );
   }
 
-  function _showModuleTest(moduleId) {
-    _currentScreen = 'test';
+  function _showModuleTest(moduleId, historyMode = 'push') {
+    _updateHistoryState('test', { moduleId }, `#test/${moduleId}`, historyMode);
     AudioEngine.stopSpeaking();
     const test = Curriculum.getModuleTest(moduleId);
     const module = Curriculum.getModule(moduleId);
     if (!test) {
       UI.showToast('No test available for this module yet.');
-      _showModuleDetail(moduleId);
+      window.history.back();
       return;
     }
     UI.renderModuleTest(
@@ -483,9 +589,13 @@ const App = (() => {
       (score, passed) => {
         Progress.saveTestScore(moduleId, score, passed);
         // After test, return to module
-        setTimeout(() => _showModuleDetail(moduleId), 2500);
+        setTimeout(() => {
+          if (_currentScreen === 'test') {
+            window.history.back();
+          }
+        }, 2500);
       },
-      () => _showModuleDetail(moduleId)
+      () => window.history.back()
     );
   }
 
