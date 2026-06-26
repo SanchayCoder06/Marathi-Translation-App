@@ -112,6 +112,12 @@ const App = (() => {
     const lastModuleId = localStorage.getItem('bolaMarathi_lastModuleId');
     const lastLessonId = localStorage.getItem('bolaMarathi_lastLessonId');
 
+    const onboardingComplete = localStorage.getItem('bolaMarathi_onboardingComplete') === 'true';
+    if (!onboardingComplete && lastScreen !== 'welcome' && lastScreen !== 'onboarding') {
+      _showWelcome(true);
+      return;
+    }
+
     if (lastScreen === 'module' && lastModuleId) {
       window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
       _showModuleDetail(lastModuleId, true);
@@ -174,7 +180,8 @@ const App = (() => {
     AudioEngine.stopSpeaking();
     UI.renderWelcome(() => {
       const apiKey = Progress.getApiKey();
-      if (apiKey) {
+      const onboardingComplete = localStorage.getItem('bolaMarathi_onboardingComplete') === 'true';
+      if (apiKey || onboardingComplete) {
         _showLessons();
       } else {
         _showOnboarding();
@@ -230,6 +237,7 @@ const App = (() => {
   function _showOnboarding(historyMode = 'push') {
     _updateHistoryState('onboarding', {}, '#onboarding', historyMode);
     UI.renderOnboarding(() => {
+      localStorage.setItem('bolaMarathi_onboardingComplete', 'true');
       _showLessons();
     });
   }
@@ -305,6 +313,7 @@ const App = (() => {
       },
       () => {
         Progress.resetAll();
+        localStorage.removeItem('bolaMarathi_onboardingComplete');
         UI.showToast('Progress reset');
         _showOnboarding();
       }
