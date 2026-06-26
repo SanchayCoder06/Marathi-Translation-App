@@ -3,7 +3,7 @@
 // Caches app shell and lesson data for offline support
 // ============================================================
 
-const CACHE_NAME = 'bola-marathi-v14';
+const CACHE_NAME = 'bola-marathi-v15';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -46,6 +46,19 @@ self.addEventListener('activate', (event) => {
 // Fetch — network-first with cache fallback for app shell, cache-first for fonts/external static resources
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
+
+  // Pure network request for Vercel Serverless Function /api/ calls
+  if (url.pathname.startsWith('/api/')) {
+    event.respondWith(
+      fetch(event.request).catch((err) => {
+        return new Response(
+          JSON.stringify({ error: `Offline — Server API is unavailable: ${err.message}` }),
+          { headers: { 'Content-Type': 'application/json' } }
+        );
+      })
+    );
+    return;
+  }
 
   // Network-first for Gemini API calls
   if (url.hostname === 'generativelanguage.googleapis.com') {

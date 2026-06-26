@@ -82,10 +82,6 @@ const App = (() => {
     UI.renderTranslator(
       async (text, direction) => {
         const apiKey = Progress.getApiKey();
-        if (!apiKey) {
-          UI.showToast('Please set your Gemini API key in Settings first.');
-          return null;
-        }
         try {
           return await AIFeedback.translate(text, direction, apiKey);
         } catch (err) {

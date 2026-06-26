@@ -20,8 +20,50 @@ const AIFeedback = (() => {
   async function assess(params) {
     const { expectedMarathi, expectedTransliteration, expectedEnglish, userTranscription, audioBlob, apiKey } = params;
 
-    if (!apiKey) {
-      return _fallbackScoring(expectedMarathi, userTranscription);
+    const useServerBackend = !apiKey || !apiKey.trim();
+
+    if (useServerBackend) {
+      try {
+        let audioBase64 = null;
+        let audioMimeType = null;
+        if (audioBlob) {
+          audioBase64 = await AudioEngine.blobToBase64(audioBlob);
+          audioMimeType = audioBlob.type || 'audio/webm';
+        }
+
+        const response = await fetch('/api/assess', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            expectedMarathi,
+            expectedTransliteration,
+            expectedEnglish,
+            userTranscription,
+            audioBase64,
+            audioMimeType
+          }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          console.warn('Backend assess API error:', response.status, errData);
+          if (errData.error && errData.error.includes('configured')) {
+            throw new Error(errData.error);
+          }
+          return _fallbackScoring(expectedMarathi, userTranscription);
+        }
+
+        const data = await response.json();
+        const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!resultText) return _fallbackScoring(expectedMarathi, userTranscription);
+        return _parseResponse(resultText, expectedMarathi);
+      } catch (err) {
+        console.error('Backend assess error:', err);
+        if (err.message && err.message.includes('configured')) {
+          throw err;
+        }
+        return _fallbackScoring(expectedMarathi, userTranscription);
+      }
     }
 
     try {
@@ -302,8 +344,44 @@ Be encouraging and constructive. Focus on actionable tips.`;
   }
 
   async function translate(text, direction, apiKey) {
-    if (!apiKey) {
-      throw new Error('API key required for translation. Please configure it in Settings.');
+    const useServerBackend = !apiKey || !apiKey.trim();
+
+    if (useServerBackend) {
+      try {
+        const response = await fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, direction }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          console.warn('Backend translate API error:', response.status, errData);
+          if (errData.error && errData.error.includes('configured')) {
+            throw new Error(errData.error);
+          }
+          throw new Error('Failed to translate via backend');
+        }
+
+        const data = await response.json();
+        const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!resultText) throw new Error('Empty response from AI translator backend');
+
+        let parsedText = resultText.trim();
+        if (parsedText.startsWith('```')) {
+          const jsonMatch = parsedText.match(/```(?:json)?\s*([\s\S]*?)```/);
+          if (jsonMatch) parsedText = jsonMatch[1].trim();
+        }
+
+        const parsed = JSON.parse(parsedText);
+        return {
+          translatedText: parsed.translatedText || '',
+          transliteration: parsed.transliteration || ''
+        };
+      } catch (err) {
+        console.error('Backend translation error:', err);
+        throw err;
+      }
     }
 
     const directionLabels = {
@@ -377,8 +455,50 @@ INSTRUCTIONS:
   }
 
   async function lookupWord(word, apiKey) {
-    if (!apiKey) {
-      throw new Error('API key required for online lookup. Please configure it in Settings.');
+    const useServerBackend = !apiKey || !apiKey.trim();
+
+    if (useServerBackend) {
+      try {
+        const response = await fetch('/api/dictionary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ word }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          console.warn('Backend dictionary API error:', response.status, errData);
+          if (errData.error && errData.error.includes('configured')) {
+            throw new Error(errData.error);
+          }
+          throw new Error('Failed to lookup word via backend');
+        }
+
+        const data = await response.json();
+        const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!resultText) throw new Error('Empty response from AI dictionary backend');
+
+        let parsedText = resultText.trim();
+        if (parsedText.startsWith('```')) {
+          const jsonMatch = parsedText.match(/```(?:json)?\s*([\s\S]*?)```/);
+          if (jsonMatch) parsedText = jsonMatch[1].trim();
+        }
+
+        const parsed = JSON.parse(parsedText);
+        return {
+          word: parsed.word || word,
+          transliteration: parsed.transliteration || '',
+          partOfSpeech: parsed.partOfSpeech || 'Word',
+          englishMeaning: parsed.englishMeaning || '',
+          hindiMeaning: parsed.hindiMeaning || '',
+          exampleMarathi: parsed.exampleMarathi || '',
+          exampleEnglish: parsed.exampleEnglish || '',
+          exampleHindi: parsed.exampleHindi || ''
+        };
+      } catch (err) {
+        console.error('Backend dictionary error:', err);
+        throw err;
+      }
     }
 
     const prompt = `You are a professional Marathi-English-Hindi dictionary. Provide the translation, part of speech, transliteration, meanings, and a contextual example sentence for the searched word.
