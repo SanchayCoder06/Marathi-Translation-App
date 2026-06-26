@@ -108,9 +108,12 @@ const App = (() => {
   }
 
   function _restoreLastScreen() {
-    const lastScreen = localStorage.getItem('bolaMarathi_lastScreen') || 'welcome';
-    const lastModuleId = localStorage.getItem('bolaMarathi_lastModuleId');
-    const lastLessonId = localStorage.getItem('bolaMarathi_lastLessonId');
+    const isRefresh = sessionStorage.getItem('bolaMarathi_sessionActive') === 'true';
+    sessionStorage.setItem('bolaMarathi_sessionActive', 'true');
+
+    let lastScreen = localStorage.getItem('bolaMarathi_lastScreen') || 'welcome';
+    let lastModuleId = localStorage.getItem('bolaMarathi_lastModuleId');
+    let lastLessonId = localStorage.getItem('bolaMarathi_lastLessonId');
 
     let onboardingComplete = localStorage.getItem('bolaMarathi_onboardingComplete') === 'true';
     
@@ -121,6 +124,20 @@ const App = (() => {
     if (!onboardingComplete && (hasProgress || wasOnSubScreen)) {
       localStorage.setItem('bolaMarathi_onboardingComplete', 'true');
       onboardingComplete = true;
+    }
+
+    // Reset to starting/home page if opening a new tab/session (not a reload within the same tab)
+    if (!isRefresh) {
+      if (onboardingComplete) {
+        lastScreen = 'lessons';
+      } else {
+        lastScreen = 'welcome';
+      }
+      lastModuleId = null;
+      lastLessonId = null;
+      localStorage.setItem('bolaMarathi_lastScreen', lastScreen);
+      localStorage.removeItem('bolaMarathi_lastModuleId');
+      localStorage.removeItem('bolaMarathi_lastLessonId');
     }
 
     if (!onboardingComplete && lastScreen !== 'welcome' && lastScreen !== 'onboarding') {
