@@ -31,6 +31,11 @@ const Progress = (() => {
       phrases: {},        // { "m1-l1-p1": { bestScore: 85, attempts: 3, lastAttempt: "2025-..." } }
       lessons: {},        // { "m1-l1": { completed: true, avgScore: 82, completedAt: "..." } }
       modules: {},        // { "m1": { started: true } }
+      assessments: {      // Assessment-level tracking
+        quizzes: {},      // { "m1-l1": { bestScore: 80, attempts: 2 } }
+        tests: {},        // { "m1": { bestScore: 85, passed: true, attempts: 1 } }
+        flashcards: {},   // { "m1": { knownCount: 10, totalCount: 12, sessions: 3 } }
+      },
       xp: 0,
       streak: 0,
       lastPracticeDate: null,
@@ -321,6 +326,97 @@ const Progress = (() => {
     return result;
   }
 
+  /**
+   * Save a lesson quiz score
+   * @param {string} lessonId
+   * @param {number} score - 0-100
+   */
+  function saveQuizScore(lessonId, score) {
+    const data = _load();
+    if (!data.assessments) data.assessments = { quizzes: {}, tests: {}, flashcards: {} };
+    const existing = data.assessments.quizzes[lessonId] || { bestScore: 0, attempts: 0 };
+    data.assessments.quizzes[lessonId] = {
+      bestScore: Math.max(existing.bestScore, score),
+      attempts: existing.attempts + 1,
+      lastAttempt: new Date().toISOString(),
+    };
+    // Award XP
+    if (score >= 90) data.xp += 10;
+    else if (score >= 70) data.xp += 5;
+    else data.xp += 2;
+    _save(data);
+  }
+
+  /**
+   * Save a module test result
+   * @param {string} moduleId
+   * @param {number} score - 0-100
+   * @param {boolean} passed
+   */
+  function saveTestScore(moduleId, score, passed) {
+    const data = _load();
+    if (!data.assessments) data.assessments = { quizzes: {}, tests: {}, flashcards: {} };
+    const existing = data.assessments.tests[moduleId] || { bestScore: 0, attempts: 0, passed: false };
+    data.assessments.tests[moduleId] = {
+      bestScore: Math.max(existing.bestScore, score),
+      attempts: existing.attempts + 1,
+      passed: existing.passed || passed,
+      lastAttempt: new Date().toISOString(),
+    };
+    // Award XP for passing
+    if (passed && !existing.passed) data.xp += 50;
+    _save(data);
+  }
+
+  /**
+   * Save a flashcard session result
+   * @param {string} moduleId
+   * @param {number} knownCount - how many cards marked "known"
+   * @param {number} totalCount - total cards in session
+   */
+  function saveFlashcardSession(moduleId, knownCount, totalCount) {
+    const data = _load();
+    if (!data.assessments) data.assessments = { quizzes: {}, tests: {}, flashcards: {} };
+    const existing = data.assessments.flashcards[moduleId] || { knownCount: 0, totalCount: 0, sessions: 0 };
+    data.assessments.flashcards[moduleId] = {
+      knownCount: Math.max(existing.knownCount, knownCount),
+      totalCount: totalCount,
+      sessions: existing.sessions + 1,
+      lastSession: new Date().toISOString(),
+    };
+    data.xp += Math.round(knownCount * 2);
+    _save(data);
+  }
+
+  /**
+   * Get all assessment progress for dashboard display
+   */
+  function getAssessmentProgress() {
+    const data = _load();
+    const a = data.assessments || { quizzes: {}, tests: {}, flashcards: {} };
+    const quizCount = Object.keys(a.quizzes).length;
+    const testsPassed = Object.values(a.tests).filter(t => t.passed).length;
+    const testsAttempted = Object.keys(a.tests).length;
+    const fcSessions = Object.values(a.flashcards).reduce((sum, f) => sum + f.sessions, 0);
+    return { quizCount, testsPassed, testsAttempted, fcSessions, quizzes: a.quizzes, tests: a.tests, flashcards: a.flashcards };
+  }
+
+  /**
+   * Get quiz progress for a specific lesson
+   */
+  function getQuizProgress(lessonId) {
+    const data = _load();
+    return data.assessments?.quizzes?.[lessonId] || null;
+  }
+
+  /**
+   * Get test progress for a specific module
+   */
+  function getTestProgress(moduleId) {
+    const data = _load();
+    return data.assessments?.tests?.[moduleId] || null;
+  }
+
   return {
     getPhraseScore,
     savePhraseScore,
@@ -343,5 +439,11 @@ const Progress = (() => {
     resetAll,
     getTodayMinutes,
     getWeeklyMinutes,
+    saveQuizScore,
+    saveTestScore,
+    saveFlashcardSession,
+    getAssessmentProgress,
+    getQuizProgress,
+    getTestProgress,
   };
 })();

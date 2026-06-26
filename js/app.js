@@ -22,12 +22,22 @@ const App = (() => {
     // Preload TTS voices
     await AudioEngine.preloadVoices();
 
-    // Load curriculum data
+    // Load curriculum + supplementary data in parallel
     try {
-      const response = await fetch('data/lessons.json');
-      if (!response.ok) throw new Error('Failed to load curriculum');
-      const data = await response.json();
+      const [lessonsRes, assessmentsRes, newModulesRes] = await Promise.all([
+        fetch('data/lessons.json'),
+        fetch('data/assessments.json').catch(() => null),
+        fetch('data/new_modules.json').catch(() => null),
+      ]);
+
+      if (!lessonsRes.ok) throw new Error('Failed to load curriculum');
+      const data = await lessonsRes.json();
       Curriculum.init(data);
+
+      // Load optional assessment/new-module data
+      const assessmentData = assessmentsRes?.ok ? await assessmentsRes.json() : null;
+      const newModulesData = newModulesRes?.ok ? await newModulesRes.json() : null;
+      Curriculum.loadAssessments(assessmentData, newModulesData);
     } catch (err) {
       console.error('Failed to load curriculum:', err);
       UI.showToast('Error loading lesson data. Please refresh.');
@@ -144,6 +154,7 @@ const App = (() => {
     const todayMins = Progress.getTodayMinutes();
     const weeklyData = Progress.getWeeklyMinutes();
     const dailyTarget = 15;
+    const assessmentProgress = Progress.getAssessmentProgress();
     
     // Overall course completion
     const totalLessons = Curriculum.getTotalLessons() || 100;
@@ -159,7 +170,8 @@ const App = (() => {
       dailyTarget,
       weeklyData,
       courseCompletionPercentage,
-      () => _showSettings('dashboard')
+      () => _showSettings('dashboard'),
+      assessmentProgress
     );
   }
 
@@ -401,12 +413,86 @@ const App = (() => {
     // Check for next lesson
     const next = Curriculum.getNextLesson(lesson.id);
 
+    // Check if lesson has a quiz — trigger it after completion overlay
+    const quizQuestions = Curriculum.getLessonQuiz(lesson.id);
+
     UI.showLessonComplete(
       lesson.title,
       stats,
       next ? () => _startLesson(next.lessonId) : null,
       () => _startLesson(lesson.id),
-      () => _showLessons()
+      () => _showLessons(),
+      quizQuestions.length > 0 ? () => _showLessonQuiz(lesson.id, lesson.moduleId) : null
+    );
+  }
+
+  // ============================================================
+  // ASSESSMENT SCREENS
+  // ============================================================
+
+  function _showFlashcards(moduleId) {
+    _currentScreen = 'flashcards';
+    AudioEngine.stopSpeaking();
+    const cards = Curriculum.getFlashcards(moduleId);
+    const module = Curriculum.getModule(moduleId);
+    if (!cards.length) {
+      UI.showToast('No flashcards available for this module yet.');
+      _showModuleDetail(moduleId);
+      return;
+    }
+    UI.renderFlashcards(
+      cards,
+      module ? `${module.icon} ${module.title}` : 'Flashcards',
+      (knownCount) => {
+        Progress.saveFlashcardSession(moduleId, knownCount, cards.length);
+        _showModuleDetail(moduleId);
+      },
+      () => _showModuleDetail(moduleId)
+    );
+  }
+
+  function _showLessonQuiz(lessonId, moduleId) {
+    _currentScreen = 'quiz';
+    AudioEngine.stopSpeaking();
+    const questions = Curriculum.getLessonQuiz(lessonId);
+    const lesson = Curriculum.getLesson(lessonId);
+    if (!questions.length) {
+      _showModuleDetail(moduleId || lesson?.moduleId);
+      return;
+    }
+    UI.renderQuiz(
+      questions,
+      lesson ? lesson.title : 'Quiz',
+      (score) => {
+        Progress.saveQuizScore(lessonId, score);
+        const next = Curriculum.getNextLesson(lessonId);
+        // After quiz, show continue options
+        _showModuleDetail(moduleId || lesson?.moduleId);
+        UI.showToast(`Quiz complete! Score: ${score}% 🎉`);
+      },
+      () => _showModuleDetail(moduleId || lesson?.moduleId)
+    );
+  }
+
+  function _showModuleTest(moduleId) {
+    _currentScreen = 'test';
+    AudioEngine.stopSpeaking();
+    const test = Curriculum.getModuleTest(moduleId);
+    const module = Curriculum.getModule(moduleId);
+    if (!test) {
+      UI.showToast('No test available for this module yet.');
+      _showModuleDetail(moduleId);
+      return;
+    }
+    UI.renderModuleTest(
+      test,
+      module ? `${module.icon} ${module.title}` : 'Module Test',
+      (score, passed) => {
+        Progress.saveTestScore(moduleId, score, passed);
+        // After test, return to module
+        setTimeout(() => _showModuleDetail(moduleId), 2500);
+      },
+      () => _showModuleDetail(moduleId)
     );
   }
 
@@ -436,7 +522,10 @@ const App = (() => {
     showTranslator: _showTranslator,
     showVideos: _showVideos,
     showDictionary: _showDictionary,
-    showSettings: _showSettings
+    showSettings: _showSettings,
+    showFlashcards: _showFlashcards,
+    showLessonQuiz: _showLessonQuiz,
+    showModuleTest: _showModuleTest,
   };
 })();
 

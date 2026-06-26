@@ -4,7 +4,7 @@
 // ============================================================
 
 const UI = (() => {
-  const app = () => document.getElementById('app');
+  const app = () => document.getElementById('screenContainer');
 
   // --- SVG Gradient Definition (used by progress rings) ---
   const SVG_DEFS = `
@@ -34,7 +34,7 @@ const UI = (() => {
     { word: 'जेवण', transliteration: 'Jevan', partOfSpeech: 'Noun', englishMeaning: 'Food / Meal', hindiMeaning: 'खाना / भोजन', exampleMarathi: 'तुम्ही जेवण केले का?', exampleEnglish: 'Did you have your food?', exampleHindi: 'क्या आपने खाना खाया?' },
     { word: 'चहा', transliteration: 'Chaha', partOfSpeech: 'Noun', englishMeaning: 'Tea', hindiMeaning: 'चाय', exampleMarathi: 'मला गरम चहा आवडतो.', exampleEnglish: 'I like hot tea.', exampleHindi: 'मुझे गर्म चाय पसंद है।' },
     { word: 'घर', transliteration: 'Ghar', partOfSpeech: 'Noun', englishMeaning: 'House / Home', hindiMeaning: 'घर / मकान', exampleMarathi: 'हे माझे नवीन घर आहे.', exampleEnglish: 'This is my new house.', exampleHindi: 'यह मेरा नया घर है।' },
-    { word: 'शाळा', transliteration: 'Shaala', partOfSpeech: 'Noun', englishMeaning: 'School', hindiMeaning: 'स्कूल / विद्यालय', exampleMarathi: 'मुले शाळेत जात आहेत.', exampleEnglish: 'Children are going to school.', exampleHindi: 'बच्चे स्कूल जा रहे हैं।' },
+    { word: 'शाळा', transliteration: 'Shaala', partOfSpeech: 'Noun', englishMeaning: 'School', hindiMeaning: 'स्कूल / विद्यालय', exampleMarathi: 'मुले शाळेत जात आहेत.', exampleEnglish: 'Children are going to school.', exampleHindi: 'बच्चे school जा रहे हैं।' },
     { word: 'गाव', transliteration: 'Gaav', partOfSpeech: 'Noun', englishMeaning: 'Village / Town', hindiMeaning: 'गाँव / शहर', exampleMarathi: 'माझे गाव खूप सुंदर आहे.', exampleEnglish: 'My village is very beautiful.', exampleHindi: 'मेरा गाँव बहुत सुंदर है।' },
     { word: 'नाव', transliteration: 'Naav', partOfSpeech: 'Noun', englishMeaning: 'Name', hindiMeaning: 'नाम', exampleMarathi: 'तुमचे नाव काय आहे?', exampleEnglish: 'What is your name?', exampleHindi: 'आपका नाम क्या है?' },
     { word: 'मित्र', transliteration: 'Mitra', partOfSpeech: 'Noun', englishMeaning: 'Friend', hindiMeaning: 'मित्र / दोस्त', exampleMarathi: 'तो माझा चांगला मित्र आहे.', exampleEnglish: 'He is my good friend.', exampleHindi: 'वह मेरा अच्छा दोस्त है।' },
@@ -56,10 +56,85 @@ const UI = (() => {
   ];
 
   /**
-   * Initialize UI — inject SVG defs
+   * Initialize UI — inject SVG defs and layout structure
    */
   function init() {
     document.body.insertAdjacentHTML('afterbegin', SVG_DEFS);
+
+    // Initialize layout structure in #app
+    const appEl = document.getElementById('app');
+    if (appEl) {
+      const currentHTML = appEl.innerHTML;
+      appEl.innerHTML = `
+        <nav class="app-nav" id="appNav" style="display: none;"></nav>
+        <main id="mainContent">
+          <div id="screenContainer">
+            ${currentHTML}
+          </div>
+        </main>
+      `;
+    }
+
+    // Initialize navigation bar content and events
+    const navEl = document.getElementById('appNav');
+    if (navEl) {
+      navEl.innerHTML = `
+        <div class="nav-brand">
+          <span class="nav-brand-logo">🙏</span>
+          <span class="nav-brand-text text-gradient">बोला मराठी</span>
+        </div>
+        <div class="nav-menu">
+          <button class="nav-item" id="navLessons" data-tab="lessons">
+            <span class="nav-icon">📖</span>
+            <span class="nav-text">Lessons</span>
+          </button>
+          <button class="nav-item" id="navTranslator" data-tab="translator">
+            <span class="nav-icon">🔄</span>
+            <span class="nav-text">Translate</span>
+          </button>
+          <button class="nav-item" id="navDictionary" data-tab="dictionary">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Dictionary</span>
+          </button>
+          <button class="nav-item" id="navVideos" data-tab="videos">
+            <span class="nav-icon">🎥</span>
+            <span class="nav-text">Videos</span>
+          </button>
+          <button class="nav-item" id="navDashboard" data-tab="dashboard">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+          </button>
+        </div>
+        <button class="nav-item" id="navSettings" data-tab="settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text">Settings</span>
+        </button>
+      `;
+
+      // Bind events once
+      document.getElementById('navLessons')?.addEventListener('click', () => App.showLessons());
+      document.getElementById('navTranslator')?.addEventListener('click', () => App.showTranslator());
+      document.getElementById('navDictionary')?.addEventListener('click', () => App.showDictionary());
+      document.getElementById('navVideos')?.addEventListener('click', () => App.showVideos());
+      document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
+      document.getElementById('navSettings')?.addEventListener('click', () => App.showSettings());
+    }
+  }
+
+  /**
+   * Update the global navbar visibility and active highlights
+   */
+  function _updateNavBar(activeTab) {
+    const nav = document.getElementById('appNav');
+    if (!nav) return;
+    if (activeTab) {
+      nav.style.display = '';
+      nav.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.tab === activeTab);
+      });
+    } else {
+      nav.style.display = 'none';
+    }
   }
 
   // ============================================================
@@ -67,6 +142,7 @@ const UI = (() => {
   // ============================================================
 
   function renderOnboarding(onStart) {
+    _updateNavBar(null);
     const existingKey = Progress.getApiKey();
 
     app().innerHTML = `
@@ -145,6 +221,7 @@ const UI = (() => {
   // ============================================================
 
   function renderLessons(modules, onModuleClick, onSettingsClick) {
+    _updateNavBar('lessons');
     app().innerHTML = `
       <div class="screen active" id="screen-lessons">
         <div class="dashboard-header">
@@ -160,8 +237,6 @@ const UI = (() => {
             ${modules.map(m => _renderModuleCard(m)).join('')}
           </div>
         </div>
-
-        ${_renderNavBar('lessons')}
       </div>
     `;
 
@@ -176,15 +251,14 @@ const UI = (() => {
         }
       });
     });
-
-    _bindNavBarEvents();
   }
 
   // ============================================================
   // DASHBOARD SCREEN (Progress & Charts)
   // ============================================================
 
-  function renderDashboard(stats, streak, todayMins, dailyTarget, weeklyData, courseCompletionPercentage, onSettingsClick) {
+  function renderDashboard(stats, streak, todayMins, dailyTarget, weeklyData, courseCompletionPercentage, onSettingsClick, assessmentProgress) {
+    _updateNavBar('dashboard');
     // Daily target calculations
     const todayPercentage = Math.min(100, Math.round((todayMins / dailyTarget) * 100));
     const circumference = 2 * Math.PI * 34; // Larger ring: radius 34, viewBox 80x80
@@ -195,6 +269,9 @@ const UI = (() => {
 
     // Weekly chart calculations
     const maxMins = Math.max(15, ...weeklyData.map(d => d.minutes));
+
+    // Assessment stats
+    const ap = assessmentProgress || { quizCount: 0, testsPassed: 0, fcSessions: 0 };
 
     app().innerHTML = `
       <div class="screen active" id="screen-dashboard">
@@ -238,7 +315,7 @@ const UI = (() => {
                 </svg>
                 <div class="goal-text">
                   <span class="goal-current">${courseCompletionPercentage}%</span>
-                  <span class="goal-target">${stats.completedLessons}/100</span>
+                  <span class="goal-target">${stats.completedLessons} done</span>
                 </div>
               </div>
               <div class="goal-label">Course Done</div>
@@ -286,16 +363,38 @@ const UI = (() => {
               }).join('')}
             </div>
           </div>
+
+          <!-- Assessment Stats Row -->
+          <div style="margin-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md);">
+            <div class="chart-title">Assessment Progress</div>
+            <div class="dashboard-stats-grid" style="margin-top: 8px">
+              <div class="d-stat-card">
+                <span class="d-stat-val text-gradient">${ap.quizCount}</span>
+                <span class="d-stat-lbl">🧠 Quizzes Done</span>
+              </div>
+              <div class="d-stat-card">
+                <span class="d-stat-val text-gradient">${ap.testsPassed}</span>
+                <span class="d-stat-lbl">📝 Tests Passed</span>
+              </div>
+              <div class="d-stat-card">
+                <span class="d-stat-val text-gradient">${ap.fcSessions}</span>
+                <span class="d-stat-lbl">📇 FC Sessions</span>
+              </div>
+              <div class="d-stat-card">
+                <span class="d-stat-val text-gradient">${ap.testsAttempted || 0}</span>
+                <span class="d-stat-lbl">📋 Tests Tried</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        ${_renderNavBar('dashboard')}
       </div>
     `;
 
     // Bind events
     document.getElementById('btnSettings').addEventListener('click', onSettingsClick);
-    _bindNavBarEvents();
   }
+
 
   function _renderModuleCard(module) {
     const progress = Progress.getModuleProgress(module.id, module.totalLessons);
@@ -330,7 +429,10 @@ const UI = (() => {
   // ============================================================
 
   function renderModuleDetail(module, onLessonClick, onBack) {
+    _updateNavBar('lessons');
     const progress = Progress.getModuleProgress(module.id, module.totalLessons);
+    const testProgress = Progress.getTestProgress(module.id);
+    const canTakeTest = progress.percentage >= 80;
 
     app().innerHTML = `
       <div class="screen active" id="screen-module">
@@ -346,6 +448,13 @@ const UI = (() => {
           <div class="module-progress-bar__fill" style="width: ${progress.percentage}%"></div>
         </div>
 
+        <div class="assessment-actions">
+          <button class="btn btn-flashcard" id="btnFlashcards">📇 Flashcards</button>
+          <button class="btn btn-test ${canTakeTest ? '' : 'locked'}" id="btnModuleTest" title="${canTakeTest ? 'Take module test' : 'Complete 80% of lessons to unlock'}">
+            ${testProgress?.passed ? '✅' : '📝'} ${testProgress?.passed ? `Retake Test` : canTakeTest ? 'Take Test' : '🔒 Test'}
+          </button>
+        </div>
+
         <div class="lesson-list">
           ${module.lessons.map(l => _renderLessonItem(l)).join('')}
         </div>
@@ -353,6 +462,10 @@ const UI = (() => {
     `;
 
     document.getElementById('btnModuleBack').addEventListener('click', onBack);
+    document.getElementById('btnFlashcards')?.addEventListener('click', () => App.showFlashcards(module.id));
+    if (canTakeTest) {
+      document.getElementById('btnModuleTest')?.addEventListener('click', () => App.showModuleTest(module.id));
+    }
 
     document.querySelectorAll('.lesson-item').forEach(item => {
       item.addEventListener('click', () => {
@@ -364,6 +477,8 @@ const UI = (() => {
   function _renderLessonItem(lesson) {
     const progress = Progress.getLessonProgress(lesson.id);
     const isCompleted = progress.completed;
+    const quizProg = Progress.getQuizProgress(lesson.id);
+    const hasQuiz = lesson.hasQuiz;
 
     return `
       <div class="glass-card lesson-item" data-lesson-id="${lesson.id}">
@@ -374,7 +489,11 @@ const UI = (() => {
           <div class="lesson-item__title">${lesson.title}</div>
           <div class="lesson-item__title-marathi">${lesson.titleMarathi || ''}</div>
         </div>
-        ${isCompleted ? `<div class="lesson-item__score">${progress.avgScore}%</div>` : ''}
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0">
+          ${isCompleted ? `<div class="lesson-item__score">${progress.avgScore}%</div>` : ''}
+          ${hasQuiz && quizProg ? `<div class="lesson-item__quiz-passed">✓ Quiz</div>` : ''}
+          ${hasQuiz && !quizProg ? `<div class="lesson-item__quiz-badge">QUIZ</div>` : ''}
+        </div>
       </div>
     `;
   }
@@ -384,6 +503,7 @@ const UI = (() => {
   // ============================================================
 
   function renderLessonPlayer(lesson, currentPhraseIndex, onBack) {
+    _updateNavBar('lessons');
     const phrase = lesson.phrases[currentPhraseIndex];
     const total = lesson.phrases.length;
 
@@ -559,7 +679,7 @@ const UI = (() => {
   // LESSON COMPLETE OVERLAY
   // ============================================================
 
-  function showLessonComplete(lessonTitle, stats, onContinue, onReplay, onGoHome) {
+  function showLessonComplete(lessonTitle, stats, onContinue, onReplay, onGoHome, onQuiz) {
     const overlay = document.createElement('div');
     overlay.className = 'lesson-complete';
     overlay.id = 'lessonCompleteOverlay';
@@ -591,9 +711,10 @@ const UI = (() => {
       </div>
 
       <div class="lesson-complete__buttons">
+        ${onQuiz ? '<button class="btn btn-primary" id="btnLessonQuiz">🧠 Take Quiz →</button>' : ''}
         ${onContinue ? '<button class="btn btn-primary" id="btnLessonContinue">Next Lesson →</button>' : ''}
         <button class="btn btn-secondary" id="btnLessonReplay">Practice Again 🔄</button>
-        <button class="btn btn-secondary" id="btnLessonHome">Back to Dashboard 🏠</button>
+        <button class="btn btn-secondary" id="btnLessonHome">Back to Lessons 🏠</button>
       </div>
     `;
 
@@ -632,6 +753,7 @@ const UI = (() => {
   // ============================================================
 
   function renderSettings(onBack, onResetProgress) {
+    _updateNavBar('settings');
     const settings = Progress.getSettings();
 
     app().innerHTML = `
@@ -706,7 +828,6 @@ const UI = (() => {
           </div>
         </div>
 
-        ${_renderNavBar('settings')}
       </div>
     `;
 
@@ -738,8 +859,6 @@ const UI = (() => {
         onResetProgress();
       }
     });
-
-    _bindNavBarEvents();
   }
 
   function _bindToggle(elementId, settingKey) {
@@ -835,6 +954,7 @@ const UI = (() => {
   }
 
   function renderWelcome(onStart) {
+    _updateNavBar(null);
     app().innerHTML = `
       <div class="screen active welcome-screen" id="screen-welcome">
         <div class="welcome-hero">
@@ -881,6 +1001,7 @@ const UI = (() => {
   }
 
   function renderTranslator(onTranslate, onSpeak, onCopy) {
+    _updateNavBar('translator');
     app().innerHTML = `
       <div class="screen active translator-screen" id="screen-translator">
         <div class="screen-header">
@@ -911,11 +1032,8 @@ const UI = (() => {
 
         <div id="translationResultContainer"></div>
 
-        ${_renderNavBar('translator')}
       </div>
     `;
-
-    _bindNavBarEvents();
 
     const btnTranslate = document.getElementById('btnTranslate');
     const input = document.getElementById('translatorInput');
@@ -990,6 +1108,7 @@ const UI = (() => {
   };
 
   function renderVideos(activeModuleId, onModuleChange) {
+    _updateNavBar('videos');
     const video = VIDEOS_DATA[activeModuleId];
     
     app().innerHTML = `
@@ -1029,11 +1148,8 @@ const UI = (() => {
           </div>
         </div>
 
-        ${_renderNavBar('videos')}
       </div>
     `;
-
-    _bindNavBarEvents();
 
     const dropdown = document.getElementById('videoModuleDropdown');
     dropdown.addEventListener('change', () => {
@@ -1042,6 +1158,7 @@ const UI = (() => {
   }
 
   function renderDictionary(onLookupAI, onSpeak) {
+    _updateNavBar('dictionary');
     app().innerHTML = `
       <div class="screen active dictionary-screen" id="screen-dictionary">
         <div class="screen-header">
@@ -1073,11 +1190,8 @@ const UI = (() => {
 
         <div id="dictResultContainer"></div>
 
-        ${_renderNavBar('dictionary')}
       </div>
     `;
-
-    _bindNavBarEvents();
 
     const searchInput = document.getElementById('dictSearchInput');
     const searchBtn = document.getElementById('btnDictSearch');
@@ -1195,40 +1309,399 @@ const UI = (() => {
     });
   }
 
-  function _renderNavBar(activeTab) {
-    return `
-      <div class="bottom-nav">
-        <button class="nav-item ${activeTab === 'lessons' ? 'active' : ''}" id="navLessons">
-          <span class="nav-icon">📖</span>
-          <span class="nav-text">Lessons</span>
-        </button>
-        <button class="nav-item ${activeTab === 'translator' ? 'active' : ''}" id="navTranslator">
-          <span class="nav-icon">🔄</span>
-          <span class="nav-text">Translate</span>
-        </button>
-        <button class="nav-item ${activeTab === 'dictionary' ? 'active' : ''}" id="navDictionary">
-          <span class="nav-icon">📚</span>
-          <span class="nav-text">Dictionary</span>
-        </button>
-        <button class="nav-item ${activeTab === 'videos' ? 'active' : ''}" id="navVideos">
-          <span class="nav-icon">🎥</span>
-          <span class="nav-text">Videos</span>
-        </button>
-        <button class="nav-item ${activeTab === 'dashboard' ? 'active' : ''}" id="navDashboard">
-          <span class="nav-icon">📊</span>
-          <span class="nav-text">Dashboard</span>
-        </button>
-      </div>
-    `;
+  // ============================================================
+  // FLASHCARDS SCREEN
+  // ============================================================
+
+  /**
+   * Render the flip-card flashcard deck
+   * @param {Array} cards - Array of flashcard objects
+   * @param {string} title - Module title (with icon)
+   * @param {Function} onComplete - Called with knownCount when deck is done
+   * @param {Function} onBack - Called when user taps back
+   */
+  function renderFlashcards(cards, title, onComplete, onBack) {
+    _updateNavBar('lessons');
+    let currentIndex = 0;
+    let knownCount = 0;
+    let isFlipped = false;
+
+    function _render() {
+      if (currentIndex >= cards.length) {
+        _renderSummary();
+        return;
+      }
+      const card = cards[currentIndex];
+      const progressPct = (currentIndex / cards.length) * 100;
+
+      app().innerHTML = `
+        <div class="screen active screen-flashcards" id="screen-flashcards">
+          <div class="flashcard-header">
+            <div class="flashcard-header__back" id="fcBack">←</div>
+            <div class="flashcard-header__info">
+              <div class="flashcard-header__title">${title}</div>
+              <div class="flashcard-header__counter">${currentIndex + 1} / ${cards.length} cards</div>
+            </div>
+          </div>
+
+          <div class="flashcard-progress">
+            <div class="flashcard-progress__fill" style="width:${progressPct}%"></div>
+          </div>
+
+          <div class="flashcard-arena">
+            <div class="flashcard-scene" id="fcScene">
+              <div class="flashcard-inner" id="fcInner">
+                <div class="flashcard-face flashcard-face--front">
+                  <div class="flashcard-face__marathi">${card.front}</div>
+                  <div class="flashcard-face__hint">${card.frontHint || ''}</div>
+                </div>
+                <div class="flashcard-face flashcard-face--back">
+                  <div class="flashcard-face__meaning">${card.back}</div>
+                  <div class="flashcard-face__back-hint">${card.backHint || ''}</div>
+                </div>
+              </div>
+            </div>
+            <div class="flashcard-tap-hint">Tap card to reveal answer</div>
+          </div>
+
+          <div class="flashcard-actions">
+            <button class="btn-dont-know" id="fcDontKnow">✕ Don't Know</button>
+            <button class="btn-know" id="fcKnow">✓ Know It!</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('fcBack').addEventListener('click', onBack);
+      document.getElementById('fcScene').addEventListener('click', () => {
+        isFlipped = !isFlipped;
+        const inner = document.getElementById('fcInner');
+        if (inner) inner.classList.toggle('flipped', isFlipped);
+      });
+      document.getElementById('fcDontKnow').addEventListener('click', () => {
+        isFlipped = false;
+        currentIndex++;
+        _render();
+      });
+      document.getElementById('fcKnow').addEventListener('click', () => {
+        isFlipped = false;
+        knownCount++;
+        currentIndex++;
+        _render();
+      });
+    }
+
+    function _renderSummary() {
+      const pct = cards.length > 0 ? Math.round((knownCount / cards.length) * 100) : 0;
+      const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '🌟' : '💪';
+      app().innerHTML = `
+        <div class="screen active screen-flashcards" id="screen-flashcards">
+          <div class="flashcard-header">
+            <div class="flashcard-header__back" id="fcBackSummary">←</div>
+            <div class="flashcard-header__info">
+              <div class="flashcard-header__title">${title}</div>
+            </div>
+          </div>
+          <div class="flashcard-summary">
+            <div class="flashcard-summary__emoji">${emoji}</div>
+            <div class="flashcard-summary__title">Session Complete!</div>
+            <div class="flashcard-summary__score">${knownCount} / ${cards.length} cards known (${pct}%)</div>
+            <button class="btn btn-primary" id="fcRetry" style="width:auto;padding:12px 28px">🔄 Practice Again</button>
+            <button class="btn btn-secondary" id="fcDone" style="width:auto;padding:12px 28px;margin-top:8px">✓ Done</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('fcBackSummary').addEventListener('click', () => onComplete(knownCount));
+      document.getElementById('fcDone').addEventListener('click', () => onComplete(knownCount));
+      document.getElementById('fcRetry').addEventListener('click', () => {
+        currentIndex = 0; knownCount = 0; isFlipped = false;
+        _render();
+      });
+    }
+
+    _render();
   }
 
-  function _bindNavBarEvents() {
-    document.getElementById('navLessons')?.addEventListener('click', () => App.showLessons());
-    document.getElementById('navTranslator')?.addEventListener('click', () => App.showTranslator());
-    document.getElementById('navDictionary')?.addEventListener('click', () => App.showDictionary());
-    document.getElementById('navVideos')?.addEventListener('click', () => App.showVideos());
-    document.getElementById('navDashboard')?.addEventListener('click', () => App.showDashboard());
+  // ============================================================
+  // QUIZ SCREEN
+  // ============================================================
+
+  /**
+   * Render an MCQ quiz screen
+   * @param {Array} questions
+   * @param {string} title
+   * @param {Function} onComplete - Called with score (0-100)
+   * @param {Function} onBack
+   */
+  function renderQuiz(questions, title, onComplete, onBack) {
+    _updateNavBar('lessons');
+    let currentQ = 0;
+    let correct = 0;
+    const letters = ['A', 'B', 'C', 'D'];
+
+    function _renderQuestion() {
+      if (currentQ >= questions.length) {
+        _renderSummary();
+        return;
+      }
+      const q = questions[currentQ];
+      const progressPct = (currentQ / questions.length) * 100;
+
+      app().innerHTML = `
+        <div class="screen active screen-quiz" id="screen-quiz">
+          <div class="quiz-header">
+            <div class="quiz-header__back" id="qBack">←</div>
+            <div class="quiz-header__info">
+              <div class="quiz-header__title">🧠 ${title} — Quiz</div>
+              <div class="quiz-header__counter">Question ${currentQ + 1} of ${questions.length}</div>
+            </div>
+          </div>
+          <div class="quiz-progress">
+            <div class="quiz-progress__fill" style="width:${progressPct}%"></div>
+          </div>
+          <div class="quiz-body">
+            <div class="quiz-question-card">
+              <div class="quiz-question-text">${q.question}</div>
+              <div class="quiz-options">
+                ${q.options.map((opt, i) => `
+                  <button class="quiz-option" data-index="${i}" id="qOpt${i}">
+                    <div class="quiz-option__letter">${letters[i]}</div>
+                    <span>${opt}</span>
+                  </button>
+                `).join('')}
+              </div>
+              <div id="quizExplanation"></div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('qBack').addEventListener('click', onBack);
+
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chosen = parseInt(btn.dataset.index);
+          const isCorrect = chosen === q.correctIndex;
+          if (isCorrect) correct++;
+
+          // Disable all options
+          document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+
+          // Mark correct and wrong
+          document.getElementById(`qOpt${q.correctIndex}`)?.classList.add('correct');
+          if (!isCorrect) document.getElementById(`qOpt${chosen}`)?.classList.add('wrong');
+
+          // Show explanation
+          if (q.explanation) {
+            document.getElementById('quizExplanation').innerHTML = `
+              <div class="quiz-explanation">💡 ${q.explanation}</div>
+            `;
+          }
+
+          // Auto-advance after 1.5s
+          setTimeout(() => {
+            currentQ++;
+            _renderQuestion();
+          }, 1600);
+        });
+      });
+    }
+
+    function _renderSummary() {
+      const score = questions.length > 0 ? Math.round((correct / questions.length) * 100) : 0;
+      const circumference = 2 * Math.PI * 50;
+      const offset = circumference - (score / 100) * circumference;
+      const emoji = score >= 80 ? '🏆' : score >= 60 ? '🌟' : '💪';
+      const msg = score >= 80 ? 'Excellent work!' : score >= 60 ? 'Good job!' : 'Keep practicing!';
+
+      app().innerHTML = `
+        <div class="screen active screen-quiz" id="screen-quiz-summary">
+          <div class="quiz-header">
+            <div class="quiz-header__back" id="qSummaryBack">←</div>
+            <div class="quiz-header__info">
+              <div class="quiz-header__title">Quiz Complete!</div>
+            </div>
+          </div>
+          <div class="quiz-summary">
+            <div class="quiz-summary__score-ring">
+              <svg viewBox="0 0 120 120" width="120" height="120">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="url(#progressGradient)" stroke-width="10"
+                  stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
+              </svg>
+              <div class="quiz-summary__score-value">
+                <div class="quiz-summary__score-num">${score}</div>
+                <div class="quiz-summary__score-pct">%</div>
+              </div>
+            </div>
+            <div class="quiz-summary__title">${emoji} ${msg}</div>
+            <div class="quiz-summary__subtitle">${correct} / ${questions.length} correct</div>
+            <button class="btn btn-primary" id="qRetry" style="width:auto;padding:12px 28px">🔄 Try Again</button>
+            <button class="btn btn-secondary" id="qDone" style="width:auto;padding:12px 28px;margin-top:8px">✓ Done</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('qSummaryBack').addEventListener('click', () => onComplete(score));
+      document.getElementById('qDone').addEventListener('click', () => onComplete(score));
+      document.getElementById('qRetry').addEventListener('click', () => {
+        currentQ = 0; correct = 0;
+        _renderQuestion();
+      });
+    }
+
+    _renderQuestion();
   }
+
+  // ============================================================
+  // MODULE TEST SCREEN
+  // ============================================================
+
+  /**
+   * Render a full module test
+   * @param {Object} test - { title, passingScore, questions }
+   * @param {string} moduleTitle
+   * @param {Function} onComplete - Called with (score, passed)
+   * @param {Function} onBack
+   */
+  function renderModuleTest(test, moduleTitle, onComplete, onBack) {
+    _updateNavBar('lessons');
+    const questions = test.questions || [];
+    let currentQ = 0;
+    let correct = 0;
+    const letters = ['A', 'B', 'C', 'D'];
+
+    // Show intro first
+    function _renderIntro() {
+      app().innerHTML = `
+        <div class="screen active screen-test" id="screen-test">
+          <div class="quiz-header">
+            <div class="quiz-header__back" id="testBack">←</div>
+            <div class="quiz-header__info">
+              <div class="quiz-header__title">${moduleTitle}</div>
+            </div>
+          </div>
+          <div class="test-intro">
+            <div class="test-intro__icon">📝</div>
+            <div class="test-intro__title">${test.title}</div>
+            <div class="test-intro__meta">${questions.length} questions · Multiple choice</div>
+            <div class="test-intro__passing">Pass with ${test.passingScore}% or higher</div>
+            <button class="btn btn-primary" id="testStart" style="width:auto;padding:14px 36px;margin-top:12px">Start Test →</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('testBack').addEventListener('click', onBack);
+      document.getElementById('testStart').addEventListener('click', _renderQuestion);
+    }
+
+    function _renderQuestion() {
+      if (currentQ >= questions.length) {
+        _renderResult();
+        return;
+      }
+      const q = questions[currentQ];
+      const progressPct = (currentQ / questions.length) * 100;
+
+      app().innerHTML = `
+        <div class="screen active screen-test" id="screen-test-q">
+          <div class="quiz-header">
+            <div class="quiz-header__info" style="flex:1">
+              <div class="quiz-header__title">📝 ${test.title}</div>
+              <div class="quiz-header__counter">Q${currentQ + 1} of ${questions.length}</div>
+            </div>
+          </div>
+          <div class="quiz-progress">
+            <div class="quiz-progress__fill" style="width:${progressPct}%"></div>
+          </div>
+          <div class="quiz-body">
+            <div class="quiz-question-card">
+              <div class="quiz-question-text">${q.question}</div>
+              <div class="quiz-options">
+                ${q.options.map((opt, i) => `
+                  <button class="quiz-option" data-index="${i}" id="tOpt${i}">
+                    <div class="quiz-option__letter">${letters[i]}</div>
+                    <span>${opt}</span>
+                  </button>
+                `).join('')}
+              </div>
+              <div id="testExplanation"></div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chosen = parseInt(btn.dataset.index);
+          const isCorrect = chosen === q.correctIndex;
+          if (isCorrect) correct++;
+
+          document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+          document.getElementById(`tOpt${q.correctIndex}`)?.classList.add('correct');
+          if (!isCorrect) document.getElementById(`tOpt${chosen}`)?.classList.add('wrong');
+
+          if (q.explanation) {
+            document.getElementById('testExplanation').innerHTML = `
+              <div class="quiz-explanation">💡 ${q.explanation}</div>
+            `;
+          }
+
+          setTimeout(() => { currentQ++; _renderQuestion(); }, 1600);
+        });
+      });
+    }
+
+    function _renderResult() {
+      const score = questions.length > 0 ? Math.round((correct / questions.length) * 100) : 0;
+      const passed = score >= test.passingScore;
+
+      // Call callback
+      onComplete(score, passed);
+
+      // Confetti on pass
+      if (passed) _spawnConfetti();
+
+      // Result overlay (auto-dismiss after 4s)
+      const overlay = document.createElement('div');
+      overlay.className = `test-result-overlay ${passed ? 'passed' : 'failed'}`;
+      overlay.innerHTML = `
+        <div class="test-result__emoji">${passed ? '🎓' : '💪'}</div>
+        <div class="test-result__status ${passed ? 'pass' : 'fail'}">${passed ? 'PASSED!' : 'NOT YET'}</div>
+        <div class="test-result__score">${score}%  ·  ${correct}/${questions.length} correct</div>
+        <div class="test-result__message">${passed
+          ? `You passed with ${score}%! Excellent work on ${moduleTitle}.`
+          : `You need ${test.passingScore}% to pass. Keep practicing and try again!`
+        }</div>
+      `;
+      document.body.appendChild(overlay);
+    }
+
+    _renderIntro();
+  }
+
+  // --- Confetti helper ---
+  function _spawnConfetti() {
+    const colors = ['#0072ff', '#00d2ff', '#43e97b', '#f6d365', '#f5576c', '#c471ed'];
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+
+    for (let i = 0; i < 60; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'confetti-dot';
+      dot.style.cssText = [
+        `left: ${Math.random() * 100}%`,
+        `background: ${colors[Math.floor(Math.random() * colors.length)]}`,
+        `animation-duration: ${0.8 + Math.random() * 1.5}s`,
+        `animation-delay: ${Math.random() * 0.5}s`,
+        `width: ${5 + Math.random() * 8}px`,
+        `height: ${5 + Math.random() * 8}px`,
+      ].join(';');
+      container.appendChild(dot);
+    }
+
+    setTimeout(() => container.remove(), 3000);
+  }
+
+
 
   return {
     init,
@@ -1247,6 +1720,9 @@ const UI = (() => {
     renderWelcome,
     renderTranslator,
     renderVideos,
-    renderDictionary
+    renderDictionary,
+    renderFlashcards,
+    renderQuiz,
+    renderModuleTest,
   };
 })();

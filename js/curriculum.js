@@ -5,6 +5,7 @@
 
 const Curriculum = (() => {
   let _data = null;
+  let _assessments = null; // Loaded from assessments.json
 
   /**
    * Initialize curriculum data
@@ -12,6 +13,34 @@ const Curriculum = (() => {
    */
   function init(data) {
     _data = data;
+  }
+
+  /**
+   * Load assessment data (quizzes, flashcards, tests)
+   * Merges assessments.json data and new_modules.json data into _data
+   * @param {Object} assessmentData - Data from assessments.json
+   * @param {Object} newModulesData - Data from new_modules.json
+   */
+  function loadAssessments(assessmentData, newModulesData) {
+    // Store assessment lookup map
+    if (assessmentData && assessmentData.moduleAssessments) {
+      _assessments = {};
+      for (const ma of assessmentData.moduleAssessments) {
+        _assessments[ma.moduleId] = ma;
+      }
+    }
+
+    // Merge new modules (m13–m20) into _data
+    if (newModulesData && newModulesData.modules && _data) {
+      // Avoid duplicates
+      const existingIds = new Set(_data.modules.map(m => m.id));
+      for (const mod of newModulesData.modules) {
+        if (!existingIds.has(mod.id)) {
+          // Extract quiz data from embedded lesson quizzes in new_modules format
+          _data.modules.push(mod);
+        }
+      }
+    }
   }
 
   /**
@@ -51,6 +80,7 @@ const Curriculum = (() => {
         titleMarathi: l.titleMarathi,
         lessonNumber: l.lessonNumber,
         phraseCount: l.phrases.length,
+        hasQuiz: !!(l.quiz?.length > 0 || _assessments?.[moduleId]?.lessonQuizzes?.[l.id]?.length > 0),
       })),
     };
   }
@@ -191,8 +221,63 @@ const Curriculum = (() => {
       .filter(Boolean);
   }
 
+  /**
+   * Get flashcard deck for a module
+   * Checks new_modules embedded flashcards first, then assessments.json
+   * @param {string} moduleId
+   * @returns {Array}
+   */
+  function getFlashcards(moduleId) {
+    if (!_data) return [];
+    const mod = _data.modules.find(m => m.id === moduleId);
+    // Prefer embedded flashcards (new modules m13-m20)
+    if (mod?.flashcards?.length > 0) return mod.flashcards;
+    // Fall back to assessments.json data
+    if (_assessments?.[moduleId]?.flashcards) return _assessments[moduleId].flashcards;
+    return [];
+  }
+
+  /**
+   * Get quiz questions for a specific lesson
+   * Checks embedded quiz on lesson first, then assessments.json
+   * @param {string} lessonId - e.g., "m1-l1"
+   * @returns {Array}
+   */
+  function getLessonQuiz(lessonId) {
+    if (!_data) return [];
+    for (const mod of _data.modules) {
+      const lesson = mod.lessons.find(l => l.id === lessonId);
+      if (lesson) {
+        // Prefer embedded quiz (new modules)
+        if (lesson.quiz?.length > 0) return lesson.quiz;
+        // Fall back to assessments.json
+        if (_assessments?.[mod.id]?.lessonQuizzes?.[lessonId]) {
+          return _assessments[mod.id].lessonQuizzes[lessonId];
+        }
+        return [];
+      }
+    }
+    return [];
+  }
+
+  /**
+   * Get module test for a module
+   * @param {string} moduleId
+   * @returns {Object|null}
+   */
+  function getModuleTest(moduleId) {
+    if (!_data) return null;
+    const mod = _data.modules.find(m => m.id === moduleId);
+    // Prefer embedded test (new modules m13-m20)
+    if (mod?.moduleTest) return mod.moduleTest;
+    // Fall back to assessments.json
+    if (_assessments?.[moduleId]?.moduleTest) return _assessments[moduleId].moduleTest;
+    return null;
+  }
+
   return {
     init,
+    loadAssessments,
     getModules,
     getModule,
     getLesson,
@@ -201,5 +286,8 @@ const Curriculum = (() => {
     getTotalPhrases,
     searchPhrases,
     getReviewPhrases,
+    getFlashcards,
+    getLessonQuiz,
+    getModuleTest,
   };
 })();
