@@ -112,12 +112,6 @@ const App = (() => {
     const lastModuleId = localStorage.getItem('bolaMarathi_lastModuleId');
     const lastLessonId = localStorage.getItem('bolaMarathi_lastLessonId');
 
-    const apiKey = Progress.getApiKey();
-    if (!apiKey && lastScreen !== 'welcome' && lastScreen !== 'onboarding') {
-      _showWelcome(true);
-      return;
-    }
-
     if (lastScreen === 'module' && lastModuleId) {
       window.history.replaceState({ screen: 'lessons', params: {} }, '', '#lessons');
       _showModuleDetail(lastModuleId, true);

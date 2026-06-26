@@ -3,7 +3,7 @@
 // Caches app shell and lesson data for offline support
 // ============================================================
 
-const CACHE_NAME = 'bola-marathi-v15';
+const CACHE_NAME = 'bola-marathi-v16';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
